@@ -6,6 +6,7 @@
 package controlador;
 
 import vista.ChooseRole;
+import vista.UserRegister;
 
 /**
  *
@@ -17,8 +18,9 @@ public class PRIMERPROYECTOPROGRAMADO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ChooseRole principal = new ChooseRole();
-        principal.setVisible(true);
+        UserRegisterControlador c=new UserRegisterControlador();
+        UserRegister principal = new UserRegister();
+        new UserRegisterControlador(principal).openUserRegister();
     }
 
 }

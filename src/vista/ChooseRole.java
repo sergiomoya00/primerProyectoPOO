@@ -32,6 +32,7 @@ public class ChooseRole extends javax.swing.JFrame {
         providerButton = new javax.swing.JButton();
         clientButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +62,8 @@ public class ChooseRole extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel2.setText("RapiExpress");
 
+        btnBack.setText("Atras");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,15 +80,19 @@ public class ChooseRole extends javax.swing.JFrame {
                             .addComponent(providerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(clientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(195, 195, 195)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnBack)
+                        .addGap(87, 87, 87)
                         .addComponent(jLabel2)))
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(btnBack))
                 .addGap(43, 43, 43)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -101,24 +108,15 @@ public class ChooseRole extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
-        AdminRole roleA = new AdminRole();
-        roleA.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+        
     }//GEN-LAST:event_adminButtonActionPerformed
 
     private void clientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientButtonActionPerformed
-        ClientLogIn client = new ClientLogIn();
-        client.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+        
     }//GEN-LAST:event_clientButtonActionPerformed
 
     private void providerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_providerButtonActionPerformed
-        ProviderLogIn register = new ProviderLogIn();
-        register.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+        
     }//GEN-LAST:event_providerButtonActionPerformed
 
     /**
@@ -157,10 +155,11 @@ public class ChooseRole extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminButton;
-    private javax.swing.JButton clientButton;
+    public javax.swing.JButton adminButton;
+    public javax.swing.JButton btnBack;
+    public javax.swing.JButton clientButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton providerButton;
+    public javax.swing.JButton providerButton;
     // End of variables declaration//GEN-END:variables
 }

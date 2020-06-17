@@ -45,14 +45,16 @@
                                   <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtName" pref="281" max="32767" attributes="0"/>
-                                  <Component id="txtId" max="32767" attributes="0"/>
-                                  <Component id="txtemail" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtphone" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtWeb" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtHora" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtSocialM" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtName" pref="281" max="32767" attributes="0"/>
+                                      <Component id="txtId" max="32767" attributes="0"/>
+                                      <Component id="txtemail" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtphone" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtWeb" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtSocialM" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtHora" alignment="1" min="-2" pref="281" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -68,7 +70,7 @@
                                       <Component id="txtProvince" min="-2" pref="124" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="31" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
