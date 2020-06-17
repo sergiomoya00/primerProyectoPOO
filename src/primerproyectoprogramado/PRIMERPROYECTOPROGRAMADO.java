@@ -5,9 +5,11 @@
  */
 package primerproyectoprogramado;
 
+import primerproyectoprogramado.GUI.ChooseRole;
+
 /**
  *
- * @author jabre
+ * @author samoy
  */
 public class PRIMERPROYECTOPROGRAMADO {
 
@@ -15,7 +17,8 @@ public class PRIMERPROYECTOPROGRAMADO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ChooseRole principal = new ChooseRole();
+        principal.setVisible(true);
     }
-    
+
 }
