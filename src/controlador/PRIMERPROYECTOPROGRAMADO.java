@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package primerproyectoprogramado;
+package controlador;
 
-import primerproyectoprogramado.GUI.ChooseRole;
+import vista.ChooseRole;
 
 /**
  *
