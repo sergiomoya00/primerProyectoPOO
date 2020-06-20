@@ -34,7 +34,7 @@ public class ProviderLogIn extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         buttonBack = new javax.swing.JButton();
         menuButton = new javax.swing.JButton();
-        registerButton = new javax.swing.JButton();
+        btnRegister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,19 +52,14 @@ public class ProviderLogIn extends javax.swing.JFrame {
             }
         });
 
-        menuButton.setText("Aceptar");
+        menuButton.setText("Iniciar Sesion");
         menuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuButtonActionPerformed(evt);
             }
         });
 
-        registerButton.setText("Registrarse");
-        registerButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerButtonActionPerformed(evt);
-            }
-        });
+        btnRegister.setText("Registrarse");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,11 +89,11 @@ public class ProviderLogIn extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(registerButton)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(menuButton)
-                        .addGap(195, 195, 195))))
+                        .addGap(195, 195, 195))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnRegister)
+                        .addGap(29, 29, 29))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,33 +115,20 @@ public class ProviderLogIn extends javax.swing.JFrame {
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(menuButton)
-                .addGap(11, 11, 11)
-                .addComponent(registerButton)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRegister)
+                .addGap(17, 17, 17))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        ChooseRole role = new ChooseRole();
-        role.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+        
     }//GEN-LAST:event_buttonBackActionPerformed
 
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        ProviderUser register = new ProviderUser();
-        register.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
-    }//GEN-LAST:event_registerButtonActionPerformed
-
     private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
-        ProviderRole roleP = new ProviderRole();
-        roleP.setVisible(true);
-        this.setVisible(false);
-        this.dispose();       
+           
         
     }//GEN-LAST:event_menuButtonActionPerformed
 
@@ -187,13 +169,13 @@ public class ProviderLogIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonBack;
+    public javax.swing.JButton btnRegister;
+    public javax.swing.JButton buttonBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton menuButton;
-    private javax.swing.JButton registerButton;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txt_email;
+    public javax.swing.JButton menuButton;
+    public javax.swing.JPasswordField txtPassword;
+    public javax.swing.JTextField txt_email;
     // End of variables declaration//GEN-END:variables
 }

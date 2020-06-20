@@ -31,7 +31,8 @@ public class AdminRole extends javax.swing.JFrame {
         buttonCate = new javax.swing.JButton();
         buttonUser = new javax.swing.JButton();
         buttonCondi = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        buttonBack = new javax.swing.JButton();
+        buttonInsert = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,12 +64,14 @@ public class AdminRole extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Atrás");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        buttonBack.setText("Atrás");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                buttonBackActionPerformed(evt);
             }
         });
+
+        buttonInsert.setText("Insertar administrador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,6 +80,9 @@ public class AdminRole extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(buttonBack))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(101, 101, 101)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(buttonCate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -84,17 +90,15 @@ public class AdminRole extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(buttonCondi)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(buttonProvi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton5)))
+                            .addComponent(buttonProvi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonInsert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton5)
+                .addComponent(buttonBack)
                 .addGap(37, 37, 37)
                 .addComponent(buttonProvi, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -103,45 +107,33 @@ public class AdminRole extends javax.swing.JFrame {
                 .addComponent(buttonUser, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonCondi, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(buttonInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCondiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCondiActionPerformed
-        AdminOrderStatus status = new AdminOrderStatus();
-        status.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+       
     }//GEN-LAST:event_buttonCondiActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        ChooseRole role = new ChooseRole();
-        role.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        
+    }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonProviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProviActionPerformed
-        AdminProvider prole = new AdminProvider();
-        prole.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+        
     }//GEN-LAST:event_buttonProviActionPerformed
 
     private void buttonCateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCateActionPerformed
-        AdminCategory cate = new AdminCategory();
-        cate.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+       
     }//GEN-LAST:event_buttonCateActionPerformed
 
     private void buttonUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUserActionPerformed
-        AdminUser user = new AdminUser();
-        user.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+        
+        
     }//GEN-LAST:event_buttonUserActionPerformed
 
     /**
@@ -180,10 +172,11 @@ public class AdminRole extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonCate;
-    private javax.swing.JButton buttonCondi;
-    private javax.swing.JButton buttonProvi;
-    private javax.swing.JButton buttonUser;
-    private javax.swing.JButton jButton5;
+    public javax.swing.JButton buttonBack;
+    public javax.swing.JButton buttonCate;
+    public javax.swing.JButton buttonCondi;
+    public javax.swing.JButton buttonInsert;
+    public javax.swing.JButton buttonProvi;
+    public javax.swing.JButton buttonUser;
     // End of variables declaration//GEN-END:variables
 }

@@ -28,17 +28,16 @@ public class AdminCategory extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableProve = new javax.swing.JTable();
+        tableCategory = new javax.swing.JTable();
         buttonInsert = new javax.swing.JButton();
-        buttonCon = new javax.swing.JButton();
-        buttonRefresh = new javax.swing.JButton();
+        buttonUpdate = new javax.swing.JButton();
         buttonBack = new javax.swing.JButton();
         buttonDelete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tableProve.setModel(new javax.swing.table.DefaultTableModel(
+        tableCategory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -49,7 +48,7 @@ public class AdminCategory extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tableProve);
+        jScrollPane1.setViewportView(tableCategory);
 
         buttonInsert.setText("Insertar");
         buttonInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -58,9 +57,7 @@ public class AdminCategory extends javax.swing.JFrame {
             }
         });
 
-        buttonCon.setText("Consultar");
-
-        buttonRefresh.setText("Actualizar");
+        buttonUpdate.setText("Actualizar");
 
         buttonBack.setText("Atrás");
         buttonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -90,8 +87,7 @@ public class AdminCategory extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buttonCon, javax.swing.GroupLayout.PREFERRED_SIZE, 83, Short.MAX_VALUE)
-                            .addComponent(buttonRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonInsert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -108,9 +104,7 @@ public class AdminCategory extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonInsert)
                         .addGap(18, 18, 18)
-                        .addComponent(buttonCon)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonRefresh)
+                        .addComponent(buttonUpdate)
                         .addGap(18, 18, 18)
                         .addComponent(buttonDelete))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -121,17 +115,11 @@ public class AdminCategory extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertActionPerformed
-        CategoryRegister cat = new CategoryRegister();
-        cat.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+        
     }//GEN-LAST:event_buttonInsertActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        AdminRole adminRol = new AdminRole();
-        adminRol.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+      
     }//GEN-LAST:event_buttonBackActionPerformed
 
     /**
@@ -171,13 +159,12 @@ public class AdminCategory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonBack;
-    private javax.swing.JButton buttonCon;
-    private javax.swing.JButton buttonDelete;
-    private javax.swing.JButton buttonInsert;
-    private javax.swing.JButton buttonRefresh;
+    public javax.swing.JButton buttonBack;
+    public javax.swing.JButton buttonDelete;
+    public javax.swing.JButton buttonInsert;
+    public javax.swing.JButton buttonUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableProve;
+    public javax.swing.JTable tableCategory;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,7 +32,6 @@ public class ChooseRole extends javax.swing.JFrame {
         providerButton = new javax.swing.JButton();
         clientButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,8 +61,6 @@ public class ChooseRole extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel2.setText("RapiExpress");
 
-        btnBack.setText("Atras");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,9 +77,7 @@ public class ChooseRole extends javax.swing.JFrame {
                             .addComponent(providerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(clientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(btnBack)
-                        .addGap(87, 87, 87)
+                        .addGap(179, 179, 179)
                         .addComponent(jLabel2)))
                 .addContainerGap(217, Short.MAX_VALUE))
         );
@@ -90,9 +85,7 @@ public class ChooseRole extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(btnBack))
+                .addComponent(jLabel2)
                 .addGap(43, 43, 43)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -156,7 +149,6 @@ public class ChooseRole extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton adminButton;
-    public javax.swing.JButton btnBack;
     public javax.swing.JButton clientButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

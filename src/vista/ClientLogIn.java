@@ -32,7 +32,7 @@ public class ClientLogIn extends javax.swing.JFrame {
         txt_email = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         menuButton = new javax.swing.JButton();
         registerButton = new javax.swing.JButton();
 
@@ -45,10 +45,10 @@ public class ClientLogIn extends javax.swing.JFrame {
 
         jLabel3.setText("Contraseña:");
 
-        jButton1.setText("Atrás");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("Atrás");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -74,7 +74,7 @@ public class ClientLogIn extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(backButton)
                         .addGap(138, 138, 138)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
@@ -106,7 +106,7 @@ public class ClientLogIn extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1))
+                        .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel1)))
@@ -128,25 +128,16 @@ public class ClientLogIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ChooseRole role = new ChooseRole();
-        role.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+     
+    }//GEN-LAST:event_backButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        ClientRegister register = new ClientRegister();
-        register.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+       
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
-        ClientSearch roleS = new ClientSearch();
-        roleS.setVisible(true);
-        this.setVisible(false);
-        this.dispose();        // TODO add your handling code here:
+              // TODO add your handling code here:
     }//GEN-LAST:event_menuButtonActionPerformed
 
     /**
@@ -185,13 +176,13 @@ public class ClientLogIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton menuButton;
-    private javax.swing.JButton registerButton;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txt_email;
+    public javax.swing.JButton menuButton;
+    public javax.swing.JButton registerButton;
+    public javax.swing.JPasswordField txtPassword;
+    public javax.swing.JTextField txt_email;
     // End of variables declaration//GEN-END:variables
 }

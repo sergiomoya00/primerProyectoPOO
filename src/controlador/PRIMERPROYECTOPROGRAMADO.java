@@ -19,8 +19,8 @@ public class PRIMERPROYECTOPROGRAMADO {
      */
     public static void main(String[] args) {
         UserRegisterControlador c=new UserRegisterControlador();
-        UserRegister principal = new UserRegister();
-        new UserRegisterControlador(principal).openUserRegister();
+        ChooseRole principal = new ChooseRole();
+        new ChooseRoleControlator(principal).openChooseRole();
     }
 
 }

@@ -30,12 +30,11 @@ public class AdminProvider extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProve = new javax.swing.JTable();
         buttonInsert = new javax.swing.JButton();
-        buttonCon = new javax.swing.JButton();
-        buttonRefresh = new javax.swing.JButton();
         buttonBack = new javax.swing.JButton();
-        buttonDelete = new javax.swing.JButton();
         buttonDesactivar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
+        buttonDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,10 +58,6 @@ public class AdminProvider extends javax.swing.JFrame {
             }
         });
 
-        buttonCon.setText("Consultar");
-
-        buttonRefresh.setText("Actualizar");
-
         buttonBack.setText("Atrás");
         buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,12 +65,14 @@ public class AdminProvider extends javax.swing.JFrame {
             }
         });
 
-        buttonDelete.setText("Borrar");
-
         buttonDesactivar.setText("Desactivar");
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel1.setText("Gestión de proveedores");
+
+        btnUpdate.setText("Actualizar");
+
+        buttonDelete.setText("Borrar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,18 +84,18 @@ public class AdminProvider extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonBack)
                         .addGap(71, 71, 71)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addContainerGap(1437, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buttonCon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonInsert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonDesactivar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonDesactivar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonInsert, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,35 +106,27 @@ public class AdminProvider extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonInsert)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonCon)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonRefresh)
-                        .addGap(18, 18, 18)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnUpdate)
+                        .addGap(50, 50, 50)
                         .addComponent(buttonDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonDesactivar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .addComponent(buttonDesactivar)))
+                .addContainerGap(304, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertActionPerformed
-        ProviderRegister provi = new ProviderRegister();
-        provi.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+      
     }//GEN-LAST:event_buttonInsertActionPerformed
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        AdminRole adminRol = new AdminRole();
-        adminRol.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+       
     }//GEN-LAST:event_buttonBackActionPerformed
 
     /**
@@ -176,14 +165,13 @@ public class AdminProvider extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonBack;
-    private javax.swing.JButton buttonCon;
-    private javax.swing.JButton buttonDelete;
-    private javax.swing.JButton buttonDesactivar;
-    private javax.swing.JButton buttonInsert;
-    private javax.swing.JButton buttonRefresh;
+    public javax.swing.JButton btnUpdate;
+    public javax.swing.JButton buttonBack;
+    public javax.swing.JButton buttonDelete;
+    public javax.swing.JButton buttonDesactivar;
+    public javax.swing.JButton buttonInsert;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableProve;
+    public javax.swing.JTable tableProve;
     // End of variables declaration//GEN-END:variables
 }

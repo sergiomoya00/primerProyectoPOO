@@ -92,24 +92,15 @@ public class ProviderRole extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        ChooseRole role = new ChooseRole();
-        role.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+       
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConsultActionPerformed
-        ProviderConsultClients consult = new ProviderConsultClients();
-        consult.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+     
     }//GEN-LAST:event_buttonConsultActionPerformed
 
     private void buttonProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProductsActionPerformed
-        ProviderProducts providerP = new ProviderProducts();
-        providerP.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+       
     }//GEN-LAST:event_buttonProductsActionPerformed
 
     /**
@@ -148,9 +139,9 @@ public class ProviderRole extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonBack;
-    private javax.swing.JButton buttonConsult;
-    private javax.swing.JButton buttonOrders;
-    private javax.swing.JButton buttonProducts;
+    public javax.swing.JButton buttonBack;
+    public javax.swing.JButton buttonConsult;
+    public javax.swing.JButton buttonOrders;
+    public javax.swing.JButton buttonProducts;
     // End of variables declaration//GEN-END:variables
 }

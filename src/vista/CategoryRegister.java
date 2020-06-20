@@ -33,8 +33,8 @@ public class CategoryRegister extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtDescription = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        backButton = new javax.swing.JButton();
-        nextButton = new javax.swing.JButton();
+        buttonBack = new javax.swing.JButton();
+        buttonInsert = new javax.swing.JButton();
         comboActive = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,19 +48,21 @@ public class CategoryRegister extends javax.swing.JFrame {
 
         jLabel4.setText("Condición:");
 
-        backButton.setText("Atrás");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
+        buttonBack.setText("Atrás");
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
+                buttonBackActionPerformed(evt);
             }
         });
 
-        nextButton.setText("Aceptar");
-        nextButton.addActionListener(new java.awt.event.ActionListener() {
+        buttonInsert.setText("Aceptar");
+        buttonInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextButtonActionPerformed(evt);
+                buttonInsertActionPerformed(evt);
             }
         });
+
+        comboActive.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activa", "Inactiva" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,7 +72,7 @@ public class CategoryRegister extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(backButton)
+                        .addComponent(buttonBack)
                         .addGap(129, 129, 129)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
@@ -86,7 +88,7 @@ public class CategoryRegister extends javax.swing.JFrame {
                             .addComponent(comboActive, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
-                        .addComponent(nextButton)))
+                        .addComponent(buttonInsert)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -98,7 +100,7 @@ public class CategoryRegister extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(backButton)))
+                        .addComponent(buttonBack)))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -112,26 +114,20 @@ public class CategoryRegister extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(comboActive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(nextButton)
+                .addComponent(buttonInsert)
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        AdminCategory categ = new AdminCategory();
-        categ.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
-    }//GEN-LAST:event_backButtonActionPerformed
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+       
+    }//GEN-LAST:event_buttonBackActionPerformed
 
-    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        AdminCategory categ = new AdminCategory();
-        categ.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
-    }//GEN-LAST:event_nextButtonActionPerformed
+    private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertActionPerformed
+     
+    }//GEN-LAST:event_buttonInsertActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,14 +166,14 @@ public class CategoryRegister extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton;
-    private javax.swing.JComboBox<String> comboActive;
+    public javax.swing.JButton buttonBack;
+    public javax.swing.JButton buttonInsert;
+    public javax.swing.JComboBox<String> comboActive;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JButton nextButton;
-    private javax.swing.JTextField txtDescription;
-    private javax.swing.JTextField txtName;
+    public javax.swing.JTextField txtDescription;
+    public javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

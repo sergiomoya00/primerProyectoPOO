@@ -15,6 +15,7 @@ import vista.AdminOrderStatus;
 import vista.AdminProvider;
 import vista.AdminRole;
 import vista.AdminUser;
+import vista.AdministratorLogIn;
 import vista.CategoryRegister;
 import vista.ChooseRole;
 import vista.ClientLogIn;
@@ -37,54 +38,94 @@ import vista.UserRegister;
 public class UserRegisterControlador implements ActionListener {
 
     private UserRegister userRegister;
-    private UserDAO user =new UserDAO();
-    private ChooseRole role=new ChooseRole();
+    private UserDAO user = new UserDAO();
+    private ProviderLogIn role = new ProviderLogIn();
+    private ClientLogIn role2 = new ClientLogIn();
+    private ProviderLogIn provider = new ProviderLogIn();
+    private ClientRegister client = new ClientRegister();
+    private AdminRole rol = new AdminRole();
+    private AdminUser adminuser = new AdminUser();
+    private String opcion;
 
     public UserRegisterControlador() {
-        
+
     }
+
     public UserRegisterControlador(UserRegister user) {
-        this.userRegister=user;
+        this.userRegister = user;
     }
-    
-    
-    public void openUserRegister(){
-    userRegister.setTitle("Registo Usuario");
-    userRegister.setLocationRelativeTo(null);
-    userRegister.setVisible(true);
-    
-    this.userRegister.btnRegister.setActionCommand("btnRegister");
-    this.userRegister.btnRegister.addActionListener(this);
-    this.userRegister.btnLogIn.setActionCommand("btnLogIn");
-    this.userRegister.btnLogIn.addActionListener(this);
-    
+
+    public void openUserRegister(String opcion) {
+        userRegister.setTitle("Registo Usuario");
+        userRegister.setLocationRelativeTo(null);
+        userRegister.setVisible(true);
+
+        this.opcion = opcion;
+        this.userRegister.btnRegister.setActionCommand("btnRegister");
+        this.userRegister.btnRegister.addActionListener(this);
+        this.userRegister.btnLogIn.setActionCommand("btnLogIn");
+        this.userRegister.btnLogIn.addActionListener(this);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-       switch(buttons.valueOf(evento.getActionCommand())){
-           case btnRegister:
-               user.userRegister(userRegister.txtName.getText(), userRegister.txtEmail.getText(), userRegister.txtPassword.getText(), userRegister.comboActive.getSelectedItem().toString());
-               new ChooseRoleControlator(role).openChooseRole();
-               break;
-           case btnLogIn:
-               new ChooseRoleControlator(role).openChooseRole();
-               break;
-       
-       }
+        switch (buttons.valueOf(evento.getActionCommand())) {
+            case btnRegister:
+                user.userRegister(userRegister.txtName.getText(), userRegister.txtEmail.getText(), userRegister.txtPassword.getText(), userRegister.comboActive.getSelectedItem().toString());
+                if (userRegister.comboActive.getSelectedItem().toString().equals("Proveedor")) {
+                    if (opcion.equals("provider")) {
+                        new ProviderLogInControlator(provider).openUserRegister();
+                    }
+                    if (opcion.equals("b")) {
+                        new AdminUserControlator(adminuser).openUserRegister();
+                        userRegister.setVisible(false);
+                    }
+                }
+                if (userRegister.comboActive.getSelectedItem().toString().equals("Cliente")) {
+                    if (opcion.equals("b")) {
+                        new AdminUserControlator(adminuser).openUserRegister();
+                        userRegister.setVisible(false);
+                    }
+                    if (opcion.equals("client")) {
+                        new ClientRegisterControlator(client).openClientRegister(userRegister.txtName.getText(), "a");
+                    }
+                }
+                if (userRegister.comboActive.getSelectedItem().toString().equals("Administracion")) {
+                    if (opcion.equals("b")) {
+                        new AdminUserControlator(adminuser).openUserRegister();
+                        userRegister.setVisible(false);
+                    }
+                    if (opcion.equals("administracion")) {
+                        new AdminRoleControlator(rol).openUserRegister();
+                    }
+                }
+                break;
+            case btnLogIn:
+                if (opcion.equals("provider")) {
+                    new ProviderLogInControlator(role).openUserRegister();
+                    userRegister.setVisible(false);
+                }
+                if (opcion.equals("client")) {
+                    new ClientLogInControlator(role2).openUserRegister();
+                    userRegister.setVisible(false);
+                }
+                if (opcion.equals("b")) {
+                    new AdminUserControlator(adminuser).openUserRegister();
+                    userRegister.setVisible(false);
+                }
+                if (opcion.equals("administracion")) {
+                    new AdminRoleControlator(rol).openUserRegister();
+                    userRegister.setVisible(false);
+                }
+                break;
+
+        }
     }
-    
-    public enum buttons{
-    btnRegister,
-    btnLogIn
+
+    public enum buttons {
+        btnRegister,
+        btnLogIn
     }
-    
-    
-    
-    
-    
-    
-    
-    
 
 }
