@@ -14,10 +14,7 @@ public class Providers {
     private String id;
     private String name;
     private String company;
-    private String canton;
-    private String provincia;
-    private String distrito;
-    private String señas;
+    private Address address;
     private int phoneNumber;
     private String email;
     private String schedule;
@@ -29,36 +26,17 @@ public class Providers {
 
     }
 
-    public Providers(String id, String name, String company, String canton, String provincia, String distrito, String señas, int phoneNumber, String email, String schedule, int ubication, String profile, int qualification) {
+    public Providers(String id, String name, String company, Address address, int phoneNumber, String email, String schedule, int ubication, String profile, int qualification) {
         this.id = id;
         this.name = name;
         this.company = company;
-        this.canton = canton;
-        this.provincia = provincia;
-        this.distrito = distrito;
-        this.señas = señas;
+        this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.schedule = schedule;
         this.ubication = ubication;
         this.profile = profile;
         this.qualification = qualification;
-    }
-
-    public String getProvincia() {
-        return provincia;
-    }
-
-    public void setProvincia(String provincia) {
-        this.provincia = provincia;
-    }
-
-    public String getDistrito() {
-        return distrito;
-    }
-
-    public void setDistrito(String distrito) {
-        this.distrito = distrito;
     }
 
     public String getId() {
@@ -85,20 +63,12 @@ public class Providers {
         this.company = company;
     }
 
-    public String getCanton() {
-        return canton;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setCanton(String canton) {
-        this.canton = canton;
-    }
-
-    public String getSeñas() {
-        return señas;
-    }
-
-    public void setSeñas(String señas) {
-        this.señas = señas;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public int getPhoneNumber() {
@@ -148,5 +118,7 @@ public class Providers {
     public void setQualification(int qualification) {
         this.qualification = qualification;
     }
+
+    
 
 }
