@@ -29,7 +29,7 @@ public class ProviderConsultClients extends javax.swing.JFrame {
 
         buttonBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableClients = new javax.swing.JTable();
         buttonDetails = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         buttonList = new javax.swing.JButton();
@@ -43,7 +43,7 @@ public class ProviderConsultClients extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableClients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -54,7 +54,7 @@ public class ProviderConsultClients extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableClients);
 
         buttonDetails.setText("Ver detalle");
 
@@ -146,11 +146,11 @@ public class ProviderConsultClients extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonBack;
+    public javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonDetails;
-    private javax.swing.JButton buttonList;
+    public javax.swing.JButton buttonList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable tableClients;
     // End of variables declaration//GEN-END:variables
 }

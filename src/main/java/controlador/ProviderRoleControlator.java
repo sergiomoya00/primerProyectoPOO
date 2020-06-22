@@ -24,9 +24,9 @@ public class ProviderRoleControlator implements ActionListener {
     private ProviderRole p=new ProviderRole();
     private ProviderProducts product=new  ProviderProducts();
 
-    public ProviderRoleControlator() {
-        
+    public ProviderRoleControlator() {   
     }
+    
     public ProviderRoleControlator(ProviderRole user) {
         this.providerRole=user;
     }
