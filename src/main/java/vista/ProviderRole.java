@@ -49,6 +49,11 @@ public class ProviderRole extends javax.swing.JFrame {
         });
 
         buttonOrders.setText("Gestión de pedidos");
+        buttonOrders.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOrdersActionPerformed(evt);
+            }
+        });
 
         buttonConsult.setText("Consultar clientes");
         buttonConsult.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +107,10 @@ public class ProviderRole extends javax.swing.JFrame {
     private void buttonProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProductsActionPerformed
        
     }//GEN-LAST:event_buttonProductsActionPerformed
+
+    private void buttonOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOrdersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonOrdersActionPerformed
 
     /**
      * @param args the command line arguments

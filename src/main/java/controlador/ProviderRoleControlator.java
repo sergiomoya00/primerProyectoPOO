@@ -9,6 +9,7 @@ import dao.UserDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import vista.ChooseRole;
+import vista.ProviderConsultClients;
 import vista.ProviderLogIn;
 import vista.ProviderProducts;
 import vista.ProviderRole;
@@ -18,57 +19,58 @@ import vista.ProviderRole;
  * @author jabre
  */
 public class ProviderRoleControlator implements ActionListener {
-    
+
     private ProviderRole providerRole;
     private ChooseRole role = new ChooseRole();
-    private ProviderRole p=new ProviderRole();
-    private ProviderProducts product=new  ProviderProducts();
+    private ProviderRole p = new ProviderRole();
+    private ProviderProducts product = new ProviderProducts();
+    private ProviderConsultClients consult = new ProviderConsultClients();
 
-    public ProviderRoleControlator() {   
+    public ProviderRoleControlator() {
     }
-    
+
     public ProviderRoleControlator(ProviderRole user) {
-        this.providerRole=user;
+        this.providerRole = user;
     }
-    
-    
-    public void openUserRegister(){
-    providerRole.setTitle("Registo Usuario");
-    providerRole.setLocationRelativeTo(null);
-    providerRole.setVisible(true);
-    
-    this.providerRole.buttonConsult.setActionCommand("buttonConsult");
-    this.providerRole.buttonConsult.addActionListener(this);
-    this.providerRole.buttonOrders.setActionCommand("buttonOrders");
-    this.providerRole.buttonOrders.addActionListener(this);
-    this.providerRole.buttonProducts.setActionCommand("buttonProducts");
-    this.providerRole.buttonProducts.addActionListener(this);
-    this.providerRole.buttonBack.setActionCommand("buttonBack");
-    this.providerRole.buttonBack.addActionListener(this);
-    
+
+    public void openUserRegister() {
+        providerRole.setTitle("Registo Usuario");
+        providerRole.setLocationRelativeTo(null);
+        providerRole.setVisible(true);
+
+        this.providerRole.buttonConsult.setActionCommand("buttonConsult");
+        this.providerRole.buttonConsult.addActionListener(this);
+        this.providerRole.buttonOrders.setActionCommand("buttonOrders");
+        this.providerRole.buttonOrders.addActionListener(this);
+        this.providerRole.buttonProducts.setActionCommand("buttonProducts");
+        this.providerRole.buttonProducts.addActionListener(this);
+        this.providerRole.buttonBack.setActionCommand("buttonBack");
+        this.providerRole.buttonBack.addActionListener(this);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-       switch(buttons.valueOf(evento.getActionCommand())){
-           case buttonProducts:
-               new ProviderProductsControlator(product).openUserRegister();
-               providerRole.setVisible(false);
-               break;
-           case buttonOrders:
-               break;
-           case buttonConsult:
-               break;
-           case buttonBack:
-               new ChooseRoleControlator(role).openChooseRole();
-               providerRole.setVisible(false);
-               break;
-           
-       
-       }
+        switch (buttons.valueOf(evento.getActionCommand())) {
+            case buttonProducts:
+                new ProviderProductsControlator(product).openUserRegister();
+                providerRole.setVisible(false);
+                break;
+            case buttonOrders:
+                break;
+            case buttonConsult:
+                new ProviderConsultClientsControlator(consult).openUserRegister();
+                providerRole.setVisible(false);
+                break;
+            case buttonBack:
+                new ChooseRoleControlator(role).openChooseRole();
+                providerRole.setVisible(false);
+                break;
+
+        }
     }
-    
-    public enum buttons{
-    buttonProducts,buttonOrders,buttonConsult,buttonBack
-    }   
+
+    public enum buttons {
+        buttonProducts, buttonOrders, buttonConsult, buttonBack
+    }
 }
