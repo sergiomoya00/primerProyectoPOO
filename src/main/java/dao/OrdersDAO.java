@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import vista.ClientSearch;
 import vista.StatusRegister;
 
 /**
@@ -24,8 +25,34 @@ public class OrdersDAO {
 
     Conexion conexion = new Conexion();
     Connection cin = conexion.getConnection();
+    private ClientSearch client=new ClientSearch();
     PreparedStatement ps;
     StatusRegister statusR;
+
+    public void insertOrder(String nombreUsuario,String idProveedor,String idProducto,int cantidad) {
+        String insertar = "insert into pedidos (nombreUsuario,idProveedor,idProducto,cantidad,estado,fecha_hora_Entrega) values (?,?,?,?,?,?) ";
+        long time=System.currentTimeMillis();
+        java.sql.Date d=new java.sql.Date(time);
+        long now = System.currentTimeMillis();
+        java.sql.Time a=new java.sql.Time(now);
+        String fecha=d+" "+a;
+        
+        try {
+            ps = cin.prepareCall(insertar);
+            ps.setString(1, nombreUsuario);
+            ps.setString(2, idProveedor);
+            ps.setString(3, idProducto);
+            ps.setInt(4, cantidad);
+            ps.setString(5, "En Proceso");
+            ps.setString(6, fecha);
+            
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(client, "Registrado con exito");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(client, "No Registrado ");
+        }
+    }
 
     public void orderStatus(String idOrder, String status) {
         String update = "UPDATE pedidos SET  estado='" + status + "' WHERE idPedido='" + idOrder + "'";
@@ -83,9 +110,9 @@ public class OrdersDAO {
 
         }
     }
-    
-    public void getComboOrders(JComboBox combo){
-    java.sql.Connection conectar = null;
+
+    public void getComboOrders(JComboBox combo) {
+        java.sql.Connection conectar = null;
         String poi = "SELECT idPedido FROM pedidos";
         try {
 

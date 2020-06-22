@@ -53,6 +53,7 @@ public class ProviderRegisterControlator implements ActionListener {
             case nextButton:
                 provider.providerRegister(providerRegister.txtId.getText(), providerRegister.txtNombre.getText(), providerRegister.txtCompany.getText());
                 provider.providerInformationRegister(providerRegister.txtId.getText(), providerRegister.txtProvince.getText(), providerRegister.txtcanton.getText(), providerRegister.txtDistrict.getText(), providerRegister.txtInfo.getText(), Integer.parseInt(providerRegister.txtphone.getText()), providerRegister.txtemail.getText(), providerRegister.txtUbication.getText(), providerRegister.txtWeb.getText(), providerRegister.txtHora.getText(), providerRegister.txtSocialM.getText());
+                
                 break;
             
             case buttonBack:

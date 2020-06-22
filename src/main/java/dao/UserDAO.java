@@ -5,14 +5,18 @@
  */
 package dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Types;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import static jdk.nashorn.internal.objects.NativeFunction.call;
+
 import vista.AdminUser;
 import vista.ProviderRegister;
 
@@ -27,6 +31,8 @@ public class UserDAO {
     Conexion conexion = new Conexion();
     Connection cin = conexion.getConnection();
     PreparedStatement ps;
+    CallableStatement cs;
+    
 
     public UserDAO() {
 
@@ -34,14 +40,12 @@ public class UserDAO {
 
     public void userRegister(String username, String email, String password,String role) {
 
-        String insertar = "insert into usuarios (nombreUsuario,correoElectronico,contraseña,rol) values (?,?,?,?) ";
-
+        String insertar = "insert into usuarios values('"+username+"','"+email+"',dbo.ENCRIPTA_PASS('"+password+"'),'"+role+"')";
+        String contra=getPassword(password);
+        System.out.print(contra);
         try {
+
             ps = cin.prepareCall(insertar);
-            ps.setString(1, username);
-            ps.setString(2, email);
-            ps.setString(3, password);
-            ps.setString(4, role);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(providerRegister, "Registrado con exito");
 
@@ -50,23 +54,44 @@ public class UserDAO {
         }
     }
     public boolean logIn(String email,String password) {
-        try {
+            try {
             ResultSet rs = null;
-            String login = "select * from usuarios where nombreUsuario='" +email + "' AND contraseña='" + password + "'";
+            String login = "select nombreUsuario,dbo.desencriptar_pass(contraseña) from usuarios where nombreUsuario='"+email+"'";
             ps = cin.prepareStatement(login);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                JOptionPane.showMessageDialog(providerRegister, "Bienvenido"+rs.getString("nombreUsuario"));
-                return true;
+                
+                if(password.equals(rs.getObject(2).toString())){
+                 JOptionPane.showMessageDialog(providerRegister, "Bienvenido"+rs.getString("nombreUsuario"));
+                 return true;
+                }
+
             }
-            JOptionPane.showMessageDialog(providerRegister, "Usuario o contraseña incorrectos ");
+            
+        } catch (SQLException ex) {
+         JOptionPane.showMessageDialog(providerRegister, "Usuario o contraseña incorrectos");
+        }
+        return false;
+    }
+    
+    public String getPassword(String pass){
+         String result="";
+         try {
+            cs=cin.prepareCall("{?=call ENCRIPTA_PASS(?)}");
+            cs.registerOutParameter(1, Types.VARBINARY);
+            cs.setString(2, pass);
+            cs.execute();
+            result=cs.getString(1);
+            
         } catch (SQLException ex) {
 
         }
-        return false;
-
+        
+        return result;
     }
+    
+    
     
     public String getRole(String username) {
         String user="";
@@ -103,7 +128,7 @@ public class UserDAO {
     }
     
     public void updateUser(String username,String email,String password,String role){
-     String update = "UPDATE usuarios SET  nombreUsuario='"+username+"', correoElectronico='"+email+"', contraseña='"+password+"', rol='"+role+"'  WHERE nombreUsuario='" + username + "'";
+     String update = "UPDATE usuarios SET  nombreUsuario='"+username+"', correoElectronico='"+email+"', contraseña=dbo.ENCRIPTA_PASS('"+password+"'), rol='"+role+"'  WHERE nombreUsuario='" + username + "'";
         try {
 
             ps = cin.prepareStatement(update);

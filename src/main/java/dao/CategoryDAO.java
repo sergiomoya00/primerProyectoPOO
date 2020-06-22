@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -101,6 +102,22 @@ public class CategoryDAO {
             }
 
         } catch (SQLException ex) {
+
+        }
+    }
+    
+    public void getComboCategory(JComboBox combo){
+        String poi = "SELECT nombre FROM categorias";
+        try {
+
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            while (result.next()) {
+                combo.addItem(result.getString("nombre"));
+            }
+
+        } catch (Exception e) {
 
         }
     }

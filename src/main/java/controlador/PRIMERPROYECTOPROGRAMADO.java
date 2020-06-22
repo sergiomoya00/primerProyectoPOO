@@ -5,6 +5,8 @@
  */
 package controlador;
 
+import dao.UserDAO;
+import java.sql.SQLException;
 import vista.ChooseRole;
 import vista.UserRegister;
 
@@ -17,9 +19,11 @@ public class PRIMERPROYECTOPROGRAMADO {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         UserRegisterControlador c=new UserRegisterControlador();
+        
         ChooseRole principal = new ChooseRole();
+        
         new ChooseRoleControlator(principal).openChooseRole();
     }
 

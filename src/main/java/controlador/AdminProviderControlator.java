@@ -73,6 +73,7 @@ public class AdminProviderControlator implements ActionListener {
     public void actionPerformed(ActionEvent evento) {
        switch(buttons.valueOf(evento.getActionCommand())){
            case buttonDesactivar:
+               provider.updateProviderStatus();
                break;
            case buttonInsert:
                new ProviderRegisterControlator(a).openProviderRegister("a");
@@ -80,7 +81,7 @@ public class AdminProviderControlator implements ActionListener {
                break;
            case btnUpdate:
                 selection=providerRole.tableProve.getSelectedRow();
-                provider.updateProviderInformation(String.valueOf(providerRole.tableProve.getValueAt(selection, 0)), String.valueOf(providerRole.tableProve.getValueAt(selection, 4)), String.valueOf(providerRole.tableProve.getValueAt(selection, 5)), String.valueOf(providerRole.tableProve.getValueAt(selection, 6)), String.valueOf(providerRole.tableProve.getValueAt(selection, 7)), Integer.parseInt(String.valueOf(providerRole.tableProve.getValueAt(selection, 8))), String.valueOf(providerRole.tableProve.getValueAt(selection, 9)), String.valueOf(providerRole.tableProve.getValueAt(selection, 10)), String.valueOf(providerRole.tableProve.getValueAt(selection, 11)), String.valueOf(providerRole.tableProve.getValueAt(selection, 12)), String.valueOf(providerRole.tableProve.getValueAt(selection, 13)));
+                provider.updateProviderInformation(String.valueOf(providerRole.tableProve.getValueAt(selection, 0)), String.valueOf(providerRole.tableProve.getValueAt(selection, 5)), String.valueOf(providerRole.tableProve.getValueAt(selection, 6)), String.valueOf(providerRole.tableProve.getValueAt(selection, 7)), String.valueOf(providerRole.tableProve.getValueAt(selection, 8)), Integer.parseInt(String.valueOf(providerRole.tableProve.getValueAt(selection, 9))), String.valueOf(providerRole.tableProve.getValueAt(selection, 10)), String.valueOf(providerRole.tableProve.getValueAt(selection, 11)), String.valueOf(providerRole.tableProve.getValueAt(selection, 12)), String.valueOf(providerRole.tableProve.getValueAt(selection, 13)), String.valueOf(providerRole.tableProve.getValueAt(selection, 14)));
                break;
            case buttonDelete:
                provider.deleteProviderInformation(String.valueOf(providerRole.tableProve.getValueAt(selection, 0)));

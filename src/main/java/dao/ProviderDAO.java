@@ -12,6 +12,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.mail.Provider;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -39,7 +40,7 @@ public class ProviderDAO {
 
     public void providerRegister(String id, String name, String company) {
 
-        String insertar = "insert into proveedores (idProveedor,nombre,empresa,calificacion) values (?,?,?,?) ";
+        String insertar = "insert into proveedores (idProveedor,nombre,empresa,calificacion,estado) values (?,?,?,?,?) ";
 
         try {
             ps = cin.prepareCall(insertar);
@@ -47,6 +48,7 @@ public class ProviderDAO {
             ps.setString(2, name);
             ps.setString(3, company);
             ps.setFloat(4, 0.0F);
+            ps.setString(5, "Activo");
             ps.executeUpdate();
             JOptionPane.showMessageDialog(providerRegister, "Registrado con exito");
 
@@ -124,6 +126,7 @@ public class ProviderDAO {
             modelo.addColumn("Nombre");
             modelo.addColumn("Empresa");
             modelo.addColumn("Calificacion");
+            modelo.addColumn("Estado");
             modelo.addColumn("Provincia");
             modelo.addColumn("Canton");
             modelo.addColumn("Distrito");
@@ -139,8 +142,8 @@ public class ProviderDAO {
                 Object[] filas = new Object[cantidadColumnas];
 
                 for (int i = 1; i <= cantidadColumnas + 2; i++) {
-                    if (i < 7) {
-                        if (i == 5 || i == 6) {
+                    if (i < 8) {
+                        if (i == 6 || i == 7) {
 
                         } else {
                             filas[i - 1] = rs.getObject(i);
@@ -199,6 +202,34 @@ public class ProviderDAO {
 
         } catch (Exception e) {
        JOptionPane.showMessageDialog(adminProvider, e.toString());
+        }
+    }
+    public void updateProviderStatus(){
+    String update = "UPDATE proveedores SET  estado='Inactivo'";
+        try {
+
+            ps = cin.prepareStatement(update);
+            ps.executeUpdate();
+             JOptionPane.showMessageDialog(adminProvider, "Informacion editada con exito");
+
+        } catch (Exception e) {
+       JOptionPane.showMessageDialog(adminProvider, e.toString());
+        }
+    }
+    
+    public void getComboProviders(JComboBox combo){
+        String poi = "SELECT idProveedor FROM proveedores";
+        try {
+
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            while (result.next()) {
+                combo.addItem(result.getString("idProveedor"));
+            }
+
+        } catch (Exception e) {
+
         }
     }
 

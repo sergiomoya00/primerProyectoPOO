@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import vista.ChooseRole;
 import vista.ProviderLogIn;
+import vista.ProviderProducts;
 import vista.ProviderRole;
 
 /**
@@ -21,6 +22,7 @@ public class ProviderRoleControlator implements ActionListener {
     private ProviderRole providerRole;
     private ChooseRole role = new ChooseRole();
     private ProviderRole p=new ProviderRole();
+    private ProviderProducts product=new  ProviderProducts();
 
     public ProviderRoleControlator() {
         
@@ -49,12 +51,24 @@ public class ProviderRoleControlator implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent evento) {
        switch(buttons.valueOf(evento.getActionCommand())){
+           case buttonProducts:
+               new ProviderProductsControlator(product).openUserRegister();
+               providerRole.setVisible(false);
+               break;
+           case buttonOrders:
+               break;
+           case buttonConsult:
+               break;
+           case buttonBack:
+               new ChooseRoleControlator(role).openChooseRole();
+               providerRole.setVisible(false);
+               break;
            
        
        }
     }
     
     public enum buttons{
-   
+    buttonProducts,buttonOrders,buttonConsult,buttonBack
     }   
 }

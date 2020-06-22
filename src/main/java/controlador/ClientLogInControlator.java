@@ -55,7 +55,7 @@ public class ClientLogInControlator implements ActionListener {
             case menuButton:
                 if (user.logIn(userRegister.txt_email.getText(), userRegister.txtPassword.getText()) == true) {
                     if (user.getRole(userRegister.txt_email.getText()).equals("Cliente")) {
-                        new ClientSearchControlator(p).openUserRegister();
+                        new ClientSearchControlator(p).openUserRegister(userRegister.txt_email.getText());
                         userRegister.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(userRegister, "Solo los usuarios clientes pueden ingresar");
