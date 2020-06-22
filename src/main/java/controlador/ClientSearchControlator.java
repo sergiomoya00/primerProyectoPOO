@@ -9,6 +9,7 @@ import dao.OrdersDAO;
 import dao.ProductsDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import vista.ChooseRole;
 import vista.ClientSearch;
 import vista.ProviderRole;
@@ -20,6 +21,7 @@ import vista.ProviderRole;
 public class ClientSearchControlator implements ActionListener{
     private ClientSearch providerRole;
     private ChooseRole role = new ChooseRole();
+    private ClientSearch client=new ClientSearch();
     private ProductsDAO p=new ProductsDAO();
     private OrdersDAO order=new OrdersDAO();
     private String nombre;
@@ -53,7 +55,14 @@ public class ClientSearchControlator implements ActionListener{
        switch(buttons.valueOf(evento.getActionCommand())){
            case buttonOrder:
                selection=providerRole.tableClient.getSelectedRow();
+               if(p.getProductQuatity(String.valueOf(providerRole.tableClient.getValueAt(selection, 0)))>=Integer.parseInt(providerRole.txtQuantity.getText())){
                order.insertOrder(nombre, String.valueOf(providerRole.tableClient.getValueAt(selection, 1)), String.valueOf(providerRole.tableClient.getValueAt(selection, 0)), Integer.parseInt(providerRole.txtQuantity.getText()));
+               p.productMin(String.valueOf(providerRole.tableClient.getValueAt(selection, 0)), Integer.parseInt(providerRole.txtQuantity.getText()));
+               }
+               else{
+               JOptionPane.showMessageDialog(client, "La cantidad solicitada no puede ser completada");
+               }
+               
                break;
        
        }
