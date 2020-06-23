@@ -152,6 +152,19 @@ public class ProductsDAO {
         }
     }
 
+    public void updateProductQuantity(String idProducto, int cantidadDisponible) {
+        String update = "UPDATE productos SET cantidadDisponible=" + cantidadDisponible + "WHERE idProducto='" + idProducto + "'";
+        try {
+
+            ps = cin.prepareStatement(update);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(admin, "Informacion actualizada");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(admin, e.toString());
+        }
+    }
+    
     public void deleteProduct(String codigo) {
         String update = "Delete from productos where idProducto='" + codigo + "'";
         try {

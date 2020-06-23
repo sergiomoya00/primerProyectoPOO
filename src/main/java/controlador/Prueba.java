@@ -4,22 +4,29 @@
  * and open the template in the editor.
  */
 package controlador;
-
+/*
 import dao.UserDAO;
 import java.sql.SQLException;
-import vista.ChooseRole;
-
+import vista.ChooseRole;*/
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;    
 /**
  *
  * @author jabre
  */
 public class Prueba {
-    public static void main(String[] args) throws SQLException {
+
+    /* public static void main(String[] args) throws SQLException {
         long time=System.currentTimeMillis();
         java.sql.Date d=new java.sql.Date(time);
         long now = System.currentTimeMillis();
         java.sql.Time a=new java.sql.Time(now);
         String fecha=d+" "+a;
         System.out.print(fecha);
+    }*/
+    public static void main(String[] args) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(dtf.format(now));
     }
 }
