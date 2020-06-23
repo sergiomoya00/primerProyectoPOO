@@ -15,6 +15,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -120,6 +121,206 @@ public class ProductsDAO {
 
     }
 
+    public void getProductByType(JTable table, String type) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            table.setModel(modelo);
+            ResultSet rs = null;
+            String login = "SELECT * FROM productos WHERE type='" + type + "'";
+            ps = cin.prepareStatement(login);
+            rs = ps.executeQuery();
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            modelo.addColumn("idProducto");
+            modelo.addColumn("idProveedor");
+            modelo.addColumn("nombre");
+            modelo.addColumn("descripcion");
+            modelo.addColumn("tipo");
+            modelo.addColumn("categoria");
+            modelo.addColumn("cantidad dispinoble");
+            modelo.addColumn("precio Unitario");
+            modelo.addColumn("precio Entrega");
+            modelo.addColumn("foto");
+            modelo.addColumn("estado");
+
+            while (rs.next()) {
+                Object[] filas = new Object[cantidadColumnas];
+
+                for (int i = 1; i <= cantidadColumnas; i++) {
+
+                    filas[i - 1] = rs.getObject(i);
+
+                }
+
+                modelo.addRow(filas);
+
+            }
+
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public void getProductByCategory(JTable table, String category) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            table.setModel(modelo);
+            ResultSet rs = null;
+            String login = "SELECT * FROM productos WHERE categoria='" + category + "'";
+            ps = cin.prepareStatement(login);
+            rs = ps.executeQuery();
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            modelo.addColumn("idProducto");
+            modelo.addColumn("idProveedor");
+            modelo.addColumn("nombre");
+            modelo.addColumn("descripcion");
+            modelo.addColumn("tipo");
+            modelo.addColumn("categoria");
+            modelo.addColumn("cantidad dispinoble");
+            modelo.addColumn("precio Unitario");
+            modelo.addColumn("precio Entrega");
+            modelo.addColumn("foto");
+            modelo.addColumn("estado");
+
+            while (rs.next()) {
+                Object[] filas = new Object[cantidadColumnas];
+
+                for (int i = 1; i <= cantidadColumnas; i++) {
+
+                    filas[i - 1] = rs.getObject(i);
+
+                }
+
+                modelo.addRow(filas);
+
+            }
+
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public void getProductByCondition(JTable table, String condition) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            table.setModel(modelo);
+            ResultSet rs = null;
+            String login = "SELECT * FROM productos WHERE estado='" + condition + "'";
+            ps = cin.prepareStatement(login);
+            rs = ps.executeQuery();
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            modelo.addColumn("idProducto");
+            modelo.addColumn("idProveedor");
+            modelo.addColumn("nombre");
+            modelo.addColumn("descripcion");
+            modelo.addColumn("tipo");
+            modelo.addColumn("categoria");
+            modelo.addColumn("cantidad dispinoble");
+            modelo.addColumn("precio Unitario");
+            modelo.addColumn("precio Entrega");
+            modelo.addColumn("foto");
+            modelo.addColumn("estado");
+
+            while (rs.next()) {
+                Object[] filas = new Object[cantidadColumnas];
+
+                for (int i = 1; i <= cantidadColumnas; i++) {
+
+                    filas[i - 1] = rs.getObject(i);
+
+                }
+
+                modelo.addRow(filas);
+
+            }
+
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public void getProductByPlace(JTable table, String place) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            table.setModel(modelo);
+            ResultSet rs = null;
+            String login = "SELECT * FROM productos WHERE lugar='" + place + "'";
+            ps = cin.prepareStatement(login);
+            rs = ps.executeQuery();
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            modelo.addColumn("idProducto");
+            modelo.addColumn("idProveedor");
+            modelo.addColumn("nombre");
+            modelo.addColumn("descripcion");
+            modelo.addColumn("tipo");
+            modelo.addColumn("categoria");
+            modelo.addColumn("cantidad dispinoble");
+            modelo.addColumn("precio Unitario");
+            modelo.addColumn("precio Entrega");
+            modelo.addColumn("foto");
+            modelo.addColumn("estado");
+
+            while (rs.next()) {
+                Object[] filas = new Object[cantidadColumnas];
+
+                for (int i = 1; i <= cantidadColumnas; i++) {
+
+                    filas[i - 1] = rs.getObject(i);
+
+                }
+
+                modelo.addRow(filas);
+
+            }
+
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public void getProductByPrice(JTable table, int min, int max) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            table.setModel(modelo);
+            ResultSet rs = null;
+            String login = "SELECT * FROM productos WHERE precioUnitario>" + min + " and precioUnitario<=" + max;
+            ps = cin.prepareStatement(login);
+            rs = ps.executeQuery();
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            modelo.addColumn("idProducto");
+            modelo.addColumn("idProveedor");
+            modelo.addColumn("nombre");
+            modelo.addColumn("descripcion");
+            modelo.addColumn("tipo");
+            modelo.addColumn("categoria");
+            modelo.addColumn("cantidad dispinoble");
+            modelo.addColumn("precio Unitario");
+            modelo.addColumn("precio Entrega");
+            modelo.addColumn("foto");
+            modelo.addColumn("estado");
+
+            while (rs.next()) {
+                Object[] filas = new Object[cantidadColumnas];
+
+                for (int i = 1; i <= cantidadColumnas; i++) {
+
+                    filas[i - 1] = rs.getObject(i);
+
+                }
+
+                modelo.addRow(filas);
+
+            }
+
+        } catch (SQLException ex) {
+
+        }
+    }
+
     public int getProductQuatity(String codigo) {
         int result = 0;
         try {
@@ -164,7 +365,7 @@ public class ProductsDAO {
             JOptionPane.showMessageDialog(admin, e.toString());
         }
     }
-    
+
     public void deleteProduct(String codigo) {
         String update = "Delete from productos where idProducto='" + codigo + "'";
         try {
@@ -177,10 +378,10 @@ public class ProductsDAO {
             JOptionPane.showMessageDialog(admin, e.toString());
         }
     }
-    
-    public void productMin(String codigo,int cantidad){
-    int result=getProductQuatity(codigo)-cantidad;
-    String update = "UPDATE productos SET cantidadDisponible=" +result + " WHERE idProducto='" + codigo + "'";
+
+    public void productMin(String codigo, int cantidad) {
+        int result = getProductQuatity(codigo) - cantidad;
+        String update = "UPDATE productos SET cantidadDisponible=" + result + " WHERE idProducto='" + codigo + "'";
         try {
 
             ps = cin.prepareStatement(update);
@@ -189,6 +390,22 @@ public class ProductsDAO {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(admin, e.toString());
+        }
+    }
+
+    public void getComboProductPlace(JComboBox combo) {
+        String poi = "SELECT estado FROM productos";
+        try {
+
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            while (result.next()) {
+                combo.addItem(result.getString("estado"));
+            }
+
+        } catch (Exception e) {
+
         }
     }
 

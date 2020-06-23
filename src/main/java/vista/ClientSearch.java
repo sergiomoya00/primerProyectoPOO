@@ -47,6 +47,10 @@ public class ClientSearch extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        comboType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Producto", "Servicio" }));
+
+        comboCondi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nuevo", "Usado", "Reparado" }));
+
         jLabel1.setText("Precio min:");
 
         jLabel2.setText("Precio max:");
@@ -228,19 +232,19 @@ public class ClientSearch extends javax.swing.JFrame {
     public javax.swing.JButton buttonBack;
     public javax.swing.JButton buttonOrder;
     public javax.swing.JButton buttonOrders;
-    private javax.swing.JButton buttonSearch;
-    private javax.swing.JComboBox<String> comboCat;
-    private javax.swing.JComboBox<String> comboCondi;
-    private javax.swing.JComboBox<String> comboPlace;
-    private javax.swing.JComboBox<String> comboType;
-    private javax.swing.JButton jButton3;
+    public javax.swing.JButton buttonSearch;
+    public javax.swing.JComboBox<String> comboCat;
+    public javax.swing.JComboBox<String> comboCondi;
+    public javax.swing.JComboBox<String> comboPlace;
+    public javax.swing.JComboBox<String> comboType;
+    public javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tableClient;
     public javax.swing.JTextField txtQuantity;
-    private javax.swing.JTextField txtmax;
-    private javax.swing.JTextField txtmin;
+    public javax.swing.JTextField txtmax;
+    public javax.swing.JTextField txtmin;
     // End of variables declaration//GEN-END:variables
 }
