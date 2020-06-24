@@ -472,7 +472,7 @@ public class ProductsDAO {
 
             DefaultCategoryDataset dod = new DefaultCategoryDataset();
             while (result.next()) {
-                dod.addValue(result.getInt(1), "Productos", result.getString(0));
+                dod.addValue(result.getInt(2), "Productos", result.getString(1));
             }
             
             JFreeChart jchart = ChartFactory.createBarChart("Productos", "Compras", "Producto", dod, PlotOrientation.VERTICAL, true, true, false);
