@@ -6,6 +6,7 @@
 package dao;
 
 import java.awt.Component;
+import java.io.IOException;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -21,9 +22,9 @@ public class EmailNotification {
     }
 
     private String host = "smtp.gmail.com";
-    private final String user = "virtualTEC12018@gmail.com";
-    private final String password = "virtualtec1";
-    private final String to = "s.a.moyas.00@hotmail.com";
+    private final String user = "proyectoprogramado2dnjab@gmail.com";
+    private final String password = "dropbox123";
+    private  String to = "";
 
     private Properties getProperties() {
 
@@ -51,8 +52,8 @@ public class EmailNotification {
         return session;
     }
 
-    public void sendEmail(String to, String text, Component parent) {
-
+    public void sendEmail(String to, String nombre)  {
+        this.to=to;
         try {
             Session session = getSession();
             MimeMessage message = new MimeMessage(session);
@@ -60,11 +61,28 @@ public class EmailNotification {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
             message.setSubject("Solicitud recibida");
             message.setText("Su solicitud está siendo procesada");
+            
+            Multipart emailContent=new MimeMultipart();
+            
+            MimeBodyPart textBodyPart=new MimeBodyPart();
+            textBodyPart.setText("multi");
+            
+            MimeBodyPart pdfAttachment =new MimeBodyPart();
+            pdfAttachment.attachFile("C:\\Users\\jabre\\OneDrive\\Documentos\\NetBeansProjects\\PRIMERPROYECTOPOO\\"+nombre+".pdf");
+            
+            emailContent.addBodyPart(textBodyPart);
+            emailContent.addBodyPart(pdfAttachment);
+            
+            message.setContent(emailContent);
 
             Transport.send(message);
+            System.out.print("jose");
 
         } catch (MessagingException e) {
-            JOptionPane.showMessageDialog(parent, e.getMessage());
+           System.out.print(e);
+        }
+        catch(IOException E){
+        System.out.print(E);
         }
     }
 

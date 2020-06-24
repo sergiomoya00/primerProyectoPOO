@@ -75,6 +75,27 @@ public class UserDAO {
         return false;
     }
     
+    public String getEmail(String email){
+    String user="";
+        try {
+            ResultSet rs = null;
+            String login = "select correoElectronico from usuarios where nombreUsuario='" +email+ "'";
+            ps = cin.prepareStatement(login);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                
+                user=rs.getString("correoElectronico");
+                return user;
+            }
+            
+        } catch (SQLException ex) {
+
+        }
+        return user;
+    }
+    
+    
     public String getPassword(String pass){
          String result="";
          try {

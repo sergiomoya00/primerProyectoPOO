@@ -178,5 +178,24 @@ public class ProductsDAO {
             JOptionPane.showMessageDialog(admin, e.toString());
         }
     }
+    public int calcTotalPrice(String id,int quantity){
+     int result = 0;
+        try {
+            ResultSet rs = null;
+            String login = "SELECT precioUnitario FROM productos where idProducto='" + id + "'";
+            ps = cin.prepareStatement(login);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result = Integer.parseInt(rs.getString("precioUnitario"))*quantity;
+
+            }
+
+        } catch (SQLException ex) {
+
+        }
+        return result;
+    
+    }
 
 }
