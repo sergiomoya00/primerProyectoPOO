@@ -26,7 +26,6 @@ public class ClientSearchControlator implements ActionListener {
 
     private ClientSearch providerRole;
     private ProviderRole roleP = new ProviderRole();
-    ;
     private ChooseRole role = new ChooseRole();
     private ClientSearch client = new ClientSearch();
     private ProductsDAO p = new ProductsDAO();
@@ -56,6 +55,7 @@ public class ClientSearchControlator implements ActionListener {
         providerRole.setLocationRelativeTo(null);
         providerRole.setVisible(true);
         //p.getAllProducts(providerRole.tableClient);
+        provid.getComboProvidersUbication(providerRole.comboPlace);
         p.getComboProductPlace(providerRole.comboPlace);
         category.getComboCategory(providerRole.comboCat);
         category.getCategories();

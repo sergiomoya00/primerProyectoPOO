@@ -236,6 +236,22 @@ public class ProviderDAO {
         }
     }
     
+    public void getComboProvidersUbication(JComboBox combo){
+        String poi = "SELECT ubicacion FROM informacionProveedor GROUP BY ubicacion";
+        try {
+
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            while (result.next()) {
+                combo.addItem(result.getString("ubicacion"));
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
+    
     public Collection<Providers> getProviders() {
         String poi = "SELECT ubicacion FROM informacionProveedor GROUP BY ubicacion";
         try {

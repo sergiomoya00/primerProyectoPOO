@@ -251,7 +251,7 @@ public class ProductsDAO {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String login = "SELECT * FROM productos WHERE lugar='" + place + "'";
+            String login = "SELECT B.idProducto, B.idProveedor, B.nombre, B.descripcion, B.tipo, B.categoria, B.cantidadDisponible, B.precioUnitario, B.precioEntrega, B.foto, B.estado FROM proveedores A inner join informacionProveedor B on B.nombreUsuario=A.idProveedor inner join productos C on A.idProveedor=C.idProveedor WHERE B.ubicacion='" + place + "'";
             ps = cin.prepareStatement(login);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
