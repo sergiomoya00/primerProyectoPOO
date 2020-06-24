@@ -111,8 +111,8 @@ public class CategoryDAO {
         }
     }
 
-    public Collection<Categories> getCategories() {
-        String poi = "SELECT nombre FROM categorias";
+    public List<Categories> getCategories() {
+        String poi = "SELECT nombre FROM categorias GROUP BY nombre";
         try {
 
             ps = cin.prepareCall(poi);
@@ -129,7 +129,7 @@ public class CategoryDAO {
         return category;
     }
 
-    public Categories search(Categories newCategory) {
+    public List<Categories> search(Categories newCategory) {
         
         List<Categories> results = new ArrayList<>();  
         boolean byName = newCategory.getName() != null && newCategory.getName().length() > 0;
@@ -143,7 +143,7 @@ public class CategoryDAO {
                 results.add(cat);
             }
         }
-        return results.get(0);
+        return results;
     }
 
     public void getComboCategory(JComboBox combo) {

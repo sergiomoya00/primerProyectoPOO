@@ -25,6 +25,8 @@ import vista.ProviderRole;
 public class ClientSearchControlator implements ActionListener {
 
     private ClientSearch providerRole;
+    private ProviderRole roleP = new ProviderRole();
+    ;
     private ChooseRole role = new ChooseRole();
     private ClientSearch client = new ClientSearch();
     private ProductsDAO p = new ProductsDAO();
@@ -56,6 +58,8 @@ public class ClientSearchControlator implements ActionListener {
         //p.getAllProducts(providerRole.tableClient);
         p.getComboProductPlace(providerRole.comboPlace);
         category.getComboCategory(providerRole.comboCat);
+        category.getCategories();
+        provid.getProviders();
 
         this.nombre = nombre;
         this.providerRole.buttonOrder.setActionCommand("buttonOrder");
@@ -79,9 +83,8 @@ public class ClientSearchControlator implements ActionListener {
                     JOptionPane.showMessageDialog(client, "La cantidad solicitada no puede ser completada");
                 }
                 break;
+
             case buttonSearch:
-                category.getCategories();
-                provid.getProviders();
                 selection = providerRole.tableClient.getSelectedRow();
                 comboSelectionT = (String) providerRole.comboType.getSelectedItem();
                 comboSelectionC = (String) providerRole.comboCat.getSelectedItem();
@@ -102,8 +105,9 @@ public class ClientSearchControlator implements ActionListener {
                 if (comboSelectionT.equals("Servicio")) {
                     p.getProductByType(providerRole.tableClient, comboSelectionT);
                 }
-                if (comboSelectionC.equals(category.search(newCategory).getName())) {
+                if (comboSelectionC.equals(category.search(newCategory).get(0).getName())) {
                     p.getProductByCategory(providerRole.tableClient, comboSelectionC);
+                    category.search(newCategory).clear();
                 }
                 if (comboSelectionE.equals("Nuevo")) {
                     p.getProductByCondition(providerRole.tableClient, comboSelectionE);
@@ -116,9 +120,15 @@ public class ClientSearchControlator implements ActionListener {
                 }
                 if (comboSelectionL.equals(provid.search(newProvider).getUbication())) {
                     p.getProductByPlace(providerRole.tableClient, comboSelectionL);
-                } else {
-                    JOptionPane.showMessageDialog(client, "La cantidad solicitada no puede ser completada");
                 }
+                if (providerRole.txtmin.getText().isEmpty() == false & providerRole.txtmax.getText().isEmpty() == false) {
+                    p.getProductByPrice(providerRole.tableClient, min, max);
+                } else {
+                    JOptionPane.showMessageDialog(client, "Seleccione correctamente");
+                }
+                break;
+            case buttonBack:
+                new ProviderRoleControlator(roleP).openUserRegister();
                 break;
         }
     }
