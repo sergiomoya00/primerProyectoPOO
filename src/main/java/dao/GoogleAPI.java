@@ -28,7 +28,7 @@ public class GoogleAPI {
     public static String PlaceID(String place) throws ApiException, InterruptedException, IOException {
         String PlaceID;
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDslDVmXZsDFmXRo6mTVcJXVSb6m5K-qBI")
+                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
                 .build();
         GeocodingResult[] results = GeocodingApi.geocode(context,
                 place).awaitIgnoreError();
@@ -39,7 +39,7 @@ public class GoogleAPI {
     public static String ExactAddress(String place) throws ApiException, InterruptedException, IOException {
         String Address;
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDslDVmXZsDFmXRo6mTVcJXVSb6m5K-qBI")
+                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
                 .build();
         GeocodingResult[] results = GeocodingApi.geocode(context,
                 place).awaitIgnoreError();
@@ -50,7 +50,7 @@ public class GoogleAPI {
     public static String PlaceType(String place) throws ApiException, InterruptedException, IOException {
         String Type;
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDslDVmXZsDFmXRo6mTVcJXVSb6m5K-qBI")
+                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
                 .build();
         GeocodingResult[] results = GeocodingApi.geocode(context,
                 place).awaitIgnoreError();
@@ -61,7 +61,7 @@ public class GoogleAPI {
     public static double Latitude(String place) throws ApiException, InterruptedException, IOException {
         double Latitude;
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDslDVmXZsDFmXRo6mTVcJXVSb6m5K-qBI")
+                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
                 .build();
         GeocodingResult[] results = GeocodingApi.geocode(context,
                 place).awaitIgnoreError();
@@ -72,7 +72,7 @@ public class GoogleAPI {
     public static double Longitude(String place) throws ApiException, InterruptedException, IOException {
         double Longitude;
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDslDVmXZsDFmXRo6mTVcJXVSb6m5K-qBI")
+                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
                 .build();
         GeocodingResult[] results = GeocodingApi.geocode(context,
                 place).awaitIgnoreError();
@@ -83,7 +83,7 @@ public class GoogleAPI {
     public static String PhoneNumber(String place) throws ApiException, InterruptedException, IOException {
         String Phone;
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDslDVmXZsDFmXRo6mTVcJXVSb6m5K-qBI")
+                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
                 .build();
         com.google.maps.model.PlaceDetails results = PlacesApi.placeDetails(context, "place").await();
         Phone = results.internationalPhoneNumber;
@@ -93,7 +93,7 @@ public class GoogleAPI {
     public static float Rating(String place) throws ApiException, InterruptedException, IOException {
         float Rating;
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDslDVmXZsDFmXRo6mTVcJXVSb6m5K-qBI")
+                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
                 .build();
         com.google.maps.model.PlaceDetails results = PlacesApi.placeDetails(context, "place").await();
         Rating = results.rating;
@@ -103,7 +103,7 @@ public class GoogleAPI {
     public static String WebSite(String place) throws ApiException, InterruptedException, IOException {
         URL Web;
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDslDVmXZsDFmXRo6mTVcJXVSb6m5K-qBI")
+                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
                 .build();
         com.google.maps.model.PlaceDetails results = PlacesApi.placeDetails(context, "place").await();
         Web = results.website;
@@ -114,7 +114,7 @@ public class GoogleAPI {
     public static String URL(String place) throws ApiException, InterruptedException, IOException {
         URL url;
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDslDVmXZsDFmXRo6mTVcJXVSb6m5K-qBI")
+                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
                 .build();
         com.google.maps.model.PlaceDetails results = PlacesApi.placeDetails(context, "place").await();
         url = results.url;
@@ -124,7 +124,7 @@ public class GoogleAPI {
 
     public static long Distance(String AddressOne, String AddressTwo) throws ApiException, InterruptedException, IOException {
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDslDVmXZsDFmXRo6mTVcJXVSb6m5K-qBI")
+                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
                 .build();
         DistanceMatrixApiRequest req = DistanceMatrixApi.newRequest(context);
         DistanceMatrix result = req.origins(AddressOne)
@@ -139,7 +139,7 @@ public class GoogleAPI {
 
     public static long Time(String AddressOne, String AddressTwo) throws ApiException, InterruptedException, IOException {
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDslDVmXZsDFmXRo6mTVcJXVSb6m5K-qBI")
+                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
                 .build();
         DistanceMatrixApiRequest req = DistanceMatrixApi.newRequest(context);
         DistanceMatrix result = req.origins(AddressOne)

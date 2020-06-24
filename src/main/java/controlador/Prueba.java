@@ -8,6 +8,9 @@ package controlador;
 import dao.UserDAO;
 import java.sql.SQLException;
 import vista.ChooseRole;*/
+import com.google.maps.errors.ApiException;
+import static dao.GoogleAPI.*;
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
 /**
@@ -24,9 +27,8 @@ public class Prueba {
         String fecha=d+" "+a;
         System.out.print(fecha);
     }*/
-    public static void main(String[] args) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        System.out.println(dtf.format(now));
+    public static void main(String[] args) throws ApiException, InterruptedException, IOException {
+        System.out.println(Latitude("Cartago"));
+        System.out.println(Longitude("Cartago"));
     }
 }
