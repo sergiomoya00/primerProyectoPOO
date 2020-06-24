@@ -18,15 +18,18 @@ public class Providers {
     private int phoneNumber;
     private String email;
     private String schedule;
-    private int ubication;
+    private String ubication;
     private String profile;
     private int qualification;
 
     public Providers() {
-
+    }
+    
+    public Providers(String ubication) {
+        this.ubication = ubication;
     }
 
-    public Providers(String id, String name, String company, Address address, int phoneNumber, String email, String schedule, int ubication, String profile, int qualification) {
+    public Providers(String id, String name, String company, Address address, int phoneNumber, String email, String schedule, String ubication, String profile, int qualification) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -95,11 +98,11 @@ public class Providers {
         this.schedule = schedule;
     }
 
-    public int getUbication() {
+    public String getUbication() {
         return ubication;
     }
 
-    public void setUbication(int ubication) {
+    public void setUbication(String ubication) {
         this.ubication = ubication;
     }
 

@@ -13,6 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -20,6 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import modelo.Categories;
+import modelo.Products;
 import modelo.Render;
 import vista.ProductRegister;
 import vista.ProviderProducts;
@@ -287,6 +292,46 @@ public class ProductsDAO {
             table.setModel(modelo);
             ResultSet rs = null;
             String login = "SELECT * FROM productos WHERE precioUnitario>" + min + " and precioUnitario<=" + max;
+            ps = cin.prepareStatement(login);
+            rs = ps.executeQuery();
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            modelo.addColumn("idProducto");
+            modelo.addColumn("idProveedor");
+            modelo.addColumn("nombre");
+            modelo.addColumn("descripcion");
+            modelo.addColumn("tipo");
+            modelo.addColumn("categoria");
+            modelo.addColumn("cantidad dispinoble");
+            modelo.addColumn("precio Unitario");
+            modelo.addColumn("precio Entrega");
+            modelo.addColumn("foto");
+            modelo.addColumn("estado");
+
+            while (rs.next()) {
+                Object[] filas = new Object[cantidadColumnas];
+
+                for (int i = 1; i <= cantidadColumnas; i++) {
+
+                    filas[i - 1] = rs.getObject(i);
+
+                }
+
+                modelo.addRow(filas);
+
+            }
+
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public void searchProduct(JTable table, String type, String category, int min, int max, String condition, String place) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            table.setModel(modelo);
+            ResultSet rs = null;
+            String login = "SELECT * FROM productos WHERE precioUnitario>" + min + " and precioUnitario<=" + max + " and lugar='" + place + "'" + " and estado='" + condition + "' and categoria='" + category + "' and type='" + type + "'";
             ps = cin.prepareStatement(login);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();

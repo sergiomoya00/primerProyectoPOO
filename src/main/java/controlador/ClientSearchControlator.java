@@ -8,9 +8,12 @@ package controlador;
 import dao.CategoryDAO;
 import dao.OrdersDAO;
 import dao.ProductsDAO;
+import dao.ProviderDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import modelo.Categories;
+import modelo.Providers;
 import vista.ChooseRole;
 import vista.ClientSearch;
 import vista.ProviderRole;
@@ -25,6 +28,7 @@ public class ClientSearchControlator implements ActionListener {
     private ChooseRole role = new ChooseRole();
     private ClientSearch client = new ClientSearch();
     private ProductsDAO p = new ProductsDAO();
+    private ProviderDAO provid = new ProviderDAO();
     private CategoryDAO category = new CategoryDAO();
     private OrdersDAO order = new OrdersDAO();
     private String nombre;
@@ -76,6 +80,8 @@ public class ClientSearchControlator implements ActionListener {
                 }
                 break;
             case buttonSearch:
+                category.getCategories();
+                provid.getProviders();
                 selection = providerRole.tableClient.getSelectedRow();
                 comboSelectionT = (String) providerRole.comboType.getSelectedItem();
                 comboSelectionC = (String) providerRole.comboCat.getSelectedItem();
@@ -83,16 +89,34 @@ public class ClientSearchControlator implements ActionListener {
                 comboSelectionL = (String) providerRole.comboPlace.getSelectedItem();
                 min = Integer.parseInt(providerRole.txtmin.getText());
                 max = Integer.parseInt(providerRole.txtmax.getText());
+
+                Categories newCategory = new Categories();
+                newCategory.setName(comboSelectionC);
+
+                Providers newProvider = new Providers();
+                newProvider.setUbication(comboSelectionL);
+
                 if (comboSelectionT.equals("Producto")) {
                     p.getProductByType(providerRole.tableClient, comboSelectionT);
                 }
                 if (comboSelectionT.equals("Servicio")) {
                     p.getProductByType(providerRole.tableClient, comboSelectionT);
-                } 
-                if (comboSelectionC.equals("lol")) {
-                
                 }
-                else {
+                if (comboSelectionC.equals(category.search(newCategory).getName())) {
+                    p.getProductByCategory(providerRole.tableClient, comboSelectionC);
+                }
+                if (comboSelectionE.equals("Nuevo")) {
+                    p.getProductByCondition(providerRole.tableClient, comboSelectionE);
+                }
+                if (comboSelectionE.equals("Usado")) {
+                    p.getProductByCondition(providerRole.tableClient, comboSelectionE);
+                }
+                if (comboSelectionE.equals("Reparado")) {
+                    p.getProductByCondition(providerRole.tableClient, comboSelectionE);
+                }
+                if (comboSelectionL.equals(provid.search(newProvider).getUbication())) {
+                    p.getProductByPlace(providerRole.tableClient, comboSelectionL);
+                } else {
                     JOptionPane.showMessageDialog(client, "La cantidad solicitada no puede ser completada");
                 }
                 break;

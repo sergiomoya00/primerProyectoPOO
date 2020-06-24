@@ -47,9 +47,13 @@ public class ClientSearch extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        comboType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Producto", "Servicio" }));
+        comboType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo", "Producto", "Servicio" }));
 
-        comboCondi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nuevo", "Usado", "Reparado" }));
+        comboCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categoría", " " }));
+
+        comboCondi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado", "Nuevo", "Usado", "Reparado" }));
+
+        comboPlace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lugar" }));
 
         jLabel1.setText("Precio min:");
 

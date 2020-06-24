@@ -125,9 +125,10 @@
     <Component class="javax.swing.JComboBox" name="comboType">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="Producto"/>
-            <StringItem index="1" value="Servicio"/>
+          <StringArray count="3">
+            <StringItem index="0" value="Tipo"/>
+            <StringItem index="1" value="Producto"/>
+            <StringItem index="2" value="Servicio"/>
           </StringArray>
         </Property>
       </Properties>
@@ -139,7 +140,10 @@
     <Component class="javax.swing.JComboBox" name="comboCat">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="2">
+            <StringItem index="0" value="Categor&#xed;a"/>
+            <StringItem index="1" value=" "/>
+          </StringArray>
         </Property>
       </Properties>
       <AuxValues>
@@ -150,10 +154,11 @@
     <Component class="javax.swing.JComboBox" name="comboCondi">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="Nuevo"/>
-            <StringItem index="1" value="Usado"/>
-            <StringItem index="2" value="Reparado"/>
+          <StringArray count="4">
+            <StringItem index="0" value="Estado"/>
+            <StringItem index="1" value="Nuevo"/>
+            <StringItem index="2" value="Usado"/>
+            <StringItem index="3" value="Reparado"/>
           </StringArray>
         </Property>
       </Properties>
@@ -165,7 +170,9 @@
     <Component class="javax.swing.JComboBox" name="comboPlace">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="1">
+            <StringItem index="0" value="Lugar"/>
+          </StringArray>
         </Property>
       </Properties>
       <AuxValues>
