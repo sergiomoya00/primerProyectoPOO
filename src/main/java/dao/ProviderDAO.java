@@ -11,11 +11,13 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.mail.Provider;
+import java.util.Collection;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import modelo.Categories;
 import modelo.Providers;
 import vista.AdminProvider;
 import vista.ClientRegister;
@@ -27,6 +29,7 @@ import vista.ProviderRegister;
  */
 public class ProviderDAO {
 
+    Providers provi;
     ProviderRegister providerRegister;
     AdminProvider adminProvider;
     ClientRegister clientRegister;
@@ -231,6 +234,57 @@ public class ProviderDAO {
         } catch (Exception e) {
 
         }
+    }
+    
+    public void getComboProvidersUbication(JComboBox combo){
+        String poi = "SELECT ubicacion FROM informacionProveedor GROUP BY ubicacion";
+        try {
+
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            while (result.next()) {
+                combo.addItem(result.getString("ubicacion"));
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
+    
+    public Collection<Providers> getProviders() {
+        String poi = "SELECT ubicacion FROM informacionProveedor GROUP BY ubicacion";
+        try {
+
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            while (result.next()) {
+                this.provi = new Providers(result.getString("ubicacion"));
+                array.add(provi);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return array;
+    }
+    
+    public Providers search(Providers newProvider) {
+        
+        List<Providers> results = new ArrayList<>();  
+        boolean byUbication = newProvider.getUbication()!= null && newProvider.getUbication().length() > 0;
+
+        for (Providers pro : array) {
+            boolean add = !(byUbication);
+            if (!add && byUbication && pro.getUbication().contains(newProvider.getUbication())) {
+                add = true;
+            }
+            if (add) {
+                results.add(pro);
+            }
+        }
+        return results.get(0);
     }
 
 }

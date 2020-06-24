@@ -18,12 +18,16 @@ public class Categories {
     public Categories() {
     }
 
+    public Categories(String name) {
+        this.name = name;
+    }
+
     public Categories(String name, String description, String condition) {
         this.name = name;
         this.description = description;
         this.condition = condition;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -47,7 +51,5 @@ public class Categories {
     public void setCondition(String condition) {
         this.condition = condition;
     }
-
-  
 
 }
