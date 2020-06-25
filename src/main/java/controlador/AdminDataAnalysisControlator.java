@@ -59,19 +59,18 @@ public class AdminDataAnalysisControlator implements ActionListener {
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
             case buttonProduct:
-   
+                
                 break;
             case buttonProvider:
                 
                 break;
             case buttonClient:
- 
+                
                 break;
             case buttonBack:
                 new AdminRoleControlator(role).openUserRegister();
                 dataAnalysis.setVisible(false);
                 break;
-
         }
     }
 
