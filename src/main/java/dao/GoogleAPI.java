@@ -47,6 +47,7 @@ public class GoogleAPI {
         Address = results[0].formattedAddress;
         return Address;
     }
+ 
 
     public static String PlaceType(String place) throws ApiException, InterruptedException, IOException {
         String Type;

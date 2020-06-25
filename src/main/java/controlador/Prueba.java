@@ -4,34 +4,45 @@
  * and open the template in the editor.
  */
 package controlador;
+
 /*
 import dao.UserDAO;
 import java.sql.SQLException;
 import vista.ChooseRole;*/
-import com.google.maps.GeoApiContext;
-import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
-import com.google.maps.model.GeocodingResult;
-import dao.GoogleAPI;
-import static dao.GoogleAPI.Latitude;
+import static dao.GoogleAPI.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;  
-import java.time.LocalDateTime;    
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.util.Random;
+
 /**
  *
  * @author jabre
  */
 public class Prueba {
 
-    /* public static void main(String[] args) throws SQLException {
-        long time=System.currentTimeMillis();
-        java.sql.Date d=new java.sql.Date(time);
-        long now = System.currentTimeMillis();
-        java.sql.Time a=new java.sql.Time(now);
-        String fecha=d+" "+a;
-        System.out.print(fecha);
-    }*/
+ 
     public static void main(String[] args) throws ApiException, InterruptedException, IOException {
-        System.out.print(Latitude("Madrid"));
+
+        double pan;
+        pan = Latitude("San Rafael,Cartago,Costa Rica");
+        System.out.println("--------------------------------");
+        System.out.println(pan);
+        System.out.println(Longitude("San Rafael,Cartago,Costa Rica"));
+
+        pan = Latitude("Pavas,San Jose,Costa Rica");
+        System.out.println("--------------------------------");
+        System.out.println(pan);
+        System.out.println(Longitude("Pavas,San Jose,Costa Rica"));
+
+        File fNuevo = new File("C:\\HTMLGMaps\\simple_map.html");
+        Archivos arch = new Archivos();
+        arch.modificar(fNuevo,"origen","lat: 9.9280694, lng: -84.0907246");
+
     }
 }
+    

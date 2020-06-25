@@ -5,6 +5,10 @@
  */
 package dao;
 
+import com.google.maps.errors.ApiException;
+import static dao.GoogleAPI.Latitude;
+import static dao.GoogleAPI.Longitude;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -60,10 +64,12 @@ public class ProviderDAO {
         }
     }
 
-    public void providerInformationRegister(String username, String provincia, String canton, String distrito, String señas, int phone, String email, String ubication, String website, String schedule, String profile) {
+    public void providerInformationRegister(String username, String provincia, String canton, String distrito, String señas, int phone, String email, String website, String schedule, String profile) throws ApiException, InterruptedException, IOException {
 
-        String insertar = "insert into informacionProveedor(nombreUsuario,cedula,provincia,canton,distrito,señas,telefono,correoElectronico,ubicacion,sitio,horario,perfil) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
-
+        String insertar = "insert into informacionProveedor(nombreUsuario,cedula,provincia,canton,distrito,señas,telefono,correoElectronico,ubicacion,latitud,longitud,sitio,horario,perfil) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+        String ubication=distrito+","+canton+","+provincia+","+"Costa Rica";
+        String lat=String.valueOf(Latitude(ubication));
+        String lon=String.valueOf(Longitude(ubication));
         try {
             ps = cin.prepareCall(insertar);
             ps.setString(1, username);
@@ -75,9 +81,11 @@ public class ProviderDAO {
             ps.setInt(7, phone);
             ps.setString(8, email);
             ps.setString(9, ubication);
-            ps.setString(10, website);
-            ps.setString(11, schedule);
-            ps.setString(12, profile);
+            ps.setString(10, lat);
+            ps.setString(11, lon);
+            ps.setString(12, website);
+            ps.setString(13, schedule);
+            ps.setString(14, profile);
 
             ps.executeUpdate();
             JOptionPane.showMessageDialog(providerRegister, "Registrado con exito");
@@ -87,10 +95,12 @@ public class ProviderDAO {
         }
     }
 
-    public void clientInformationRegister(String username, int cedula, String provincia, String canton, String distrito, String señas, int phone, String email, String ubication) {
+    public void clientInformationRegister(String username, int cedula, String provincia, String canton, String distrito, String señas, int phone, String email) throws ApiException, InterruptedException, IOException {
 
-        String insertar = "insert into informacion(nombreUsuario,cedula,provincia,canton,distrito,señas,telefono,correoElectronico,ubicacion,sitio,horario,perfil) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
-
+        String insertar = "insert into informacion(nombreUsuario,cedula,provincia,canton,distrito,señas,telefono,correoElectronico,ubicacion,latitud,longitud,sitio,horario,perfil) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
+        String ubication=distrito+","+canton+","+provincia+","+"Costa Rica";
+        String lat=String.valueOf(Latitude(ubication));
+        String lon=String.valueOf(Longitude(ubication));
         try {
             ps = cin.prepareCall(insertar);
             ps.setString(1, username);
@@ -102,9 +112,11 @@ public class ProviderDAO {
             ps.setInt(7, phone);
             ps.setString(8, email);
             ps.setString(9, ubication);
-            ps.setString(10, null);
-            ps.setString(11, null);
+            ps.setString(10, lat);
+            ps.setString(11, lon);
             ps.setString(12, null);
+            ps.setString(13, null);
+            ps.setString(14, null);
 
             ps.executeUpdate();
             JOptionPane.showMessageDialog(clientRegister, "Registrado con exito");

@@ -5,10 +5,14 @@
  */
 package controlador;
 
+import com.google.maps.errors.ApiException;
 import dao.ProviderDAO;
 import dao.UserDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import vista.ChooseRole;
 import vista.ClientLogIn;
 import vista.ClientRegister;
@@ -52,9 +56,20 @@ public class ClientRegisterControlator implements ActionListener {
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
             case nextButton:
-                user.clientInformationRegister(nombre, Integer.parseInt(userRegister.txtId.getText()), userRegister.txtProvince.getText(), userRegister.txtcanton.getText(), userRegister.txtDistrict.getText(), userRegister.txtInfo.getText(), Integer.parseInt(userRegister.txtphone.getText()), userRegister.txtemail.getText(), userRegister.txtUbication.getText());
+            {
+                try {
+                    user.clientInformationRegister(nombre, Integer.parseInt(userRegister.txtId.getText()), userRegister.txtProvince.getText(), userRegister.txtcanton.getText(), userRegister.txtDistrict.getText(), userRegister.txtInfo.getText(), Integer.parseInt(userRegister.txtphone.getText()), userRegister.txtemail.getText());
+                } catch (ApiException ex) {
+                    Logger.getLogger(ClientRegisterControlator.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(ClientRegisterControlator.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ClientRegisterControlator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                 new ClientLogInControlator(role).openUserRegister();
                 break;
+
 
         }
     }

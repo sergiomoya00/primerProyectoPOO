@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -21,11 +22,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Categories;
 import modelo.Products;
 import modelo.Render;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import vista.ProductRegister;
 import vista.ProviderProducts;
 
@@ -251,7 +260,7 @@ public class ProductsDAO {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String login = "SELECT B.idProducto, B.idProveedor, B.nombre, B.descripcion, B.tipo, B.categoria, B.cantidadDisponible, B.precioUnitario, B.precioEntrega, B.foto, B.estado FROM proveedores A inner join informacionProveedor B on B.nombreUsuario=A.idProveedor inner join productos C on A.idProveedor=C.idProveedor WHERE B.ubicacion='" + place + "'";
+            String login = "SELECT B.idProducto, B.idProveedor, B.nombre, B.descripcion, B.tipo, B.categoria, B.cantidadDisponible, B.precioUnitario, B.precioEntrega, B.foto, B.estado FROM proveedores A inner join informacionProveedor C on C.nombreUsuario=A.idProveedor inner join productos B on A.idProveedor=B.idProveedor WHERE C.ubicacion='" + place + "'";
             ps = cin.prepareStatement(login);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -450,6 +459,36 @@ public class ProductsDAO {
             }
 
         } catch (Exception e) {
+
+        }
+    }
+
+    public void showGraph(JPanel panel) {
+        try {
+            ResultSet rs = null;
+            String poi = "SELECT A.nombreProducto, B.cantidad FROM productos A, pedidos B WHERE A.idProducto=B.idProducto";
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            DefaultCategoryDataset dod = new DefaultCategoryDataset();
+            while (result.next()) {
+                dod.addValue(result.getInt(2), "Productos", result.getString(1));
+            }
+            
+            JFreeChart jchart = ChartFactory.createBarChart("Productos", "Compras", "Producto", dod, PlotOrientation.VERTICAL, true, true, false);
+            CategoryPlot plot = jchart.getCategoryPlot();
+            plot.setRangeGridlinePaint(Color.black);
+
+            ChartFrame chartFrm = new ChartFrame("Productos", jchart, true);
+            chartFrm.setVisible(true);
+            chartFrm.setSize(500, 400);
+
+            ChartPanel chartPanel = new ChartPanel(jchart);
+            panel.removeAll();
+            panel.add(chartPanel);
+            panel.updateUI();
+            
+        } catch (SQLException ex) {
 
         }
     }
