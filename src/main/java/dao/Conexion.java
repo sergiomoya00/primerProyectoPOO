@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class Conexion {
 
     private static Connection con=null;
-    private static final String url = "jdbc:sqlserver://DESKTOP-VRFNBQA:1433;databaseName=TareaProgramada1";
+    private static final String url = "jdbc:sqlserver://DESKTOP-VRFNBQA;databaseName=TareaProgramada1";
 
     public Connection getConnection() {
        try {
