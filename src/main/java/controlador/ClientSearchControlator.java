@@ -5,18 +5,43 @@
  */
 package controlador;
 
+import com.itextpdf.text.DocumentException;
+import dao.EmailNotification;
+
 import dao.CategoryDAO;
+
 import dao.OrdersDAO;
 import dao.ProductsDAO;
+
+import dao.UserDAO;
+
 import dao.ProviderDAO;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.PDF;
 import modelo.Categories;
 import modelo.Providers;
 import vista.ChooseRole;
 import vista.ClientSearch;
 import vista.ProviderRole;
+
+import vista.ClientSearch;
+
+import vista.ClientSearch;
+
+import java.awt.event.ActionListener;
+
+import vista.ProviderRole;
+
+import vista.ChooseRole;
+
+import vista.ClientSearch;
 
 /**
  *
@@ -29,10 +54,17 @@ public class ClientSearchControlator implements ActionListener {
     private ChooseRole role = new ChooseRole();
     private ClientSearch client = new ClientSearch();
     private ProductsDAO p = new ProductsDAO();
+
+    private OrdersDAO order = new OrdersDAO();
+    private UserDAO user = new UserDAO();
+    private PDF P = new PDF();
+
     private ProviderDAO provid = new ProviderDAO();
     private CategoryDAO category = new CategoryDAO();
-    private OrdersDAO order = new OrdersDAO();
+
     private String nombre;
+
+    private EmailNotification email = new EmailNotification();
 
     private int selection;
     private String comboSelectionT;
@@ -54,6 +86,15 @@ public class ClientSearchControlator implements ActionListener {
         providerRole.setTitle("Registo Usuario");
         providerRole.setLocationRelativeTo(null);
         providerRole.setVisible(true);
+
+        p.getAllProducts(providerRole.tableClient);
+
+        this.nombre = nombre;
+        this.providerRole.buttonOrder.setActionCommand("buttonOrder");
+        this.providerRole.buttonOrder.addActionListener(this);
+        this.providerRole.buttonBack.setActionCommand("buttonBack");
+        this.providerRole.buttonBack.addActionListener(this);
+
         //p.getAllProducts(providerRole.tableClient);
         provid.getComboProvidersUbication(providerRole.comboPlace);
         p.getComboProductPlace(providerRole.comboPlace);
@@ -79,9 +120,24 @@ public class ClientSearchControlator implements ActionListener {
                 if (p.getProductQuatity(String.valueOf(providerRole.tableClient.getValueAt(selection, 0))) >= Integer.parseInt(providerRole.txtQuantity.getText())) {
                     order.insertOrder(nombre, String.valueOf(providerRole.tableClient.getValueAt(selection, 1)), String.valueOf(providerRole.tableClient.getValueAt(selection, 0)), Integer.parseInt(providerRole.txtQuantity.getText()));
                     p.productMin(String.valueOf(providerRole.tableClient.getValueAt(selection, 0)), Integer.parseInt(providerRole.txtQuantity.getText()));
+
+                    try {
+                        //P.crearPDF(nombre, String.valueOf(providerRole.tableClient.getValueAt(selection, 2)), Integer.parseInt(providerRole.txtQuantity.getText()), p.calcTotalPrice(String.valueOf(providerRole.tableClient.getValueAt(selection, 0)), Integer.parseInt(providerRole.txtQuantity.getText())));
+                        email.sendEmail(user.getEmail(nombre), nombre);
+                        String url = "C:\\Users\\jabre\\OneDrive\\Documentos\\NetBeansProjects\\PRIMERPROYECTOPOO\\HTMLGMaps\\simple_map.html";
+                        ProcessBuilder p = new ProcessBuilder();
+                        p.command("cmd.exe", "/c", url);
+                        p.start();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(ClientSearchControlator.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientSearchControlator.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                 } else {
                     JOptionPane.showMessageDialog(client, "La cantidad solicitada no puede ser completada");
                 }
+
                 break;
 
             case buttonSearch:
@@ -130,10 +186,15 @@ public class ClientSearchControlator implements ActionListener {
             case buttonBack:
                 new ProviderRoleControlator(roleP).openUserRegister();
                 break;
-        }
-    }
+
+        }}
+    
+
+    
 
     public enum buttons {
+
         buttonOrder, buttonBack, buttonSearch
+
     }
 }

@@ -24,7 +24,8 @@ import java.util.Arrays;
  * @author
  */
 public class GoogleAPI {
-
+    
+    
     public static String PlaceID(String place) throws ApiException, InterruptedException, IOException {
         String PlaceID;
         GeoApiContext context = new GeoApiContext.Builder()
@@ -46,6 +47,7 @@ public class GoogleAPI {
         Address = results[0].formattedAddress;
         return Address;
     }
+ 
 
     public static String PlaceType(String place) throws ApiException, InterruptedException, IOException {
         String Type;
