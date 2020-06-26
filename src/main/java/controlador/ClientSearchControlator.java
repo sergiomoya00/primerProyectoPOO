@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import com.itextpdf.text.DocumentException;
+//import com.itextpdf.text.DocumentException;
 import dao.EmailNotification;
 
 import dao.CategoryDAO;
@@ -54,16 +54,12 @@ public class ClientSearchControlator implements ActionListener {
     private ChooseRole role = new ChooseRole();
     private ClientSearch client = new ClientSearch();
     private ProductsDAO p = new ProductsDAO();
-
     private OrdersDAO order = new OrdersDAO();
     private UserDAO user = new UserDAO();
     private PDF P = new PDF();
-
     private ProviderDAO provid = new ProviderDAO();
     private CategoryDAO category = new CategoryDAO();
-
     private String nombre;
-
     private EmailNotification email = new EmailNotification();
 
     private int selection;
@@ -97,7 +93,6 @@ public class ClientSearchControlator implements ActionListener {
 
         //p.getAllProducts(providerRole.tableClient);
         provid.getComboProvidersUbication(providerRole.comboPlace);
-        p.getComboProductPlace(providerRole.comboPlace);
         category.getComboCategory(providerRole.comboCat);
         category.getCategories();
         provid.getProviders();
@@ -141,13 +136,12 @@ public class ClientSearchControlator implements ActionListener {
                 break;
 
             case buttonSearch:
-                selection = providerRole.tableClient.getSelectedRow();
+                //selection = providerRole.tableClient.getSelectedRow();
+                System.out.println(category.getCategories().isEmpty());
                 comboSelectionT = (String) providerRole.comboType.getSelectedItem();
                 comboSelectionC = (String) providerRole.comboCat.getSelectedItem();
                 comboSelectionE = (String) providerRole.comboCondi.getSelectedItem();
                 comboSelectionL = (String) providerRole.comboPlace.getSelectedItem();
-                min = Integer.parseInt(providerRole.txtmin.getText());
-                max = Integer.parseInt(providerRole.txtmax.getText());
 
                 Categories newCategory = new Categories();
                 newCategory.setName(comboSelectionC);
@@ -155,42 +149,57 @@ public class ClientSearchControlator implements ActionListener {
                 Providers newProvider = new Providers();
                 newProvider.setUbication(comboSelectionL);
 
-                if (comboSelectionT.equals("Producto")) {
-                    p.getProductByType(providerRole.tableClient, comboSelectionT);
-                }
-                if (comboSelectionT.equals("Servicio")) {
-                    p.getProductByType(providerRole.tableClient, comboSelectionT);
+                if (comboSelectionC.equals("Categoría")) {
+
+                    if (comboSelectionT.equals("Producto")) {
+                        p.getProductByType(providerRole.tableClient, comboSelectionT);
+                        break;
+                    }
+                    if (comboSelectionT.equals("Servicio")) {
+                        p.getProductByType(providerRole.tableClient, comboSelectionT);
+                        break;
+                    }
+                    if (comboSelectionE.equals("Nuevo")) {
+                        p.getProductByCondition(providerRole.tableClient, comboSelectionE);
+                        break;
+                    }
+                    if (comboSelectionE.equals("Usado")) {
+                        p.getProductByCondition(providerRole.tableClient, comboSelectionE);
+                        break;
+                    }
+                    if (comboSelectionE.equals("Reparado")) {
+                        p.getProductByCondition(providerRole.tableClient, comboSelectionE);
+                        break;
+                    }
+                    if (providerRole.txtmin.getText().isEmpty() == false && providerRole.txtmax.getText().isEmpty() == false) {
+                        min = Integer.parseInt(providerRole.txtmin.getText());
+                        max = Integer.parseInt(providerRole.txtmax.getText());
+                        p.getProductByPrice(providerRole.tableClient, min, max);
+                        break;
+                    }
+                    if (comboSelectionL.equals(provid.search(newProvider).get(0).getUbication())) {
+                        p.getProductByPlace(providerRole.tableClient, comboSelectionL);
+                        provid.search(newProvider).clear();
+                        break;
+                    }
+                    break;
                 }
                 if (comboSelectionC.equals(category.search(newCategory).get(0).getName())) {
                     p.getProductByCategory(providerRole.tableClient, comboSelectionC);
                     category.search(newCategory).clear();
+                    break;
                 }
-                if (comboSelectionE.equals("Nuevo")) {
-                    p.getProductByCondition(providerRole.tableClient, comboSelectionE);
-                }
-                if (comboSelectionE.equals("Usado")) {
-                    p.getProductByCondition(providerRole.tableClient, comboSelectionE);
-                }
-                if (comboSelectionE.equals("Reparado")) {
-                    p.getProductByCondition(providerRole.tableClient, comboSelectionE);
-                }
-                if (comboSelectionL.equals(provid.search(newProvider).getUbication())) {
-                    p.getProductByPlace(providerRole.tableClient, comboSelectionL);
-                }
-                if (providerRole.txtmin.getText().isEmpty() == false & providerRole.txtmax.getText().isEmpty() == false) {
-                    p.getProductByPrice(providerRole.tableClient, min, max);
-                } else {
+
+                /* } else {
                     JOptionPane.showMessageDialog(client, "Seleccione correctamente");
-                }
+                }*/
                 break;
             case buttonBack:
                 new ProviderRoleControlator(roleP).openUserRegister();
                 break;
 
-        }}
-    
-
-    
+        }
+    }
 
     public enum buttons {
 
