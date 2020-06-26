@@ -5,12 +5,15 @@
  */
 package controlador;
 
+import dao.ProviderDAO;
+import dao.ProviderList;
 import dao.UserDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import vista.ChooseRole;
 import vista.ProviderConsultClients;
 import vista.ProviderLogIn;
+import vista.ProviderOrders;
 import vista.ProviderProducts;
 import vista.ProviderRole;
 
@@ -25,6 +28,7 @@ public class ProviderRoleControlator implements ActionListener {
     private ProviderRole p = new ProviderRole();
     private ProviderProducts product = new ProviderProducts();
     private ProviderConsultClients consult = new ProviderConsultClients();
+    private ProviderOrders order = new ProviderOrders();
 
     public ProviderRoleControlator() {
     }
@@ -57,8 +61,11 @@ public class ProviderRoleControlator implements ActionListener {
                 providerRole.setVisible(false);
                 break;
             case buttonOrders:
+                new ProviderOrdersControlator(order).openUserRegister();
+                providerRole.setVisible(false);
                 break;
             case buttonConsult:
+                ProviderList.getInstance().getUserList().get(1).getName();
                 new ProviderConsultClientsControlator(consult).openUserRegister();
                 providerRole.setVisible(false);
                 break;

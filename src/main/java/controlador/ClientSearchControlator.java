@@ -137,7 +137,7 @@ public class ClientSearchControlator implements ActionListener {
 
             case buttonSearch:
                 //selection = providerRole.tableClient.getSelectedRow();
-                System.out.println(category.getCategories().isEmpty());
+                
                 comboSelectionT = (String) providerRole.comboType.getSelectedItem();
                 comboSelectionC = (String) providerRole.comboCat.getSelectedItem();
                 comboSelectionE = (String) providerRole.comboCondi.getSelectedItem();

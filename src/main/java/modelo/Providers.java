@@ -12,6 +12,7 @@ package modelo;
 public class Providers {
 
     private String id;
+    private char user;
     private String name;
     private String company;
     private Address address;
@@ -24,13 +25,19 @@ public class Providers {
 
     public Providers() {
     }
-    
+
     public Providers(String ubication) {
         this.ubication = ubication;
     }
 
-    public Providers(String id, String name, String company, Address address, int phoneNumber, String email, String schedule, String ubication, String profile, int qualification) {
+    public Providers(String id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    public Providers(String id, char user, String name, String company, Address address, int phoneNumber, String email, String schedule, String ubication, String profile, int qualification) {
+        this.id = id;
+        this.user = user;
         this.name = name;
         this.company = company;
         this.address = address;
@@ -40,6 +47,10 @@ public class Providers {
         this.ubication = ubication;
         this.profile = profile;
         this.qualification = qualification;
+    }
+
+    public Providers(char user) {
+        this.user = user;
     }
 
     public String getId() {
@@ -122,6 +133,12 @@ public class Providers {
         this.qualification = qualification;
     }
 
-    
+    public char getUser() {
+        return user;
+    }
+
+    public void setUser(char user) {
+        this.user = user;
+    }
 
 }

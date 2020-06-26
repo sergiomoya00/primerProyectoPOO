@@ -140,7 +140,7 @@ public class ProductsDAO {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String login = "SELECT * FROM productos WHERE type='" + type + "'";
+            String login = "SELECT * FROM productos WHERE tipo='" + type + "'";
             ps = cin.prepareStatement(login);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -260,7 +260,7 @@ public class ProductsDAO {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String login = "SELECT B.idProducto, B.idProveedor, B.nombre, B.descripcion, B.tipo, B.categoria, B.cantidadDisponible, B.precioUnitario, B.precioEntrega, B.foto, B.estado FROM proveedores A inner join informacionProveedor C on C.nombreUsuario=A.idProveedor inner join productos B on A.idProveedor=B.idProveedor WHERE C.ubicacion='" + place + "'";
+            String login = "SELECT B.idProducto, B.idProveedor, B.nombreProducto, B.descripcion, B.tipo, B.categoria, B.cantidadDisponible, B.precioUnitario, B.precioEntrega, B.foto, B.estado FROM proveedores A inner join informacionProveedor C on C.nombreUsuario=A.idProveedor inner join productos B on A.idProveedor=B.idProveedor WHERE C.ubicacion='" + place + "'";
             ps = cin.prepareStatement(login);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -300,7 +300,7 @@ public class ProductsDAO {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String login = "SELECT * FROM productos WHERE precioUnitario>" + min + " and precioUnitario<=" + max;
+            String login = "SELECT * FROM productos WHERE precioUnitario>=" + min + " and precioUnitario<=" + max;
             ps = cin.prepareStatement(login);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();

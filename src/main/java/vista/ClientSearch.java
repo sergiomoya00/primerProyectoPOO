@@ -49,7 +49,7 @@ public class ClientSearch extends javax.swing.JFrame {
 
         comboType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo", "Producto", "Servicio" }));
 
-        comboCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categoría", " " }));
+        comboCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categoría" }));
 
         comboCondi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado", "Nuevo", "Usado", "Reparado" }));
 

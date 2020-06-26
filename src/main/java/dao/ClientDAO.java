@@ -28,10 +28,10 @@ public class ClientDAO {
     private ClientSearch client = new ClientSearch();
     PreparedStatement ps;
     ProviderConsultClients consult;
-    
-    public void insertClient(String nombreUsuario,int cedula,String provincia, String canton, String distrito, String señas, int telefono, String correoElectronico, String ubicacion, String sitio, String horario, String perfil) {
+
+    public void insertClient(String nombreUsuario, int cedula, String provincia, String canton, String distrito, String señas, int telefono, String correoElectronico, String ubicacion, String sitio, String horario, String perfil) {
         String insertar = "insert into informacionCliente (nombreUsuario,cedula,provincia,canton,distrito,señas,telefono,correoElectronico,ubicacion,sitio,horario,perfil) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
-        
+
         try {
             ps = cin.prepareCall(insertar);
             ps.setString(1, nombreUsuario);
@@ -46,7 +46,7 @@ public class ClientDAO {
             ps.setString(10, sitio);
             ps.setString(11, horario);
             ps.setString(12, perfil);
-            
+
             ps.executeUpdate();
             JOptionPane.showMessageDialog(client, "Registrado con exito");
 
@@ -54,13 +54,13 @@ public class ClientDAO {
             JOptionPane.showMessageDialog(client, "No Registrado ");
         }
     }
-    
-    public void consultClient(JTable table){
-         try {
+
+    public void consultClient(JTable table, String idProvider) {
+        try {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String login = "SELECT B.nombreUsuario as Cliente, B.correoElectronico, B.telefono, C.idPedido FROM proveedores A, informacionCliente B, pedidos C WHERE A.idProveedor=C.idProveedor and B.nombreUsuario=C.nombreUsuario";
+            String login = "SELECT B.nombreUsuario, B.correoElectronico, B.telefono, C.idPedido FROM proveedores A, informacionCliente B, pedidos C WHERE A.idProveedor='" + idProvider + "' and A.idProveedor=C.idProveedor and B.nombreUsuario=C.nombreUsuario";
             ps = cin.prepareStatement(login);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -69,24 +69,14 @@ public class ClientDAO {
             modelo.addColumn("Correo Electronico");
             modelo.addColumn("Telefono");
             modelo.addColumn("ID del pedido");
-            
 
             while (rs.next()) {
                 Object[] filas = new Object[cantidadColumnas];
 
-                for (int i = 1; i <= cantidadColumnas + 2; i++) {
-                    if (i < 8) {
-                        if (i == 6 || i == 7) {
+                for (int i = 1; i <= cantidadColumnas; i++) {
 
-                        } else {
-                            filas[i - 1] = rs.getObject(i);
-                        }
-                    } else {
-                        if (i > cantidadColumnas) {
-                        } else {
-                            filas[i - 3] = rs.getObject(i);
-                        }
-                    }
+                    filas[i - 1] = rs.getObject(i);
+
                 }
 
                 modelo.addRow(filas);

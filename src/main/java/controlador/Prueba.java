@@ -9,6 +9,7 @@ package controlador;
 import dao.UserDAO;
 import java.sql.SQLException;
 import vista.ChooseRole;*/
+//import com.google.maps.errors.ApiException;
 import com.google.maps.errors.ApiException;
 import static dao.GoogleAPI.*;
 import java.io.BufferedReader;
@@ -26,7 +27,7 @@ import java.util.Random;
 public class Prueba {
 
  
-    public static void main(String[] args) throws ApiException, InterruptedException, IOException {
+    public static void main(String[] args) throws InterruptedException, IOException, ApiException {
 
         double pan;
         pan = Latitude("San Rafael,Cartago,Costa Rica");
@@ -40,8 +41,8 @@ public class Prueba {
         System.out.println(Longitude("Pavas,San Jose,Costa Rica"));
 
         File fNuevo = new File("C:\\HTMLGMaps\\simple_map.html");
-        Archivos arch = new Archivos();
-        arch.modificar(fNuevo,"origen","lat: 9.9280694, lng: -84.0907246");
+        //Archivos arch = new Archivos();
+        //arch.modificar(fNuevo,"origen","lat: 9.9280694, lng: -84.0907246");
 
     }
 }

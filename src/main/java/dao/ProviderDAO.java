@@ -32,7 +32,7 @@ import vista.ProviderRegister;
  * @author jabre
  */
 public class ProviderDAO {
-
+    
     Providers provi;
     ProviderRegister providerRegister;
     AdminProvider adminProvider;
@@ -41,21 +41,23 @@ public class ProviderDAO {
     Connection cin = conexion.getConnection();
     PreparedStatement ps;
     ArrayList<Providers> array = new ArrayList<>();
-
-    public ProviderDAO() {
+    ArrayList<Providers> arrayUser = new ArrayList<>();
+    
+    public ProviderDAO(){
     }
 
-    public void providerRegister(String id, String name, String company) {
+    public void providerRegister(String id, String user, String name, String company) {
 
-        String insertar = "insert into proveedores (idProveedor,nombre,empresa,calificacion,estado) values (?,?,?,?,?) ";
+        String insertar = "insert into proveedores (idProveedor,nombreUsuario,nombre,empresa,calificacion,estado) values (?,?,?,?,?,?) ";
 
         try {
             ps = cin.prepareCall(insertar);
             ps.setString(1, id);
-            ps.setString(2, name);
-            ps.setString(3, company);
-            ps.setFloat(4, 0.0F);
-            ps.setString(5, "Activo");
+            ps.setString(2, user);
+            ps.setString(3, name);
+            ps.setString(4, company);
+            ps.setFloat(5, 0.0F);
+            ps.setString(6, "Activo");
             ps.executeUpdate();
             JOptionPane.showMessageDialog(providerRegister, "Registrado con exito");
 
@@ -67,9 +69,9 @@ public class ProviderDAO {
     public void providerInformationRegister(String username, String provincia, String canton, String distrito, String señas, int phone, String email, String website, String schedule, String profile) throws ApiException, InterruptedException, IOException {
 
         String insertar = "insert into informacionProveedor(nombreUsuario,cedula,provincia,canton,distrito,señas,telefono,correoElectronico,ubicacion,latitud,longitud,sitio,horario,perfil) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
-        String ubication=distrito+","+canton+","+provincia+","+"Costa Rica";
-        String lat=String.valueOf(Latitude(ubication));
-        String lon=String.valueOf(Longitude(ubication));
+        String ubication = distrito + "," + canton + "," + provincia + "," + "Costa Rica";
+        String lat = String.valueOf(Latitude(ubication));
+        String lon = String.valueOf(Longitude(ubication));
         try {
             ps = cin.prepareCall(insertar);
             ps.setString(1, username);
@@ -98,9 +100,9 @@ public class ProviderDAO {
     public void clientInformationRegister(String username, int cedula, String provincia, String canton, String distrito, String señas, int phone, String email) throws ApiException, InterruptedException, IOException {
 
         String insertar = "insert into informacion(nombreUsuario,cedula,provincia,canton,distrito,señas,telefono,correoElectronico,ubicacion,latitud,longitud,sitio,horario,perfil) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
-        String ubication=distrito+","+canton+","+provincia+","+"Costa Rica";
-        String lat=String.valueOf(Latitude(ubication));
-        String lon=String.valueOf(Longitude(ubication));
+        String ubication = distrito + "," + canton + "," + provincia + "," + "Costa Rica";
+        String lat = String.valueOf(Latitude(ubication));
+        String lon = String.valueOf(Longitude(ubication));
         try {
             ps = cin.prepareCall(insertar);
             ps.setString(1, username);
@@ -213,26 +215,27 @@ public class ProviderDAO {
 
             ps = cin.prepareStatement(update);
             ps.executeUpdate();
-             JOptionPane.showMessageDialog(adminProvider, "Informacion editada con exito");
+            JOptionPane.showMessageDialog(adminProvider, "Informacion editada con exito");
 
         } catch (Exception e) {
-       JOptionPane.showMessageDialog(adminProvider, e.toString());
+            JOptionPane.showMessageDialog(adminProvider, e.toString());
         }
     }
-    public void updateProviderStatus(){
-    String update = "UPDATE proveedores SET  estado='Inactivo'";
+
+    public void updateProviderStatus() {
+        String update = "UPDATE proveedores SET  estado='Inactivo'";
         try {
 
             ps = cin.prepareStatement(update);
             ps.executeUpdate();
-             JOptionPane.showMessageDialog(adminProvider, "Informacion editada con exito");
+            JOptionPane.showMessageDialog(adminProvider, "Informacion editada con exito");
 
         } catch (Exception e) {
-       JOptionPane.showMessageDialog(adminProvider, e.toString());
+            JOptionPane.showMessageDialog(adminProvider, e.toString());
         }
     }
-    
-    public void getComboProviders(JComboBox combo){
+
+    public void getComboProviders(JComboBox combo) {
         String poi = "SELECT idProveedor FROM proveedores";
         try {
 
@@ -247,8 +250,8 @@ public class ProviderDAO {
 
         }
     }
-    
-    public void getComboProvidersUbication(JComboBox combo){
+
+    public void getComboProvidersUbication(JComboBox combo) {
         String poi = "SELECT ubicacion FROM informacionProveedor GROUP BY ubicacion";
         try {
 
@@ -263,7 +266,7 @@ public class ProviderDAO {
 
         }
     }
-    
+
     public Collection<Providers> getProviders() {
         String poi = "SELECT ubicacion FROM informacionProveedor GROUP BY ubicacion";
         try {
@@ -281,11 +284,54 @@ public class ProviderDAO {
         }
         return array;
     }
+
+    public List<Providers> getProvidersUser(String userName) {
+        String poi = "SELECT idProveedor FROM proveedores WHERE nombreUsuario = '" + userName + "'";
+        try {
+
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            while (result.next()) {
+                this.provi = new Providers(result.getString("idProveedor"), "lol");
+                arrayUser.add(provi);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return arrayUser;
+    }
+
+    public List<Providers> getUserList() {
+        return arrayUser;
+    }
+
+    public List<Providers> getUbication() {
+        return array;
+    }
     
-    public Providers search(Providers newProvider) {
-        
-        List<Providers> results = new ArrayList<>();  
-        boolean byUbication = newProvider.getUbication()!= null && newProvider.getUbication().length() > 0;
+    public List<Providers> searchUser(Providers newProvider) {
+
+        List<Providers> results = new ArrayList<>();
+        boolean byID = newProvider.getId() != null && newProvider.getId().length() > 0;
+
+        for (Providers pro : arrayUser) {
+            boolean add = !(byID);
+            if (!add && byID && pro.getId().contains(newProvider.getId())) {
+                add = true;
+            }
+            if (add) {
+                results.add(pro);
+            }
+        }
+        return results;
+    }
+
+    public List<Providers> search(Providers newProvider) {
+
+        List<Providers> results = new ArrayList<>();
+        boolean byUbication = newProvider.getUbication() != null && newProvider.getUbication().length() > 0;
 
         for (Providers pro : array) {
             boolean add = !(byUbication);
@@ -296,7 +342,6 @@ public class ProviderDAO {
                 results.add(pro);
             }
         }
-        return results.get(0);
+        return results;
     }
-
 }
