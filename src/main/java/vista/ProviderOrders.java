@@ -43,7 +43,7 @@ public class ProviderOrders extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Gestión de pedidios");
 
-        comboOrder.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En proceso", "Procesado", "Entregado ", "Cancelado" }));
+        comboOrder.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En proceso", "Procesado", "Entregado", "Cancelado" }));
 
         buttonSearch.setText("Buscar");
 

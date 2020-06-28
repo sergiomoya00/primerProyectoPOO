@@ -137,7 +137,7 @@ public class ClientSearchControlator implements ActionListener {
 
             case buttonSearch:
                 //selection = providerRole.tableClient.getSelectedRow();
-                
+
                 comboSelectionT = (String) providerRole.comboType.getSelectedItem();
                 comboSelectionC = (String) providerRole.comboCat.getSelectedItem();
                 comboSelectionE = (String) providerRole.comboCondi.getSelectedItem();
@@ -189,13 +189,13 @@ public class ClientSearchControlator implements ActionListener {
                     category.search(newCategory).clear();
                     break;
                 }
-
                 /* } else {
                     JOptionPane.showMessageDialog(client, "Seleccione correctamente");
                 }*/
                 break;
             case buttonBack:
                 new ProviderRoleControlator(roleP).openUserRegister();
+                providerRole.setVisible(false);
                 break;
 
         }
