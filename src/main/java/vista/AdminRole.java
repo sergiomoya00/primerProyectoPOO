@@ -32,7 +32,7 @@ public class AdminRole extends javax.swing.JFrame {
         buttonUser = new javax.swing.JButton();
         buttonCondi = new javax.swing.JButton();
         buttonBack = new javax.swing.JButton();
-        buttonInsert = new javax.swing.JButton();
+        buttonGraph = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,7 +71,7 @@ public class AdminRole extends javax.swing.JFrame {
             }
         });
 
-        buttonInsert.setText("Insertar administrador");
+        buttonGraph.setText("Análisis de datos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,7 +91,7 @@ public class AdminRole extends javax.swing.JFrame {
                                 .addComponent(buttonCondi)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(buttonProvi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonInsert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(buttonGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -108,8 +108,8 @@ public class AdminRole extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(buttonCondi, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(buttonInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addComponent(buttonGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -176,7 +176,7 @@ public class AdminRole extends javax.swing.JFrame {
     public javax.swing.JButton buttonBack;
     public javax.swing.JButton buttonCate;
     public javax.swing.JButton buttonCondi;
-    public javax.swing.JButton buttonInsert;
+    public javax.swing.JButton buttonGraph;
     public javax.swing.JButton buttonProvi;
     public javax.swing.JButton buttonUser;
     // End of variables declaration//GEN-END:variables

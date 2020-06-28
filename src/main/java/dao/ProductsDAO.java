@@ -466,7 +466,7 @@ public class ProductsDAO {
     public void showGraph(JPanel panel) {
         try {
             ResultSet rs = null;
-            String poi = "SELECT A.nombreProducto, B.cantidad FROM productos A, pedidos B WHERE A.idProducto=B.idProducto";
+            String poi = "select top 5 (B.nombreProducto), count(A.idProducto) as cantidad from pedidos A inner join productos B on B.idProducto=A.idProducto group by B.nombreProducto order by cantidad desc";
             ps = cin.prepareCall(poi);
             ResultSet result = ps.executeQuery();
 

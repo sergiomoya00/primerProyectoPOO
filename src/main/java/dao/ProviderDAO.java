@@ -8,6 +8,7 @@ package dao;
 import com.google.maps.errors.ApiException;
 import static dao.GoogleAPI.Latitude;
 import static dao.GoogleAPI.Longitude;
+import java.awt.Color;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,10 +20,18 @@ import java.util.Collection;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Categories;
 import modelo.Providers;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import vista.AdminProvider;
 import vista.ClientRegister;
 import vista.ProviderRegister;
@@ -344,4 +353,35 @@ public class ProviderDAO {
         }
         return results;
     }
+    
+    public void showGraph(JPanel panel) {
+        try {
+            ResultSet rs = null;
+            String poi = "select top 5 (B.nombre), avg(B.calificacion) as cantidad from pedidos A inner join proveedores B on B.idProveedor=A.idProveedor group by B.nombre order by cantidad desc";
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            DefaultCategoryDataset dod = new DefaultCategoryDataset();
+            while (result.next()) {
+                dod.addValue(result.getInt(2), "Productos", result.getString(1));
+            }
+            
+            JFreeChart jchart = ChartFactory.createBarChart("Proveedores", "Calificación", "Producto", dod, PlotOrientation.VERTICAL, true, true, false);
+            CategoryPlot plot = jchart.getCategoryPlot();
+            plot.setRangeGridlinePaint(Color.black);
+
+            ChartFrame chartFrm = new ChartFrame("Productos", jchart, true);
+            chartFrm.setVisible(true);
+            chartFrm.setSize(500, 400);
+
+            ChartPanel chartPanel = new ChartPanel(jchart);
+            panel.removeAll();
+            panel.add(chartPanel);
+            panel.updateUI();
+            
+        } catch (SQLException ex) {
+
+        }
+    }
+    
 }

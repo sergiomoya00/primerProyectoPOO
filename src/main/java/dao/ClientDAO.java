@@ -5,14 +5,29 @@
  */
 package dao;
 
+import java.awt.Color;
+import static java.awt.Component.TOP_ALIGNMENT;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Locale;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
 import vista.ClientSearch;
 import vista.ProviderConsultClients;
 import vista.StatusRegister;
@@ -87,4 +102,35 @@ public class ClientDAO {
 
         }
     }
+    
+    public void showGraph(JPanel panel) {
+        try {
+            ResultSet rs = null;
+            String poi = "select top 5 (B.nombreProducto), count(A.idProducto) as cantidad from pedidos A inner join productos B on B.idProducto=A.idProducto group by B.nombreProducto order by cantidad desc";
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            DefaultPieDataset dataset = new DefaultPieDataset();
+            while (result.next()) {
+                dataset.setValue(result.getString(1), result.getInt(2));
+            }
+            
+            JFreeChart jchart = ChartFactory.createPieChart("Clientes", dataset, true, true, true);
+            PiePlot plot = (PiePlot) jchart.getPlot();
+            //plot.setForegroundAlpha(TOP_ALIGNMENT);
+            
+            ChartFrame chartFrm = new ChartFrame("Productos", jchart, true);
+            chartFrm.setVisible(true);
+            chartFrm.setSize(450,500);
+
+            ChartPanel chartPanel = new ChartPanel(jchart);
+            panel.removeAll();
+            panel.add(chartPanel);
+            panel.updateUI();
+            
+        } catch (SQLException ex) {
+
+        }
+    }
+    
 }
