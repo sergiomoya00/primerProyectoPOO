@@ -9,6 +9,7 @@ import com.itextpdf.text.DocumentException;
 import dao.EmailNotification;
 
 import dao.CategoryDAO;
+import dao.ClientDAO;
 
 import dao.OrdersDAO;
 import dao.ProductsDAO;
@@ -16,6 +17,7 @@ import dao.ProductsDAO;
 import dao.UserDAO;
 
 import dao.ProviderDAO;
+import dao.RouteMapApi;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,10 +38,12 @@ import vista.ClientSearch;
 import vista.ClientSearch;
 
 import java.awt.event.ActionListener;
+import java.net.URISyntaxException;
 
 import vista.ProviderRole;
 
 import vista.ChooseRole;
+import vista.ClientRole;
 
 import vista.ClientSearch;
 
@@ -50,10 +54,11 @@ import vista.ClientSearch;
 public class ClientSearchControlator implements ActionListener {
 
     private ClientSearch providerRole;
-    private ProviderRole roleP = new ProviderRole();
+    private ClientRole roleP = new ClientRole();
     private ChooseRole role = new ChooseRole();
     private ClientSearch client = new ClientSearch();
     private ProductsDAO p = new ProductsDAO();
+    private RouteMapApi map=new RouteMapApi();
 
     private OrdersDAO order = new OrdersDAO();
     private UserDAO user = new UserDAO();
@@ -61,7 +66,7 @@ public class ClientSearchControlator implements ActionListener {
 
     private ProviderDAO provid = new ProviderDAO();
     private CategoryDAO category = new CategoryDAO();
-
+    private ClientDAO clien= new ClientDAO();
     private String nombre;
 
     private EmailNotification email = new EmailNotification();
@@ -109,6 +114,8 @@ public class ClientSearchControlator implements ActionListener {
         this.providerRole.buttonBack.addActionListener(this);
         this.providerRole.buttonSearch.setActionCommand("buttonSearch");
         this.providerRole.buttonSearch.addActionListener(this);
+        this.providerRole.buttonShowMap.setActionCommand("buttonShowMap");
+        this.providerRole.buttonShowMap.addActionListener(this);
 
     }
 
@@ -118,21 +125,15 @@ public class ClientSearchControlator implements ActionListener {
             case buttonOrder:
                 selection = providerRole.tableClient.getSelectedRow();
                 if (p.getProductQuatity(String.valueOf(providerRole.tableClient.getValueAt(selection, 0))) >= Integer.parseInt(providerRole.txtQuantity.getText())) {
-                    order.insertOrder(nombre, String.valueOf(providerRole.tableClient.getValueAt(selection, 1)), String.valueOf(providerRole.tableClient.getValueAt(selection, 0)), Integer.parseInt(providerRole.txtQuantity.getText()));
-                    p.productMin(String.valueOf(providerRole.tableClient.getValueAt(selection, 0)), Integer.parseInt(providerRole.txtQuantity.getText()));
-
+                    order.insertOrder(nombre, String.valueOf(providerRole.tableClient.getValueAt(selection, 1)), String.valueOf(providerRole.tableClient.getValueAt(selection, 0)), Integer.parseInt(providerRole.txtQuantity.getText()),String.valueOf(providerRole.tableClient.getValueAt(selection, 5)));        
                     try {
-                        //P.crearPDF(nombre, String.valueOf(providerRole.tableClient.getValueAt(selection, 2)), Integer.parseInt(providerRole.txtQuantity.getText()), p.calcTotalPrice(String.valueOf(providerRole.tableClient.getValueAt(selection, 0)), Integer.parseInt(providerRole.txtQuantity.getText())));
+                        P.crearPDF(nombre, String.valueOf(providerRole.tableClient.getValueAt(selection, 2)), Integer.parseInt(providerRole.txtQuantity.getText()), p.calcTotalPrice(String.valueOf(providerRole.tableClient.getValueAt(selection, 0)), Integer.parseInt(providerRole.txtQuantity.getText())));
                         email.sendEmail(user.getEmail(nombre), nombre);
-                        String url = "C:\\Users\\jabre\\OneDrive\\Documentos\\NetBeansProjects\\PRIMERPROYECTOPOO\\HTMLGMaps\\simple_map.html";
-                        ProcessBuilder p = new ProcessBuilder();
-                        p.command("cmd.exe", "/c", url);
-                        p.start();
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(ClientSearchControlator.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(ClientSearchControlator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    }  catch (DocumentException ex) {
+                Logger.getLogger(ClientSearchControlator.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
                 } else {
                     JOptionPane.showMessageDialog(client, "La cantidad solicitada no puede ser completada");
@@ -184,8 +185,28 @@ public class ClientSearchControlator implements ActionListener {
                 }
                 break;
             case buttonBack:
-                new ProviderRoleControlator(roleP).openUserRegister();
+                new ClientRoleControlator(roleP).openUserRegister(nombre);
                 break;
+            case buttonShowMap:
+            {
+                try {
+                    map.createMap(nombre, provid.getProviderCordinates(String.valueOf(providerRole.tableClient.getValueAt(selection, 1))), clien.getClientCordinates(nombre));
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ClientSearchControlator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            {
+                try {
+                    map.openMap(nombre);
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(ClientSearchControlator.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                Logger.getLogger(ClientSearchControlator.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+
+
+                
 
         }}
     
@@ -194,7 +215,7 @@ public class ClientSearchControlator implements ActionListener {
 
     public enum buttons {
 
-        buttonOrder, buttonBack, buttonSearch
+        buttonOrder, buttonBack, buttonSearch,buttonShowMap
 
     }
 }

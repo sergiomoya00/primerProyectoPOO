@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import vista.ChooseRole;
 import vista.ClientLogIn;
+import vista.ClientRole;
 import vista.ClientSearch;
 import vista.ProviderLogIn;
 import vista.UserRegister;
@@ -25,7 +26,7 @@ public class ClientLogInControlator implements ActionListener {
     private UserDAO user = new UserDAO();
     private ChooseRole role = new ChooseRole();
     private UserRegister userR = new UserRegister();
-    private ClientSearch p = new ClientSearch();
+    private ClientRole p = new ClientRole();
 
     public ClientLogInControlator() {
 
@@ -55,7 +56,7 @@ public class ClientLogInControlator implements ActionListener {
             case menuButton:
                 if (user.logIn(userRegister.txt_email.getText(), userRegister.txtPassword.getText()) == true) {
                     if (user.getRole(userRegister.txt_email.getText()).equals("Cliente")) {
-                        new ClientSearchControlator(p).openUserRegister(userRegister.txt_email.getText());
+                        new ClientRoleControlator(p).openUserRegister(userRegister.txt_email.getText());
                         userRegister.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(userRegister, "Solo los usuarios clientes pueden ingresar");
