@@ -57,6 +57,7 @@ public class ProviderRoleControlator implements ActionListener {
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
             case buttonProducts:
+                ProviderList.getInstance().getUserList().get(1).getName();
                 new ProviderProductsControlator(product).openUserRegister();
                 providerRole.setVisible(false);
                 break;

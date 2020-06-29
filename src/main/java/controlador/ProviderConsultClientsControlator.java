@@ -59,6 +59,8 @@ public class ProviderConsultClientsControlator implements ActionListener {
         switch (ProviderConsultClientsControlator.buttons.valueOf(evento.getActionCommand())) {
             case buttonBack:
                 new ProviderRoleControlator(p).openUserRegister();
+                //Providers newProvider = new Providers();
+                //ProviderList.getInstance().searchUser(newProvider).clear();
                 providerConsult.setVisible(false);
                 break;
 
