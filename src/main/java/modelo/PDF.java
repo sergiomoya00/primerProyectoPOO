@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package modelo;
-/*
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -15,7 +15,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-*/
+
 /**
  *
  * @author jabre
@@ -24,7 +24,7 @@ public class PDF {
 
     public PDF() {
     }
-/*
+
     public void crearPDF(String nombre, String producto, int cantidad, int precio) throws FileNotFoundException, DocumentException {
         Document documento = new Document();
 
@@ -51,5 +51,5 @@ public class PDF {
 
         documento.close();
 
-    }*/
+    }
 }

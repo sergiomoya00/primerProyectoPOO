@@ -432,6 +432,23 @@ public class ProductsDAO {
             JOptionPane.showMessageDialog(admin, e.toString());
         }
     }
+    public int calcTotalPrice(String idProducto,int cantidad){
+    int precio=0;
+    String poi = "SELECT precioUnitario FROM productos where idProducto='"+idProducto+"'";
+        try {
+
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            while (result.next()) {
+               precio=Integer.parseInt(result.getString("precioUnitario"))*cantidad;
+            }
+
+        } catch (Exception e) {
+
+        }
+        return precio;
+    }
 
     public void productMin(String codigo, int cantidad) {
         int result = getProductQuatity(codigo) - cantidad;

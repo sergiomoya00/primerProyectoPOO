@@ -41,7 +41,7 @@ import vista.ProviderRegister;
  * @author jabre
  */
 public class ProviderDAO {
-    
+
     Providers provi;
     ProviderRegister providerRegister;
     AdminProvider adminProvider;
@@ -51,8 +51,8 @@ public class ProviderDAO {
     PreparedStatement ps;
     ArrayList<Providers> array = new ArrayList<>();
     ArrayList<Providers> arrayUser = new ArrayList<>();
-    
-    public ProviderDAO(){
+
+    public ProviderDAO() {
     }
 
     public void providerRegister(String id, String user, String name, String company) {
@@ -319,7 +319,7 @@ public class ProviderDAO {
     public List<Providers> getUbication() {
         return array;
     }
-    
+
     public List<Providers> searchUser(Providers newProvider) {
 
         List<Providers> results = new ArrayList<>();
@@ -353,7 +353,7 @@ public class ProviderDAO {
         }
         return results;
     }
-    
+
     public void showGraph(JPanel panel) {
         try {
             ResultSet rs = null;
@@ -365,8 +365,8 @@ public class ProviderDAO {
             while (result.next()) {
                 dod.addValue(result.getInt(2), "Productos", result.getString(1));
             }
-            
-            JFreeChart jchart = ChartFactory.createBarChart("Proveedores", "Calificación", "Producto", dod, PlotOrientation.VERTICAL, true, true, false);
+
+            JFreeChart jchart = ChartFactory.createBarChart("Proveedores", "CalificaciÃ³n", "Producto", dod, PlotOrientation.VERTICAL, true, true, false);
             CategoryPlot plot = jchart.getCategoryPlot();
             plot.setRangeGridlinePaint(Color.black);
 
@@ -378,10 +378,29 @@ public class ProviderDAO {
             panel.removeAll();
             panel.add(chartPanel);
             panel.updateUI();
-            
+
         } catch (SQLException ex) {
 
         }
     }
-    
+
+    public String getProviderCordinates(String id) {
+        String cordinates = "";
+        String poi = "SELECT latitud,longitud FROM informacionProveedor where nombreUsuario='" + id + "'";
+        try {
+
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            while (result.next()) {
+                cordinates = "lat:" + result.getString("latitud") + ", lng: " + result.getString("longitud");
+            }
+
+        } catch (Exception e) {
+
+        }
+        return cordinates;
+
+    }
+
 }

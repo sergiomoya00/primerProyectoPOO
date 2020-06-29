@@ -133,4 +133,22 @@ public class ClientDAO {
         }
     }
     
+       public String getClientCordinates(String id){
+        String cordinates="";
+        String poi = "SELECT latitud,longitud FROM informacionCliente where nombreUsuario='"+id+"'";
+        try {
+
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            while (result.next()) {
+                cordinates="lat:"+result.getString("latitud")+", lng: "+result.getString("longitud");
+            }
+
+        } catch (Exception e) {
+
+        }
+        return cordinates;
+    
+    }
 }
