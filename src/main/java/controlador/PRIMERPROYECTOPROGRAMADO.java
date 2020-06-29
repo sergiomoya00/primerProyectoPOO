@@ -20,6 +20,7 @@ public class PRIMERPROYECTOPROGRAMADO {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
+        
         UserRegisterControlador c=new UserRegisterControlador();
         
         ChooseRole principal = new ChooseRole();

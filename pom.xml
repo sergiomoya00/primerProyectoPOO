@@ -4,10 +4,7 @@
     <groupId>com.mycompany</groupId>
     <artifactId>PRIMERPROYECTOPOO</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
- 
-        
-    
+    <packaging>jar</packaging>    
     
     <dependencies>
         

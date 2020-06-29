@@ -97,7 +97,7 @@
           <StringArray count="4">
             <StringItem index="0" value="En proceso"/>
             <StringItem index="1" value="Procesado"/>
-            <StringItem index="2" value="Entregado "/>
+            <StringItem index="2" value="Entregado"/>
             <StringItem index="3" value="Cancelado"/>
           </StringArray>
         </Property>

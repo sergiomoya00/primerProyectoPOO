@@ -39,7 +39,7 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="buttonProvi" max="32767" attributes="0"/>
-                          <Component id="buttonInsert" max="32767" attributes="0"/>
+                          <Component id="buttonGraph" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -61,8 +61,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="buttonCondi" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="buttonInsert" min="-2" pref="43" max="-2" attributes="0"/>
-              <EmptySpace pref="88" max="32767" attributes="0"/>
+              <Component id="buttonGraph" min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -123,9 +123,9 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="buttonInsert">
+    <Component class="javax.swing.JButton" name="buttonGraph">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Insertar administrador"/>
+        <Property name="text" type="java.lang.String" value="An&#xe1;lisis de datos"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

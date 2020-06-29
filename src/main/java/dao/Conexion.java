@@ -17,12 +17,12 @@ import java.sql.SQLException;
 public class Conexion {
 
     private static Connection con=null;
-    private static final String url = "jdbc:sqlserver://DESKTOP-PPIO21T:1433;databaseName=TareaProgramada1";
+    private static final String url = "jdbc:sqlserver://DESKTOP-VRFNBQA:1433;databaseName=TareaProgramada1";
 
     public Connection getConnection() {
        try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection(url,"sa","123");
+            con = DriverManager.getConnection(url,"userSQL","321");
             if (con != null) {
                 System.out.print("Conexion establecida");
             }

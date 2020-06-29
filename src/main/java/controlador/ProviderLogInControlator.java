@@ -5,6 +5,8 @@
  */
 package controlador;
 
+import dao.ProviderDAO;
+import dao.ProviderList;
 import dao.UserDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +26,7 @@ public class ProviderLogInControlator implements ActionListener {
 
     private ProviderLogIn userRegister;
     private UserDAO user = new UserDAO();
+    private ProviderDAO providerUser = new ProviderDAO();
     private UserRegister userR = new UserRegister();
     private ChooseRole role = new ChooseRole();
     private ProviderRole p = new ProviderRole();
@@ -56,6 +59,8 @@ public class ProviderLogInControlator implements ActionListener {
             case menuButton:
                 if (user.logIn(userRegister.txt_email.getText(), userRegister.txtPassword.getText()) == true) {
                     if (user.getRole(userRegister.txt_email.getText()).equals("Proveedor")) {
+                        ProviderList.getInstance().getProvidersUser(userRegister.txt_email.getText());
+                        System.out.println(ProviderList.getInstance().getUserList().get(1).getName());
                         new ProviderRoleControlator(p).openUserRegister();
                         userRegister.setVisible(false);
                     } else {

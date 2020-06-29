@@ -8,6 +8,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import vista.AdminCategory;
+import vista.AdminDataAnalysis;
 import vista.AdminOrderStatus;
 import vista.AdminProvider;
 import vista.AdminRole;
@@ -28,6 +29,7 @@ public class AdminRoleControlator implements ActionListener {
     private AdminUser user=new AdminUser();
     private AdminOrderStatus order=new AdminOrderStatus();
     private AdminCategory category=new AdminCategory();
+    private AdminDataAnalysis analysis = new AdminDataAnalysis();
     private UserRegister a=new UserRegister();
 
     public AdminRoleControlator() {
@@ -39,7 +41,7 @@ public class AdminRoleControlator implements ActionListener {
     
     
     public void openUserRegister(){
-    providerRole.setTitle("Registo Usuario");
+    providerRole.setTitle("Administrador");
     providerRole.setLocationRelativeTo(null);
     providerRole.setVisible(true);
     
@@ -53,8 +55,8 @@ public class AdminRoleControlator implements ActionListener {
     this.providerRole.buttonUser.addActionListener(this);
     this.providerRole.buttonBack.setActionCommand("buttonBack");
     this.providerRole.buttonBack.addActionListener(this);
-    this.providerRole.buttonInsert.setActionCommand("buttonInsert");
-    this.providerRole.buttonInsert.addActionListener(this);
+    this.providerRole.buttonGraph.setActionCommand("buttonGraph");
+    this.providerRole.buttonGraph.addActionListener(this);
     
     }
 
@@ -63,21 +65,27 @@ public class AdminRoleControlator implements ActionListener {
        switch(buttons.valueOf(evento.getActionCommand())){
            case buttonCate:
                new AdminCategoryControlator(category).openUserRegister();
+               providerRole.setVisible(false);
                break;
            case buttonCondi:
                new AdminOrderStatusControlator(order).openUserRegister();
+               providerRole.setVisible(false);
                break;
            case buttonProvi:
                new AdminProviderControlator(pa).openUserRegister();
+               providerRole.setVisible(false);
                break;
            case buttonUser:
                new AdminUserControlator(user).openUserRegister();
+               providerRole.setVisible(false);
                break;
            case buttonBack:
                new ChooseRoleControlator(role).openChooseRole();
+               providerRole.setVisible(false);
                break;
-           case buttonInsert:
-               new UserRegisterControlador(a).openUserRegister("administracion");
+           case buttonGraph:
+               new AdminDataAnalysisControlator(analysis).openUserRegister();
+               providerRole.setVisible(false);
                break;
            
        
@@ -85,6 +93,6 @@ public class AdminRoleControlator implements ActionListener {
     }
     
     public enum buttons{
-    buttonCate,buttonCondi,buttonProvi,buttonUser,buttonBack,buttonInsert
+    buttonCate,buttonCondi,buttonProvi,buttonUser,buttonBack,buttonGraph
     }   
 }

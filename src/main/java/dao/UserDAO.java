@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -195,4 +196,22 @@ public class UserDAO {
         }
 
     }
+    
+    public void getComboUserProviders(JComboBox combo){
+        String poi = "SELECT nombreUsuario FROM usuarios WHERE rol='Proveedor'";
+        try {
+
+            ps = cin.prepareCall(poi);
+            ResultSet result = ps.executeQuery();
+
+            while (result.next()) {
+                combo.addItem(result.getString("nombreUsuario"));
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
+    
+    
 }
