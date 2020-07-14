@@ -10,6 +10,11 @@ package modelo;
  * @author jabre
  */
 public class Orders {
+    
+     /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private String product;
     private int quantity;
@@ -17,9 +22,24 @@ public class Orders {
     private String username;
     private String provider;
     private String fecha;
+    
+    /**
+     *
+     * Constructor de clase vacío
+     */
 
     public Orders() {
     }
+    
+    /**
+     *
+     * Constructor de clase
+     * @param product Parametro que da como entrada el codigo del producto
+     * @param username Parametro que da como entrada el nombre del usuario
+     * @param provider Parametro que da como entrada el codigo del proveedor
+     * @param quantity Parametro que da como entrada la cantidad
+     * @param condition Parametro que da como entrada la condicion
+     */
 
     public Orders(String product, int quantity, String condition, String username, String provider) {
         this.product = product;

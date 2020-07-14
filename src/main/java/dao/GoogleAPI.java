@@ -21,10 +21,26 @@ import java.util.Arrays;
 
 /**
  *
- * @author
+ * @author jabre
  */
 public class GoogleAPI {
     
+    /**
+     *
+     * Constructor vacío de la clase
+     */
+    
+    public GoogleAPI(){}
+    
+    /**
+     * Método para obtener el id de un lugar
+     * @param place Parametro utilizada como de entrada, para el nombre del lugar
+     * @throws ApiException Excepción utilizada para capturar cualquier error referente a la conexión con el API
+     * @throws InterruptedException Excepción utilizada para capturar errores cuando un proceso se está completando y se interrumpe
+     * @throws IOException Excepción utilizada para capturar errores referentes a la entrada, salida de información
+     * @return 
+     * 
+     */
     
     public static String PlaceID(String place) throws ApiException, InterruptedException, IOException {
         String PlaceID;
@@ -36,7 +52,17 @@ public class GoogleAPI {
         PlaceID = results[0].placeId;
         return PlaceID;
     }
-
+    
+    /**
+     * Método para obtener el la dirección exacta del lugar
+     * @param place Parametro utilizada como de entrada, para el nombre del lugar
+     * @throws ApiException Excepción utilizada para capturar cualquier error referente a la conexión con el API
+     * @throws InterruptedException Excepción utilizada para capturar errores cuando un proceso se está completando y se interrumpe
+     * @throws IOException Excepción utilizada para capturar errores referentes a la entrada, salida de información
+     * @return 
+     * 
+     */
+    
     public static String ExactAddress(String place) throws ApiException, InterruptedException, IOException {
         String Address;
         GeoApiContext context = new GeoApiContext.Builder()
@@ -47,6 +73,16 @@ public class GoogleAPI {
         Address = results[0].formattedAddress;
         return Address;
     }
+    
+    /**
+     * Método para obtener el tipo de lugar
+     * @param place Parametro utilizada como de entrada, para el nombre del lugar
+     * @throws ApiException Excepción utilizada para capturar cualquier error referente a la conexión con el API
+     * @throws InterruptedException Excepción utilizada para capturar errores cuando un proceso se está completando y se interrumpe
+     * @throws IOException Excepción utilizada para capturar errores referentes a la entrada, salida de información
+     * @return 
+     * 
+     */
  
 
     public static String PlaceType(String place) throws ApiException, InterruptedException, IOException {
@@ -59,6 +95,16 @@ public class GoogleAPI {
         Type = Arrays.toString(results[0].types);
         return Type;
     }
+    
+    /**
+     * Método para obtener la latitud de un lugar
+     * @param place Parametro utilizada como de entrada, para el nombre del lugar
+     * @throws ApiException Excepción utilizada para capturar cualquier error referente a la conexión con el API
+     * @throws InterruptedException Excepción utilizada para capturar errores cuando un proceso se está completando y se interrumpe
+     * @throws IOException Excepción utilizada para capturar errores referentes a la entrada, salida de información
+     * @return 
+     * 
+     */
 
     public static double Latitude(String place) throws ApiException, InterruptedException, IOException {
         double Latitude;
@@ -70,6 +116,16 @@ public class GoogleAPI {
         Latitude = results[0].geometry.location.lat;
         return Latitude;
     }
+    
+    /**
+     * Método para obtener la longitud de un lugar
+     * @param place Parametro utilizada como de entrada, para el nombre del lugar
+     * @throws ApiException Excepción utilizada para capturar cualquier error referente a la conexión con el API
+     * @throws InterruptedException Excepción utilizada para capturar errores cuando un proceso se está completando y se interrumpe
+     * @throws IOException Excepción utilizada para capturar errores referentes a la entrada, salida de información
+     * @return 
+     * 
+     */
 
     public static double Longitude(String place) throws ApiException, InterruptedException, IOException {
         double Longitude;
@@ -82,47 +138,16 @@ public class GoogleAPI {
         return Longitude;
     }
 
-    public static String PhoneNumber(String place) throws ApiException, InterruptedException, IOException {
-        String Phone;
-        GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
-                .build();
-        com.google.maps.model.PlaceDetails results = PlacesApi.placeDetails(context, "place").await();
-        Phone = results.internationalPhoneNumber;
-        return Phone;
-    }
-
-    public static float Rating(String place) throws ApiException, InterruptedException, IOException {
-        float Rating;
-        GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
-                .build();
-        com.google.maps.model.PlaceDetails results = PlacesApi.placeDetails(context, "place").await();
-        Rating = results.rating;
-        return Rating;
-    }
-
-    public static String WebSite(String place) throws ApiException, InterruptedException, IOException {
-        URL Web;
-        GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
-                .build();
-        com.google.maps.model.PlaceDetails results = PlacesApi.placeDetails(context, "place").await();
-        Web = results.website;
-        String web = Web.toString();
-        return web;
-    }
-
-    public static String URL(String place) throws ApiException, InterruptedException, IOException {
-        URL url;
-        GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDMRs2FQsJt2jmepKH9f2LSYA5rzGLuyP8")
-                .build();
-        com.google.maps.model.PlaceDetails results = PlacesApi.placeDetails(context, "place").await();
-        url = results.url;
-        String Url = url.toString();
-        return Url;
-    }
+    /**
+     * Método para obtener la distancia entre un lugar y otro
+     * @param AddressOne Parametro utilizada como de entrada, para el nombre del lugar de origen
+     * @param AddressTwo Parametro utilizada como de entrada, para el nombre del lugar de destino
+     * @throws ApiException Excepción utilizada para capturar cualquier error referente a la conexión con el API
+     * @throws InterruptedException Excepción utilizada para capturar errores cuando un proceso se está completando y se interrumpe
+     * @throws IOException Excepción utilizada para capturar errores referentes a la entrada, salida de información
+     * @return 
+     * 
+     */
 
     public static long Distance(String AddressOne, String AddressTwo) throws ApiException, InterruptedException, IOException {
         GeoApiContext context = new GeoApiContext.Builder()
@@ -138,6 +163,17 @@ public class GoogleAPI {
         long distApart = result.rows[0].elements[0].distance.inMeters;
         return distApart;
     }
+    
+    /**
+     * Método para obtener el tiempo de duración entre un lugar y otro
+     * @param AddressOne Parametro utilizada como de entrada, para el nombre del lugar de origen
+     * @param AddressTwo Parametro utilizada como de entrada, para el nombre del lugar de destino
+     * @throws ApiException Excepción utilizada para capturar cualquier error referente a la conexión con el API
+     * @throws InterruptedException Excepción utilizada para capturar errores cuando un proceso se está completando y se interrumpe
+     * @throws IOException Excepción utilizada para capturar errores referentes a la entrada, salida de información
+     * @return 
+     * 
+     */
 
     public static long Time(String AddressOne, String AddressTwo) throws ApiException, InterruptedException, IOException {
         GeoApiContext context = new GeoApiContext.Builder()

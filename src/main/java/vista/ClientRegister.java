@@ -44,8 +44,6 @@ public class ClientRegister extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         txtInfo = new javax.swing.JTextField();
         nextButton = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        txtUbication = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,8 +74,6 @@ public class ClientRegister extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setText("ubicacion:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,9 +92,8 @@ public class ClientRegister extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12))
-                        .addGap(62, 62, 62)
+                            .addComponent(jLabel11))
+                        .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtId)
                             .addComponent(txtemail)
@@ -106,13 +101,12 @@ public class ClientRegister extends javax.swing.JFrame {
                             .addComponent(txtProvince)
                             .addComponent(txtcanton)
                             .addComponent(txtDistrict)
-                            .addComponent(txtInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                            .addComponent(txtUbication)))
+                            .addComponent(txtInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(193, 193, 193)
                         .addComponent(jLabel7))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
+                        .addGap(178, 178, 178)
                         .addComponent(nextButton)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -151,23 +145,16 @@ public class ClientRegister extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtUbication, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(nextButton)
-                .addGap(41, 41, 41))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        ClientLogIn role = new ClientLogIn();
-        role.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+        
     }//GEN-LAST:event_nextButtonActionPerformed
 
     /**
@@ -210,7 +197,6 @@ public class ClientRegister extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -222,7 +208,6 @@ public class ClientRegister extends javax.swing.JFrame {
     public javax.swing.JTextField txtId;
     public javax.swing.JTextField txtInfo;
     public javax.swing.JTextField txtProvince;
-    public javax.swing.JTextField txtUbication;
     public javax.swing.JTextField txtcanton;
     public javax.swing.JTextField txtemail;
     public javax.swing.JTextField txtphone;

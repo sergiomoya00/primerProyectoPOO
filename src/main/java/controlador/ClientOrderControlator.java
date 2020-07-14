@@ -50,40 +50,53 @@ import vista.ClientSearch;
  * @author jabre
  */
 public class ClientOrderControlator implements ActionListener {
-
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
+    
     private ClientOrder providerRole;
     private ClientRole roleP = new ClientRole();
     private ChooseRole role = new ChooseRole();
     private ClientSearch client = new ClientSearch();
     private ProductsDAO p = new ProductsDAO();
-
     private OrdersDAO order = new OrdersDAO();
     private UserDAO user = new UserDAO();
     private PDF P = new PDF();
-
     private ProviderDAO provid = new ProviderDAO();
     private CategoryDAO category = new CategoryDAO();
     private String nombre;
-
     private EmailNotification email = new EmailNotification();
-
     private int selection;
     private String comboSelectionP;
     private String comboSelectionC;
     private String comboSelectionE;
     private String comboSelectionD;
-    private String comboSelectionY;
-    private String comboSelectionM;
-    private int min;
-    private int max;
+    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
 
     public ClientOrderControlator() {
 
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo ClientOrder
+     */
 
     public ClientOrderControlator(ClientOrder user) {
         this.providerRole = user;
     }
+    
+    /**
+     * Método que inicializa la ventana ClientOrder
+     * @param nombre Atributo que guarda el nombre de usuario utilizado en una ventana anterior
+     */
 
     public void openUserRegister(String nombre) {
         providerRole.setTitle("Registo Usuario");
@@ -103,6 +116,13 @@ public class ClientOrderControlator implements ActionListener {
         this.providerRole.buttonSearch.addActionListener(this);
 
     }
+    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
 
     @Override
     public void actionPerformed(ActionEvent evento) {
@@ -206,6 +226,11 @@ public class ClientOrderControlator implements ActionListener {
 
         }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
 
     public enum buttons {
 

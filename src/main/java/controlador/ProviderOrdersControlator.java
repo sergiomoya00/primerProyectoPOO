@@ -19,19 +19,39 @@ import java.time.LocalDateTime;
  * @author samoy
  */
 public class ProviderOrdersControlator implements ActionListener {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private ProviderOrders providerOrders;
     private ProviderRole p = new ProviderRole();
     private OrdersDAO orders = new OrdersDAO();
     private ProductsDAO products = new ProductsDAO();
     private int selection;
+    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
 
     public ProviderOrdersControlator() {
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo ProviderOrders
+     */
 
     public ProviderOrdersControlator(ProviderOrders user) {
         this.providerOrders = user;
     }
+    
+     /**
+     * Método que inicializa la ventana ProviderOrders
+     */
 
     public void openUserRegister() {
         providerOrders.setTitle("Registo Usuario");
@@ -48,7 +68,13 @@ public class ProviderOrdersControlator implements ActionListener {
         this.providerOrders.buttonBack.addActionListener(this);
 
     }
-
+    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
@@ -89,6 +115,11 @@ public class ProviderOrdersControlator implements ActionListener {
 
         }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
 
     public enum buttons {
         buttonSearch, buttonEntregado, buttonProcesado, buttonBack

@@ -43,29 +43,49 @@ import vista.ProviderProducts;
  * @author jabre
  */
 public class ProductsDAO {
+    
+     /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
-    ProductRegister providerRegister;
-    Conexion conexion = new Conexion();
-    Connection cin = conexion.getConnection();
-    PreparedStatement ps;
-    ProviderProducts admin = new ProviderProducts();
+    private ProductRegister providerRegister;
+    private Conexion conexion = new Conexion();
+    private Connection cin = conexion.getConnection();
+    private PreparedStatement ps;
+    private ProviderProducts admin = new ProviderProducts();
+    
+      /**
+     * Método para insertar un producto en la base de datos
+     * @param idProduct  Atributo que guarda el codigo del producto a insertar en la base de datos
+     * @param idProvider Atributo que guarda el codigo del proveedor del producto en la base de datos
+     * @param productName Atributo que guarda el nombre del producto en la base de datos
+     * @param description Atributo que guarda la descripcion del producto en la base de datos
+     * @param type Atributo que guarda el tipo de producto en la base de datos
+     * @param category Atributo que guarda la categoria del producto en la base de datos
+     * @param availableQuantity Atributo que guarda la cantidad disponible de un producto en la base de datos
+     * @param unitaryPrice Atributo que guarda el precio unitario de un producto en la base de datos
+     * @param deliveryPrice Atributo que guarda el precio de entrega de un producto en la base de datos
+     * @param pic Atributo que guarda la foto de un producto en la base de datos
+     * @param status Atributo que guarda el estado de un producto en la base de datos
+     */
 
-    public void insertProduct(String idProducto, String idProveedor, String nombreProducto, String descripcion, String tipo, String categoria, int cantidadDisponible, int precioUnitario, int precioEntrega, byte[] foto, String estado) {
+    public void insertProduct(String idProduct, String idProvider, String productName, String description, String type, String category, int availableQuantity, int unitaryPrice, int deliveryPrice, byte[] pic, String status) {
         String insertar = "insert into productos (idProducto,idProveedor,nombreProducto,descripcion,tipo,categoria,cantidadDisponible,precioUnitario,precioEntrega,foto,estado) values (?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             ps = cin.prepareCall(insertar);
-            ps.setString(1, idProducto);
-            ps.setString(2, idProveedor);
-            ps.setString(3, nombreProducto);
-            ps.setString(4, descripcion);
-            ps.setString(5, tipo);
-            ps.setString(6, categoria);
-            ps.setInt(7, cantidadDisponible);
-            ps.setInt(8, precioUnitario);
-            ps.setInt(9, precioEntrega);
-            ps.setBytes(10, foto);
-            ps.setString(11, estado);
+            ps.setString(1, idProduct);
+            ps.setString(2, idProvider);
+            ps.setString(3, productName);
+            ps.setString(4, description);
+            ps.setString(5, type);
+            ps.setString(6, category);
+            ps.setInt(7, availableQuantity);
+            ps.setInt(8, unitaryPrice);
+            ps.setInt(9, deliveryPrice);
+            ps.setBytes(10, pic);
+            ps.setString(11, status);
 
             ps.executeUpdate();
             JOptionPane.showMessageDialog(providerRegister, "Registrado con exito");
@@ -74,6 +94,11 @@ public class ProductsDAO {
             JOptionPane.showMessageDialog(providerRegister, "No Registrado ");
         }
     }
+    
+      /**
+     * Método para obtener todos los productos en la base de datos
+     * @param table  Atributo que guarda la tabla en la cual se mostrará los productos obtenidos de la base de datos
+     */
 
     public void getAllProducts(JTable table) {
 
@@ -134,6 +159,12 @@ public class ProductsDAO {
         }
 
     }
+    
+     /**
+     * Método para obtener todos los productos por tipo en la base de datos
+     * @param table  Atributo que guarda la tabla en la cual se mostrará los productos obtenidos de la base de datos
+     * @param type  Atributo que guarda el tipo de productos que se obtendrá de la base de datos
+     */
 
     public void getProductByType(JTable table, String type) {
         try {
@@ -174,6 +205,12 @@ public class ProductsDAO {
 
         }
     }
+    
+    /**
+     * Método para obtener todos los productos por categoria en la base de datos
+     * @param table  Atributo que guarda la tabla en la cual se mostrará los productos obtenidos de la base de datos
+     * @param category  Atributo que guarda la categoria de los productos que se obtendrá de la base de datos
+     */
 
     public void getProductByCategory(JTable table, String category) {
         try {
@@ -214,13 +251,19 @@ public class ProductsDAO {
 
         }
     }
+    
+    /**
+     * Método para obtener todos los productos por estado en la base de datos
+     * @param table  Atributo que guarda la tabla en la cual se mostrará los productos obtenidos de la base de datos
+     * @param status Atributo que guarda el estado de los productos que se obtendrá de la base de datos
+     */
 
-    public void getProductByCondition(JTable table, String condition) {
+    public void getProductByCondition(JTable table, String status) {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String login = "SELECT * FROM productos WHERE estado='" + condition + "'";
+            String login = "SELECT * FROM productos WHERE estado='" + status + "'";
             ps = cin.prepareStatement(login);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -254,6 +297,12 @@ public class ProductsDAO {
 
         }
     }
+    
+    /**
+     * Método para obtener todos los productos por ubicacion en la base de datos
+     * @param table  Atributo que guarda la tabla en la cual se mostrará los productos obtenidos de la base de datos
+     * @param place  Atributo que guarda el lugar donde se encuentran los productos que se obtendrá de la base de datos
+     */
 
     public void getProductByPlace(JTable table, String place) {
         try {
@@ -294,6 +343,13 @@ public class ProductsDAO {
 
         }
     }
+    
+    /**
+     * Método para obtener todos los productos por precio en la base de datos
+     * @param table  Atributo que guarda la tabla en la cual se mostrará los productos obtenidos de la base de datos
+     * @param min  Atributo que guarda el precio minimo de los productos que se obtendrá de la base de datos
+     * @param max  Atributo que guarda el precio maximo de los productos que se obtendrá de la base de datos
+     */
 
     public void getProductByPrice(JTable table, int min, int max) {
         try {
@@ -334,6 +390,17 @@ public class ProductsDAO {
 
         }
     }
+    
+    /**
+     * Método para obtener todos los productos por busqueda en la base de datos
+     * @param table  Atributo que guarda la tabla en la cual se mostrará los productos obtenidos de la base de datos
+     * @param min  Atributo que guarda el precio minimo de los productos que se obtendrá de la base de datos
+     * @param max  Atributo que guarda el precio maximo de los productos que se obtendrá de la base de datos
+     * @param type  Atributo que guarda el tipo de productos que se obtendrá de la base de datos
+     * @param category  Atributo que guarda la categoria de productos que se obtendrá de la base de datos
+     * @param condition  Atributo que guarda el estado de los productos que se obtendrá de la base de datos
+     * @param place  Atributo que guarda la ubicacion de los productos que se obtendrá de la base de datos
+     */
 
     public void searchProduct(JTable table, String type, String category, int min, int max, String condition, String place) {
         try {
@@ -374,6 +441,11 @@ public class ProductsDAO {
 
         }
     }
+    
+    /**
+     * Método para obtener la cantidad de productos en la base de datos
+     * @param codigo  Atributo que guarda el codigo del producto a obtener de la base de datos
+     */
 
     public int getProductQuatity(String codigo) {
         int result = 0;
@@ -393,9 +465,23 @@ public class ProductsDAO {
         }
         return result;
     }
+    
+     /**
+     * Método para actualizar un producto en la base de datos
+     * @param idProduct  Atributo que guarda el codigo del producto a insertar en la base de datos
+     * @param idProvider Atributo que guarda el codigo del proveedor del producto en la base de datos
+     * @param productName Atributo que guarda el nombre del producto en la base de datos
+     * @param description Atributo que guarda la descripcion del producto en la base de datos
+     * @param type Atributo que guarda el tipo de producto en la base de datos
+     * @param category Atributo que guarda la categoria del producto en la base de datos
+     * @param availableQuantity Atributo que guarda la cantidad disponible de un producto en la base de datos
+     * @param unitaryPrice Atributo que guarda el precio unitario de un producto en la base de datos
+     * @param deliveryPrice Atributo que guarda el precio de entrega de un producto en la base de datos
+     * @param status Atributo que guarda el estado de un producto en la base de datos
+     */
 
-    public void updateProduct(String idProducto, String idProveedor, String nombreProducto, String descripcion, String tipo, String categoria, int cantidadDisponible, int precioUnitario, int precioEntrega, String estado) {
-        String update = "UPDATE productos SET  idProveedor='" + idProveedor + "', nombreProducto='" + nombreProducto + "', descripcion='" + descripcion + "',tipo= '" + tipo + "',categoria='" + categoria + "',cantidadDisponible=" + cantidadDisponible + ",precioUnitario=" + precioUnitario + ",precioEntrega=" + precioEntrega + ",estado='" + estado + "' WHERE idProducto='" + idProducto + "'";
+    public void updateProduct(String idProduct, String idProvider, String productName, String description, String type, String category, int availableQuantity, int unitaryPrice, int deliveryPrice, String status) {
+        String update = "UPDATE productos SET  idProveedor='" + idProvider + "', nombreProducto='" + productName + "', descripcion='" + description + "',tipo= '" + type + "',categoria='" + category + "',cantidadDisponible=" + availableQuantity + ",precioUnitario=" + unitaryPrice + ",precioEntrega=" + deliveryPrice + ",estado='" + status + "' WHERE idProducto='" + idProduct + "'";
         try {
 
             ps = cin.prepareStatement(update);
@@ -406,9 +492,15 @@ public class ProductsDAO {
             JOptionPane.showMessageDialog(admin, e.toString());
         }
     }
+    
+     /**
+     * Método para actualizar la cantidad de un producto en la base de datos
+     * @param idProduct  Atributo que guarda el codigo del producto a actualizar en la base de datos
+     * @param availableQuantity Atributo que guarda la cantidad disponible nueva del producto en la base de datos
+     */
 
-    public void updateProductQuantity(String idProducto, int cantidadDisponible) {
-        String update = "UPDATE productos SET cantidadDisponible=" + cantidadDisponible + "WHERE idProducto='" + idProducto + "'";
+    public void updateProductQuantity(String idProduct, int availableQuantity) {
+        String update = "UPDATE productos SET cantidadDisponible=" + availableQuantity + "WHERE idProducto='" + idProduct + "'";
         try {
 
             ps = cin.prepareStatement(update);
@@ -419,9 +511,14 @@ public class ProductsDAO {
             JOptionPane.showMessageDialog(admin, e.toString());
         }
     }
+    
+    /**
+     * Método para eliminar un producto en la base de datos
+     * @param idProduct  Atributo que guarda el codigo del producto a eliminar en la base de datos
+     */
 
-    public void deleteProduct(String codigo) {
-        String update = "Delete from productos where idProducto='" + codigo + "'";
+    public void deleteProduct(String idProduct) {
+        String update = "Delete from productos where idProducto='" + idProduct + "'";
         try {
 
             ps = cin.prepareStatement(update);
@@ -432,16 +529,23 @@ public class ProductsDAO {
             JOptionPane.showMessageDialog(admin, e.toString());
         }
     }
-    public int calcTotalPrice(String idProducto,int cantidad){
+    
+    /**
+     * Método para calcular el precio total de un producto en la base de datos
+     * @param idProduct  Atributo que guarda el codigo del producto a eliminar en la base de datos
+     * @param quantity  Atributo que guarda el codigo del producto a eliminar en la base de datos
+     * @return 
+     */
+    public int calcTotalPrice(String idProduct,int quantity){
     int precio=0;
-    String poi = "SELECT precioUnitario FROM productos where idProducto='"+idProducto+"'";
+    String poi = "SELECT precioUnitario FROM productos where idProducto='"+idProduct+"'";
         try {
 
             ps = cin.prepareCall(poi);
             ResultSet result = ps.executeQuery();
 
             while (result.next()) {
-               precio=Integer.parseInt(result.getString("precioUnitario"))*cantidad;
+               precio=Integer.parseInt(result.getString("precioUnitario"))*quantity;
             }
 
         } catch (Exception e) {
@@ -449,10 +553,16 @@ public class ProductsDAO {
         }
         return precio;
     }
+    
+    /**
+     * Método para calcular el precio total de un producto en la base de datos
+     * @param idProduct  Atributo que guarda el codigo del producto a eliminar en la base de datos
+     * @param quantity  Atributo que guarda el codigo del producto a eliminar en la base de datos
+     */
 
-    public void productMin(String codigo, int cantidad) {
-        int result = getProductQuatity(codigo) - cantidad;
-        String update = "UPDATE productos SET cantidadDisponible=" + result + " WHERE idProducto='" + codigo + "'";
+    public void productMin(String idProduct, int quantity) {
+        int result = getProductQuatity(idProduct) - quantity;
+        String update = "UPDATE productos SET cantidadDisponible=" + result + " WHERE idProducto='" + idProduct + "'";
         try {
 
             ps = cin.prepareStatement(update);
@@ -463,6 +573,11 @@ public class ProductsDAO {
             JOptionPane.showMessageDialog(admin, e.toString());
         }
     }
+    
+    /**
+     * Método para obtener productos por lugar en la base de datos
+     * @param combo  Atributo que guarda el combobox donde se mostrará los productos obtenidos de la base de datos
+     */
 
     public void getComboProductPlace(JComboBox combo) {
         String poi = "SELECT estado FROM productos";
@@ -479,6 +594,11 @@ public class ProductsDAO {
 
         }
     }
+    
+    /**
+     * Método para obtener productos por lugar en la base de datos
+     * @param panel  Atributo que guarda el panel donde se mostrará el grafico de los productos obtenidos de la base de datos
+     */
 
     public void showGraph(JPanel panel) {
         try {

@@ -37,30 +37,50 @@ import vista.StatusRegister;
  * @author samoy
  */
 public class ClientDAO {
+    
+     /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
-    Conexion conexion = new Conexion();
-    Connection cin = conexion.getConnection();
+    private Conexion conexion = new Conexion();
+    private Connection cin = conexion.getConnection();
     private ClientSearch client = new ClientSearch();
-    PreparedStatement ps;
-    ProviderConsultClients consult;
+    private PreparedStatement ps;
+    
+        /**
+     * Método para insertar una categoria en la base de datos
+     * @param userName  Atributo que guarda el nombre de usuario del cliente a insertar en la base de datos
+     * @param id Atributo que guarda la cédula del cliente en la base de datos
+     * @param province Atributo que guarda la provincia del cliente en la base de datos
+     * @param canton Atributo que guarda el cantón del cliente en la base de datos
+     * @param distrito Atributo que guarda el distrito del cliente en la base de datos
+     * @param senas Atributo que guarda la dirección en señas del cliente en la base de datos
+     * @param phone Atributo que guarda la cédula del cliente en la base de datos
+     * @param email Atributo que guarda el correo electrónico del cliente en la base de datos
+     * @param ubication Atributo que guarda la cédula del cliente en la base de datos
+     * @param website Atributo que guarda el sitio web del cliente en la base de datos
+     * @param schedule Atributo que guarda el horario del cliente en la base de datos
+     * @param profile Atributo que guarda el perfil del cliente en la base de datos
+     */
 
-    public void insertClient(String nombreUsuario, int cedula, String provincia, String canton, String distrito, String señas, int telefono, String correoElectronico, String ubicacion, String sitio, String horario, String perfil) {
+    public void insertClient(String userName, int id, String province, String canton, String distrito, String senas, int phone, String email, String ubication, String website, String schedule, String profile) {
         String insertar = "insert into informacionCliente (nombreUsuario,cedula,provincia,canton,distrito,señas,telefono,correoElectronico,ubicacion,sitio,horario,perfil) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
 
         try {
             ps = cin.prepareCall(insertar);
-            ps.setString(1, nombreUsuario);
-            ps.setInt(2, cedula);
-            ps.setString(3, provincia);
+            ps.setString(1, userName);
+            ps.setInt(2, id);
+            ps.setString(3, province);
             ps.setString(4, canton);
             ps.setString(5, distrito);
-            ps.setString(6, señas);
-            ps.setInt(7, telefono);
-            ps.setString(8, correoElectronico);
-            ps.setString(9, ubicacion);
-            ps.setString(10, sitio);
-            ps.setString(11, horario);
-            ps.setString(12, perfil);
+            ps.setString(6, senas);
+            ps.setInt(7, phone);
+            ps.setString(8, email);
+            ps.setString(9, ubication);
+            ps.setString(10, website);
+            ps.setString(11, schedule);
+            ps.setString(12, profile);
 
             ps.executeUpdate();
             JOptionPane.showMessageDialog(client, "Registrado con exito");
@@ -69,6 +89,14 @@ public class ClientDAO {
             JOptionPane.showMessageDialog(client, "No Registrado ");
         }
     }
+    
+        /**
+     * Método para consultar un cliente en la base de datos
+     * @param table  Atributo que guarda la tabla en la cual se insertarán los datos
+     * @param idProvider Atributo que guarda el codigo del proveedor al cual se le consultarán los clientes en la base de datos
+     */
+    
+    
 
     public void consultClient(JTable table, String idProvider) {
         try {
@@ -103,6 +131,12 @@ public class ClientDAO {
         }
     }
     
+      /**
+     * Método para mostrar un gráfico en la ventana
+     * @param panel  Atributo que guarda el panel en el cual se mostrará el gráfico
+     
+     */
+    
     public void showGraph(JPanel panel) {
         try {
             ResultSet rs = null;
@@ -132,6 +166,12 @@ public class ClientDAO {
 
         }
     }
+    
+      /**
+     * Método para insertar una categoria en la base de datos
+     * @param id  Atributo que funciona como entrada para buscar la ubicación del cliente, en la base de datos
+      @return
+     */
     
        public String getClientCordinates(String id){
         String cordinates="";

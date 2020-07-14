@@ -10,11 +10,25 @@ package modelo;
  * @author samoy
  */
 public class Address {
+    
+     /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private String province;
     private String canton;
     private String district;
     private String details;
+    
+    /**
+     *
+     * Constructor de clase
+     * @param province Parametro que da como entrada a provincia
+     * @param canton Parametro que da como entrada el canton
+     * @param district Parametro que da como entrada el distrito
+     * @param details Parametro que da como entrada los detalles
+     */
 
     public Address(String province, String canton, String district, String details) {
         this.province = province;
@@ -22,6 +36,11 @@ public class Address {
         this.district = district;
         this.details = details;
     }
+    
+    /**
+     *
+     * Constructor de clase vacío
+     */
 
     public Address() {
     }

@@ -19,20 +19,42 @@ import vista.ClientLogIn;
  * @author jabre
  */
 public class AdministratorLogInControlator implements ActionListener {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private AdministratorLogIn userRegister;
     private String opcion;
     private UserDAO user = new UserDAO();
     private ChooseRole role = new ChooseRole();
     private AdminRole p = new AdminRole();
+    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
 
     public AdministratorLogInControlator() {
 
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo AdminLogIn
+     */
 
     public AdministratorLogInControlator(AdministratorLogIn user) {
         this.userRegister = user;
     }
+    
+    /**
+     *
+     * Método que inicializa la ventana AdministratorLogIn
+     * @param opcion
+     */
 
     public void openAdministratorLogIn(String opcion) {
         userRegister.setTitle("Ingreso Administrador");
@@ -46,7 +68,13 @@ public class AdministratorLogInControlator implements ActionListener {
         this.userRegister.buttonBack.addActionListener(this);
 
     }
-
+    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
@@ -76,6 +104,11 @@ public class AdministratorLogInControlator implements ActionListener {
 
         }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
 
     public enum buttons {
         menuButton, buttonBack

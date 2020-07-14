@@ -10,6 +10,11 @@ package modelo;
  * @author jabre
  */
 public class Providers {
+    
+     /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private String id;
     private char user;
@@ -22,18 +27,52 @@ public class Providers {
     private String ubication;
     private String profile;
     private int qualification;
+    
+    /**
+     *
+     * Constructor de clase vacío
+     */
 
     public Providers() {
     }
+    
+     /**
+     *
+     * Constructor de clase
+     * @param ubication Parametro que da como entrada la ubicación del proveedor
+     */
 
     public Providers(String ubication) {
         this.ubication = ubication;
     }
+    
+     /**
+     *
+     * Constructor de clase
+     * @param id Parametro que da como entrada el codigo del proveedor
+     * @param name Parametro que da como entrada el nombre del proveedor
+     */
 
     public Providers(String id, String name) {
         this.id = id;
         this.name = name;
     }
+    
+     /**
+     *
+     * Constructor de clase
+     * @param id Parametro que da como entrada a provincia
+     * @param user Parametro que da como entrada el canton
+     * @param name Parametro que da como entrada el distrito
+     * @param company Parametro que da como entrada los detalles
+     * @param address Parametro que da como entrada la dirección
+     * @param phoneNumber Parametro que da como entrada el numero telefonico
+     * @param email Parametro que da como entrada el correo electronico
+     * @param schedule Parametro que da como entrada el horario
+     * @param ubication Parametro que da como entrada la ubicacion
+     * @param profile Parametro que da como entrada el perfil
+     * @param qualification parametro que da como entrada la calificacion
+     */
 
     public Providers(String id, char user, String name, String company, Address address, int phoneNumber, String email, String schedule, String ubication, String profile, int qualification) {
         this.id = id;
@@ -48,6 +87,12 @@ public class Providers {
         this.profile = profile;
         this.qualification = qualification;
     }
+    
+    /**
+     *
+     * Constructor de clase
+     * @param user Parametro que da como entrada el canton
+     */
 
     public Providers(char user) {
         this.user = user;

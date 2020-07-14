@@ -23,6 +23,10 @@ import vista.ProviderRole;
  */
 public class AdminDataAnalysisControlator implements ActionListener {
 
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
     private AdminDataAnalysis dataAnalysis;
     private AdminRole role = new AdminRole();
     private ProviderRole p = new ProviderRole();
@@ -30,15 +34,27 @@ public class AdminDataAnalysisControlator implements ActionListener {
     private ProviderDAO provider = new ProviderDAO();
     private ProductsDAO product = new ProductsDAO();
     private ClientDAO client = new ClientDAO();
-    private int selection;
-    private MouseEvent mouse;
 
+    /**
+     *
+     * Constructor vacío de la clase
+     */
     public AdminDataAnalysisControlator() {
     }
+
+    /**
+     * Constructor de la clase
+     * @param user atributo que hace referencia a la ventana de tipo AdminDataAnalysis
+     */
 
     public AdminDataAnalysisControlator(AdminDataAnalysis user) {
         this.dataAnalysis = user;
     }
+    
+    /**
+     *
+     * Método que inicializa la ventana AdminDataAnalysis
+     */
 
     public void openUserRegister() {
         dataAnalysis.setTitle("Registo Usuario");
@@ -54,6 +70,11 @@ public class AdminDataAnalysisControlator implements ActionListener {
         this.dataAnalysis.buttonClient.setActionCommand("buttonClient");
         this.dataAnalysis.buttonClient.addActionListener(this);
     }
+    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     * @param evento Atributo que hace referencia a la acción de un botón en caso de ser pulsado
+     */
 
     @Override
     public void actionPerformed(ActionEvent evento) {
@@ -73,6 +94,11 @@ public class AdminDataAnalysisControlator implements ActionListener {
                 break;
         }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
 
     public enum buttons {
         buttonBack, buttonProduct, buttonProvider, buttonClient

@@ -14,17 +14,32 @@ import javax.activation.*;
 import javax.swing.JOptionPane;
 
 public class EmailNotification {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private static final EmailNotification instance = new EmailNotification();
-
-    public static EmailNotification getInstance() {
-        return instance;
-    }
-
     private String host = "smtp.gmail.com";
     private final String user = "proyectoprogramado2dnjab@gmail.com";
     private final String password = "dropbox123";
     private  String to = "";
+    
+    /**
+     * Método utilizado para llamar a los metodos de la clase desde otras clases
+     * @return 
+     */
+
+    public static EmailNotification getInstance() {
+        return instance;
+    }
+    
+    /**
+     * Método utilizado realizar la conexión con el correo electrónico
+     * @return 
+     */
+
 
     private Properties getProperties() {
 
@@ -40,6 +55,11 @@ public class EmailNotification {
 
         return props;
     }
+    
+    /**
+     * Método utilizado realizar el log in con la cuenta del correo electrónico
+     * @return 
+     */
 
     private Session getSession() {
         Properties props = getProperties();
@@ -51,6 +71,12 @@ public class EmailNotification {
         });
         return session;
     }
+    
+    /**
+     * Método utilizado para enviar un correo electrónico
+     * @param to Atributo utilizado para guardar el correo electrónico del receptor
+     * @param nombre Atributo utilizado para guardar el correo electrónico del emisor
+     */
 
     public void sendEmail(String to, String nombre)  {
         this.to=to;

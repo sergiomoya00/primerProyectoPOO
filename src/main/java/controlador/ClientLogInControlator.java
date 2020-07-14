@@ -21,20 +21,41 @@ import vista.UserRegister;
  * @author jabre
  */
 public class ClientLogInControlator implements ActionListener {
-
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
+    
     private ClientLogIn userRegister;
     private UserDAO user = new UserDAO();
     private ChooseRole role = new ChooseRole();
     private UserRegister userR = new UserRegister();
     private ClientRole p = new ClientRole();
+    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
 
     public ClientLogInControlator() {
 
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo ClientLogIn
+     */
 
     public ClientLogInControlator(ClientLogIn user) {
         this.userRegister = user;
     }
+    
+    /**
+     *
+     * Método que inicializa la ventana ClientLogIn
+     */
 
     public void openUserRegister() {
         userRegister.setTitle("Ingreso Cliente");
@@ -49,7 +70,14 @@ public class ClientLogInControlator implements ActionListener {
         this.userRegister.backButton.addActionListener(this);
 
     }
-
+    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
+    
     @Override
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
@@ -75,6 +103,11 @@ public class ClientLogInControlator implements ActionListener {
 
         }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
 
     public enum buttons {
         menuButton,

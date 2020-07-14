@@ -23,6 +23,10 @@ import vista.ProviderRole;
  */
 public class ProviderRoleControlator implements ActionListener {
 
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
     private ProviderRole providerRole;
     private ChooseRole role = new ChooseRole();
     private ProviderRole p = new ProviderRole();
@@ -30,13 +34,26 @@ public class ProviderRoleControlator implements ActionListener {
     private ProviderConsultClients consult = new ProviderConsultClients();
     private ProviderOrders order = new ProviderOrders();
 
+    /**
+     *
+     * Constructor vacío de la clase
+     */
     public ProviderRoleControlator() {
     }
 
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo
+     * ProviderRole
+     */
     public ProviderRoleControlator(ProviderRole user) {
         this.providerRole = user;
     }
 
+    /**
+     * Método que inicializa la ventana ProviderRole
+     */
     public void openUserRegister() {
         providerRole.setTitle("Registo Usuario");
         providerRole.setLocationRelativeTo(null);
@@ -53,6 +70,12 @@ public class ProviderRoleControlator implements ActionListener {
 
     }
 
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
@@ -77,6 +100,10 @@ public class ProviderRoleControlator implements ActionListener {
         }
     }
 
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
     public enum buttons {
         buttonProducts, buttonOrders, buttonConsult, buttonBack
     }

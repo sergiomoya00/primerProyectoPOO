@@ -22,21 +22,42 @@ import vista.UserRegister;
  * @author jabre
  */
 public class AdminUserControlator implements ActionListener {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
     private AdminUser providerRole;
     private AdminRole role = new AdminRole();
     private ProviderRole p=new ProviderRole();
     private UserRegister a=new UserRegister();
     private UserDAO user=new UserDAO();
     private int selection;
-    private MouseEvent mouse;
     
+    /**
+     *
+     * Constructor vacío de la clase
+     */
+
 
     public AdminUserControlator() {
         
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo AdminRole
+     */
+    
     public AdminUserControlator(AdminUser user) {
         this.providerRole=user;
     }
+    
+    /**
+     *
+     * Método que inicializa la ventana AdminUser
+     */
     
     
     public void openUserRegister(){
@@ -57,9 +78,13 @@ public class AdminUserControlator implements ActionListener {
     
     }
     
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
   
- 
-    
 
     @Override
     public void actionPerformed(ActionEvent evento) {
@@ -85,7 +110,10 @@ public class AdminUserControlator implements ActionListener {
        }
     }
     
-    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
     
     public enum buttons{
     btnUpdate,buttonInsert,buttonBack,buttonDelete

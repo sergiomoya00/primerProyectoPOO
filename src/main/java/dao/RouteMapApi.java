@@ -8,11 +8,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RouteMapApi {
-
+   
+    /**
+     *
+     * Contructor vacio de la clase
+     */ 
     public RouteMapApi() {
     }
+    
+    /**
+     * Método para obtener la latitud de un lugar
+     * @param name Parametro utilizada como de entrada, para el nombre del lugar
+     * @param origin Parametro utilizada como de entrada, para el nombre del lugar
+     * @param destination Parametro utilizada como de entrada, para el nombre del lugar
+     * @throws FileNotFoundException Excepción utilizada para capturar cualquier error referente a la apertura del archivo
+     */
 
-    public void createMap(String nombre, String origin, String destination) throws FileNotFoundException {
+    public void createMap(String name, String origin, String destination) throws FileNotFoundException {
 
         String a = "<!DOCTYPE html>\n"
                 + "<html>\n"
@@ -100,14 +112,21 @@ public class RouteMapApi {
                 + "</html>\n"
                 + "    ";
 
-        PrintWriter pw = new PrintWriter(nombre + ".html");
+        PrintWriter pw = new PrintWriter(name + ".html");
         pw.println(a);
         pw.close();
 
     }
+    
+    /**
+     * Método para obtener la latitud de un lugar
+     * @param name Parametro utilizada como de entrada, para el nombre del lugar
+     * @throws URISyntaxException Excepción utilizada para capturar cualquier error referente a la conexión con el API
+     * @throws IOException
+     */
 
-    public void openMap(String nombre) throws URISyntaxException, IOException {
-        String url = "C:\\Users\\jabre\\OneDrive\\Documentos\\NetBeansProjects\\PRIMERPROYECTOPOO\\"+nombre+".html";
+    public void openMap(String name) throws URISyntaxException, IOException {
+        String url = "C:\\Users\\jabre\\OneDrive\\Documentos\\NetBeansProjects\\PRIMERPROYECTOPOO\\"+name+".html";
         ProcessBuilder p = new ProcessBuilder();
         p.command("cmd.exe", "/c", url);
         p.start();

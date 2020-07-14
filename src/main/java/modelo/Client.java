@@ -10,6 +10,11 @@ package modelo;
  * @author samoy
  */
 public class Client {
+    
+     /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private String name;
     private String password;
@@ -18,6 +23,18 @@ public class Client {
     private int telephone;
     private Address address;
     private String location;
+    
+    /**
+     *
+     * Constructor de clase
+     * @param name Parametro que da como entrada el nombre del proveedor
+     * @param password Parametro que da como entrada la contraseña
+     * @param identification Parametro que da como entrada el identificador
+     * @param email Parametro que da como entrada el correo
+     * @param telephone Parametro que da como entrada el numero de telefono
+     * @param address Parametro que da como entrada la direccion
+     * @param location Parametro que da como entrada la ubicacion
+     */
 
     public Client(String name, String password, int identification, String email, int telephone, Address address, String location) {
         this.name = name;
@@ -28,6 +45,11 @@ public class Client {
         this.address = address;
         this.location = location;
     }
+    
+    /**
+     *
+     * Constructor de clase vacío
+     */
 
     public Client() {
     }

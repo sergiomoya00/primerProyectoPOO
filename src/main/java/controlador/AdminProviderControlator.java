@@ -28,22 +28,40 @@ import vista.ProviderRole;
  */
 public class AdminProviderControlator implements ActionListener {
 
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
+
     private AdminProvider providerRole;
     private AdminRole role = new AdminRole();
     private ProviderRole p = new ProviderRole();
     private ProviderRegister a = new ProviderRegister();
     private ProviderDAO provider = new ProviderDAO();
     private int selection;
-    private MouseEvent mouse;
 
+    /**
+     *
+     * Constructor vacío de la clase
+     */
     public AdminProviderControlator() {
 
     }
 
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo
+     * AdminProvider
+     */
     public AdminProviderControlator(AdminProvider user) {
         this.providerRole = user;
     }
 
+    /**
+     *
+     * Método que inicializa la ventana AdminProvider
+     */
     public void openUserRegister() {
         providerRole.setTitle("Registo Usuario");
         providerRole.setLocationRelativeTo(null);
@@ -62,11 +80,18 @@ public class AdminProviderControlator implements ActionListener {
         this.providerRole.buttonBack.addActionListener(this);
     }
 
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
             case buttonDesactivar:
-                provider.updateProviderStatus();
+                selection = providerRole.tableProve.getSelectedRow();
+                provider.updateProviderStatus(String.valueOf(providerRole.tableProve.getValueAt(selection, 0)));
                 break;
             case buttonInsert:
                 new ProviderRegisterControlator(a).openProviderRegister("a");
@@ -89,6 +114,10 @@ public class AdminProviderControlator implements ActionListener {
         }
     }
 
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
     public enum buttons {
         btnUpdate, buttonDesactivar, buttonInsert, buttonBack, buttonDelete
     }

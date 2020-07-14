@@ -5,21 +5,16 @@
  */
 package controlador;
 
-//import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.DocumentException;
 import dao.EmailNotification;
-
 import dao.CategoryDAO;
 import dao.ClientDAO;
-
 import dao.OrdersDAO;
 import dao.ProductsDAO;
-
 import dao.UserDAO;
-
 import dao.ProviderDAO;
 import dao.RouteMapApi;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -33,19 +28,13 @@ import modelo.Providers;
 import vista.ChooseRole;
 import vista.ClientSearch;
 import vista.ProviderRole;
-
 import vista.ClientSearch;
-
 import vista.ClientSearch;
-
 import java.awt.event.ActionListener;
 import java.net.URISyntaxException;
-
 import vista.ProviderRole;
-
 import vista.ChooseRole;
 import vista.ClientRole;
-
 import vista.ClientSearch;
 
 /**
@@ -53,6 +42,11 @@ import vista.ClientSearch;
  * @author jabre
  */
 public class ClientSearchControlator implements ActionListener {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private ClientSearch providerRole;
     private ClientRole roleP = new ClientRole();
@@ -60,7 +54,6 @@ public class ClientSearchControlator implements ActionListener {
     private ClientSearch client = new ClientSearch();
     private ProductsDAO p = new ProductsDAO();
     private RouteMapApi map=new RouteMapApi();
-
     private OrdersDAO order = new OrdersDAO();
     private UserDAO user = new UserDAO();
     private PDF P = new PDF();
@@ -69,7 +62,6 @@ public class ClientSearchControlator implements ActionListener {
     private ClientDAO clien= new ClientDAO();
     private String nombre;
     private EmailNotification email = new EmailNotification();
-
     private int selection;
     private String comboSelectionT;
     private String comboSelectionC;
@@ -77,14 +69,30 @@ public class ClientSearchControlator implements ActionListener {
     private String comboSelectionL;
     private int min;
     private int max;
+    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
 
     public ClientSearchControlator() {
 
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo ClientSearch
+     */
 
     public ClientSearchControlator(ClientSearch user) {
         this.providerRole = user;
     }
+    
+    /**
+     * Método que inicializa la ventana ClientSearch
+     * @param nombre Atributo que guarda el nombre de usuario utilizado en una ventana anterior
+     */
 
     public void openUserRegister(String nombre) {
         providerRole.setTitle("Registo Usuario");
@@ -116,6 +124,13 @@ public class ClientSearchControlator implements ActionListener {
         this.providerRole.buttonShowMap.addActionListener(this);
 
     }
+    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
 
     @Override
     public void actionPerformed(ActionEvent evento) {
@@ -199,6 +214,8 @@ public class ClientSearchControlator implements ActionListener {
                 break;
             case buttonBack:
                 new ClientRoleControlator(roleP).openUserRegister(nombre);
+                providerRole.setVisible(false);
+                
                 break;
             case buttonShowMap:
             {
@@ -223,6 +240,11 @@ public class ClientSearchControlator implements ActionListener {
 
         }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
 
     public enum buttons {
 

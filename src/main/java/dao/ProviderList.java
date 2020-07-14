@@ -17,14 +17,24 @@ import modelo.Providers;
  * @author samoy
  */
 public class ProviderList {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
-    Providers provi;
-    Conexion conexion = new Conexion();
-    Connection cin = conexion.getConnection();
-    PreparedStatement ps;
-    ArrayList<Providers> arrayUser = new ArrayList<>();
-
+    private Providers provi;
+    private Conexion conexion = new Conexion();
+    private Connection cin = conexion.getConnection();
+    private PreparedStatement ps;
+    private ArrayList<Providers> arrayUser = new ArrayList<>();
     private static final ProviderList instance;
+    
+    /**
+     *
+     * Método estatico para llamar a los metodos de la clase desde otras clases
+     * @return 
+     */
 
     public static ProviderList getInstance() {
         return instance;
@@ -39,6 +49,13 @@ public class ProviderList {
             }
         });
     }
+    
+    /**
+     *
+     * Método para obtener la lista de usuarios de la base de datos
+     * @param userName Parametro que sirve como entrada para buscar a un proveedor en especifíco por nombre de usuario
+     * @return 
+     */
 
     public List<Providers> getProvidersUser(String userName) {
         String poi = "SELECT idProveedor FROM proveedores WHERE nombreUsuario = '" + userName + "'";
@@ -57,10 +74,23 @@ public class ProviderList {
         }
         return arrayUser;
     }
+    
+     /**
+     *
+     * Método para obtener la lista de usuarios
+     * @return 
+     */
 
     public List<Providers> getUserList() {
         return arrayUser;
     }
+    
+    /**
+     *
+     * Método para buscar usuarios en la lista de usuarios
+     * @param newProvider Parametro que sirve como entrada para buscar a un determinado usuario en la lista de usuarios
+     * @return 
+     */
     
     public List<Providers> searchUser(Providers newProvider) {
 

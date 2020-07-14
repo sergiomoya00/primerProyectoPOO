@@ -22,6 +22,12 @@ import vista.UserRegister;
  * @author jabre
  */
 public class AdminRoleControlator implements ActionListener {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
+    
     private AdminRole providerRole;
     private ChooseRole role = new ChooseRole();
     private ProviderRole p=new ProviderRole();
@@ -31,14 +37,29 @@ public class AdminRoleControlator implements ActionListener {
     private AdminCategory category=new AdminCategory();
     private AdminDataAnalysis analysis = new AdminDataAnalysis();
     private UserRegister a=new UserRegister();
+    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
 
     public AdminRoleControlator() {
         
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo AdminRole
+     */
     public AdminRoleControlator(AdminRole user) {
         this.providerRole=user;
     }
     
+    /**
+     *
+     * Método que inicializa la ventana AdminRole
+     */
     
     public void openUserRegister(){
     providerRole.setTitle("Administrador");
@@ -59,7 +80,12 @@ public class AdminRoleControlator implements ActionListener {
     this.providerRole.buttonGraph.addActionListener(this);
     
     }
-
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
        switch(buttons.valueOf(evento.getActionCommand())){
@@ -91,6 +117,11 @@ public class AdminRoleControlator implements ActionListener {
        
        }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
     
     public enum buttons{
     buttonCate,buttonCondi,buttonProvi,buttonUser,buttonBack,buttonGraph

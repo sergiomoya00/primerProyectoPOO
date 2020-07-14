@@ -32,19 +32,40 @@ import vista.StatusRegister;
  * @author jabre
  */
 public class ChooseRoleControlator implements ActionListener {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private ChooseRole chooseRole;
     private AdministratorLogIn role = new AdministratorLogIn();
     private ClientLogIn ro = new ClientLogIn();
     private ProviderLogIn rol = new ProviderLogIn();
+    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
 
     public ChooseRoleControlator() {
 
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param choose atributo que hace referencia a la ventana de tipo ChooseRole
+     */
 
     public ChooseRoleControlator(ChooseRole choose) {
         this.chooseRole = choose;
     }
+    
+    /**
+     *
+     * Método que inicializa la ventana ChooseRole
+     */
 
     public void openChooseRole() {
         chooseRole.setTitle("Registo Usuario");
@@ -59,6 +80,13 @@ public class ChooseRoleControlator implements ActionListener {
         this.chooseRole.clientButton.addActionListener(this);
 
     }
+    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
 
     @Override
     public void actionPerformed(ActionEvent evento) {
@@ -78,6 +106,11 @@ public class ChooseRoleControlator implements ActionListener {
 
         }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
 
     public enum buttons {
         adminButton, providerButton, clientButton

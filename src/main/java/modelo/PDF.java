@@ -21,14 +21,30 @@ import java.io.FileOutputStream;
  * @author jabre
  */
 public class PDF {
+    
+    /**
+     *
+     * Constructor de clase vacío
+     */
 
     public PDF() {
     }
+    
+    /**
+     *
+     * Método para crear el PDF
+     * @param name Parametro que da como entrada el distrito
+     * @param product Parametro que da como entrada el producto
+     * @param quantity Parametro que da como entrada la cantidad de producto
+     * @param price Parametro que da como entrada el precio del producto
+     * @throws java.io.FileNotFoundException
+     * @throws com.itextpdf.text.DocumentException
+     */
 
-    public void crearPDF(String nombre, String producto, int cantidad, int precio) throws FileNotFoundException, DocumentException {
+    public void crearPDF(String name, String product, int quantity, int price) throws FileNotFoundException, DocumentException {
         Document documento = new Document();
 
-        FileOutputStream ficheroPDF = new FileOutputStream(nombre+".pdf");
+        FileOutputStream ficheroPDF = new FileOutputStream(name+".pdf");
 
         PdfWriter.getInstance(documento, ficheroPDF);
 
@@ -42,10 +58,10 @@ public class PDF {
         tabla.addCell("Producto");
         tabla.addCell("Cantidad");
         tabla.addCell("Precio Total");
-        tabla.addCell(nombre);
-        tabla.addCell(producto);
-        tabla.addCell(String.valueOf(cantidad));
-        tabla.addCell(String.valueOf(precio));
+        tabla.addCell(name);
+        tabla.addCell(product);
+        tabla.addCell(String.valueOf(quantity));
+        tabla.addCell(String.valueOf(price));
 
         documento.add(tabla);
 

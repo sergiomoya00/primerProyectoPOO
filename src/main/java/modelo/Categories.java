@@ -10,17 +10,41 @@ package modelo;
  * @author jabre
  */
 public class Categories {
+    
+     /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private String name;
     private String description;
     private String condition;
+    
+    /**
+     *
+     * Constructor de clase vacío
+     */
 
     public Categories() {
     }
-
+    
+    /**
+     *
+     * Constructor de clase
+     * @param name Parametro que da como entrada el nombre de la categoria
+     */
+    
     public Categories(String name) {
         this.name = name;
     }
+    
+    /**
+     *
+     * Constructor de clase
+     * @param name Parametro que da como entrada el nombre de la categoria
+     * @param description Parametro que da como entrada la descripcion de la categoria
+     * @param condition Parametro que da como entrada la condicion
+     */
 
     public Categories(String name, String description, String condition) {
         this.name = name;

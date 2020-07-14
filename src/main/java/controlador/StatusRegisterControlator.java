@@ -20,21 +20,39 @@ import vista.UserRegister;
  * @author jabre
  */
 public class StatusRegisterControlator implements ActionListener{
-     private StatusRegister providerRole;
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
+    
+    private StatusRegister providerRole;
     private AdminOrderStatus role = new AdminOrderStatus();
     private ProviderRole p=new ProviderRole();
     private OrdersDAO order=new  OrdersDAO();
-    private int selection;
     
-    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
 
     public StatusRegisterControlator() {
         
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo StatusRegister
+     */
+    
     public StatusRegisterControlator(StatusRegister user) {
         this.providerRole=user;
     }
     
+    /**
+     * Método que inicializa la ventana StatusRegister
+     */
     
     public void openUserRegister(){
     providerRole.setTitle("Registo Usuario");
@@ -50,16 +68,18 @@ public class StatusRegisterControlator implements ActionListener{
     
     }
     
-  
- 
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
     
-
     @Override
     public void actionPerformed(ActionEvent evento) {
        switch(buttons.valueOf(evento.getActionCommand())){
            case buttonInsert:
                order.orderStatus(providerRole.comboOrder.getSelectedItem().toString(), providerRole.comboStatus.getSelectedItem().toString());
-               providerRole.setVisible(false);
                break;
            case buttonBack:
                new AdminOrderStatusControlator(role).openUserRegister();
@@ -70,7 +90,10 @@ public class StatusRegisterControlator implements ActionListener{
        }
     }
     
-    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
     
     public enum buttons{
     btnUpdate,buttonInsert,buttonBack,buttonDelete

@@ -36,6 +36,11 @@ import vista.UserRegister;
  * @author jabre
  */
 public class UserRegisterControlador implements ActionListener {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private UserRegister userRegister;
     private UserDAO user = new UserDAO();
@@ -46,14 +51,29 @@ public class UserRegisterControlador implements ActionListener {
     private AdminRole rol = new AdminRole();
     private AdminUser adminuser = new AdminUser();
     private String opcion;
+    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
 
     public UserRegisterControlador() {
 
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo UserRegister
+     */
 
     public UserRegisterControlador(UserRegister user) {
         this.userRegister = user;
     }
+    
+    /**
+     * Método que inicializa la ventana UserRegister
+     */
 
     public void openUserRegister(String opcion) {
         userRegister.setTitle("Registo Usuario");
@@ -67,7 +87,14 @@ public class UserRegisterControlador implements ActionListener {
         this.userRegister.btnLogIn.addActionListener(this);
 
     }
-
+    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
+    
     @Override
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
@@ -122,6 +149,11 @@ public class UserRegisterControlador implements ActionListener {
 
         }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
 
     public enum buttons {
         btnRegister,

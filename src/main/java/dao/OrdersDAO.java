@@ -22,14 +22,28 @@ import vista.StatusRegister;
  * @author jabre
  */
 public class OrdersDAO {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
-    Conexion conexion = new Conexion();
-    Connection cin = conexion.getConnection();
+    private Conexion conexion = new Conexion();
+    private Connection cin = conexion.getConnection();
     private ClientSearch client = new ClientSearch();
-    PreparedStatement ps;
-    StatusRegister statusR;
+    private PreparedStatement ps;
+    private StatusRegister statusR;
+    
+       /**
+     * Método para insertar un pedido en la base de datos
+     * @param userName  Atributo que guarda el nombre de usuario del cliente a insertar en la base de datos
+     * @param idProvider Atributo que guarda la cédula del cliente en la base de datos
+     * @param idProduct Atributo que guarda la provincia del cliente en la base de datos
+     * @param quantity Atributo que guarda el cantón del cliente en la base de datos
+     * @param category Atributo que guarda el distrito del cliente en la base de datos
+     */
 
-    public void insertOrder(String nombreUsuario, String idProveedor, String idProducto, int cantidad,String categoria) {
+    public void insertOrder(String userName, String idProvider, String idProduct, int quantity,String category) {
         String insertar = "insert into pedidos (nombreUsuario,idProveedor,idProducto,cantidad,estado,fecha_hora_Entrega,categoria) values (?,?,?,?,?,?,?) ";
         long time = System.currentTimeMillis();
         java.sql.Date d = new java.sql.Date(time);
@@ -39,13 +53,13 @@ public class OrdersDAO {
 
         try {
             ps = cin.prepareCall(insertar);
-            ps.setString(1, nombreUsuario);
-            ps.setString(2, idProveedor);
-            ps.setString(3, idProducto);
-            ps.setInt(4, cantidad);
+            ps.setString(1, userName);
+            ps.setString(2, idProvider);
+            ps.setString(3, idProduct);
+            ps.setInt(4, quantity);
             ps.setString(5, "En Proceso");
             ps.setString(6, fecha);
-            ps.setString(7, categoria);
+            ps.setString(7, category);
 
             ps.executeUpdate();
             JOptionPane.showMessageDialog(client, "Registrado con exito");
@@ -54,6 +68,12 @@ public class OrdersDAO {
             JOptionPane.showMessageDialog(client, "No Registrado ");
         }
     }
+    
+       /**
+     * Método para actualizar una categoria en la base de datos
+     * @param idOrder  Atributo que guarda el codigo del pedido del cliente a actualizar en la base de datos
+     * @param status Atributo que guarda el estado del pedido del cliente a actualizar en la base de datos
+     */
 
     public void orderStatus(String idOrder, String status) {
         String update = "UPDATE pedidos SET  estado='" + status + "' WHERE idPedido='" + idOrder + "'";
@@ -67,7 +87,13 @@ public class OrdersDAO {
             JOptionPane.showMessageDialog(statusR, e.toString());
         }
     }
-
+    
+    /**
+     * Método para actualizar la fecha de entrega en la base de datos
+     * @param idOrder  Atributo que guarda el codigo del pedido del cliente a actualizar en la base de datos
+     * @param date Atributo que guarda la fecha de entrega del pedido del cliente a actualizar en la base de datos
+     */
+    
     public void orderDeliveryDate(String idOrder, String date) {
         String update = "UPDATE pedidos SET  fecha_hora_Entrega='" + date + "' WHERE idPedido='" + idOrder + "'";
         try {
@@ -81,6 +107,11 @@ public class OrdersDAO {
         }
     }
     
+    /**
+     * Método para actualizar el estado de un pedido en la base de datos
+     * @param idOrder  Atributo que guarda el codigo del pedido del cliente a actualizar en la base de datos
+     */
+    
     public void updateStatusCanceled(String idOrder) {
         String update = "UPDATE pedidos SET  estado='Cancelado' WHERE idPedido='" + idOrder + "'";
         try {
@@ -93,6 +124,12 @@ public class OrdersDAO {
             JOptionPane.showMessageDialog(statusR, e.toString());
         }
     }
+    
+    /**
+     * Método para obtener la cantidad de productos de un pedido en la base de datos
+     * @param idProduct  Atributo que guarda el codigo del producto del cuál se obtendrá la cantidad de la base de datos
+     * @return
+     */
 
     public int getOrderQuatity(String idProduct) {
         int result = 0;
@@ -112,6 +149,11 @@ public class OrdersDAO {
         }
         return result;
     }
+    
+    /**
+     * Método para eliminar un pedido en la base de datos
+     * @param id  Atributo que guarda el codigo del producto a eliminar de la base de datos
+     */
 
     public void deleteOrderStatus(String id) {
         String update = "Delete from pedidos Where idPedido='" + id + "'";
@@ -125,6 +167,11 @@ public class OrdersDAO {
             JOptionPane.showMessageDialog(statusR, e.toString());
         }
     }
+    
+    /**
+     * Método para obtener el estado de todos los pedidos en la base de datos
+     * @param table  Atributo que guarda la tabla donde se mostrará  todos los pedidos de la base de datos
+     */
 
     public void getAllOrderStatus(JTable table) {
         try {
@@ -156,6 +203,12 @@ public class OrdersDAO {
 
         }
     }
+    
+    /**
+     * Método para obtener todos los pedidoss de un cliente en la base de datos
+     * @param table  Atributo que guarda la tabla donde se mostrará  todos los pedidos de la base de datos
+     * @param client Atributo que guarda el nombre del cliente del cual se obtendrá los pedidos
+     */
     
     public void getAllClientOrders(JTable table,String client){
         try {
@@ -195,6 +248,13 @@ public class OrdersDAO {
     
     }
     
+    /**
+     * Método para obtener todos los pedidos por categoria en la base de datos
+     * @param table  Atributo que guarda la tabla donde se mostrará  todos los pedidos de la base de datos
+     * @param client Atributo que guarda el nombre del cliente del cual se obtendrá los pedidos
+     * @param category Atributo que guarda la categoría del pedido a obtener
+     */
+    
     public void getAllClientOrdersByCategory(JTable table,String client,String category){
         try {
             DefaultTableModel modelo = new DefaultTableModel();
@@ -233,6 +293,14 @@ public class OrdersDAO {
     
     }
     
+    /**
+     * Método para obtener todos los pedidos por proveedor de la  base de datos
+     * @param table  Atributo que guarda la tabla donde se mostrará  todos los pedidos de la base de datos
+     * @param client Atributo que guarda el nombre del cliente del cual se obtendrá los pedidos
+     * @param provider Atributo que guarda el proveedor del producto del pedido a obtener
+     */
+    
+    
      public void getAllClientOrdersByProv(JTable table,String client,String provider){
         try {
             DefaultTableModel modelo = new DefaultTableModel();
@@ -270,6 +338,12 @@ public class OrdersDAO {
         }
     
     }
+        /**
+     * Método para obtener todos los pedidos por fecha en la base de datos
+     * @param table  Atributo que guarda la tabla donde se mostrará  todos los pedidos de la base de datos
+     * @param client Atributo que guarda el nombre del cliente del cual se obtendrá los pedidos
+     * @param date Atributo que guarda la fecha del pedido a obtener
+     */
      
         public void getAllClientOrdersByDate(JTable table,String client,String date){
         try {
@@ -308,6 +382,13 @@ public class OrdersDAO {
         }
     
     }
+        
+    /**
+     * Método para obtener todos los pedidos por estado en la base de datos
+     * @param table  Atributo que guarda la tabla donde se mostrará  todos los pedidos de la base de datos
+     * @param client Atributo que guarda el nombre del cliente del cual se obtendrá los pedidos
+     * @param status Atributo que guarda el estado del pedido a obtener
+     */
      
      public void getAllClientOrdersByStatus(JTable table,String client,String status){
         try {
@@ -346,6 +427,12 @@ public class OrdersDAO {
         }
     
     }
+     
+     /**
+     * Método para obtener el estado de los pedidos en la base de datos
+     * @param table  Atributo que guarda la tabla donde se mostrará  todos los pedidos de la base de datos
+     * @param status Atributo que guarda el estado del pedido a obtener
+     */
 
     public void getSpecificOrderStatus(JTable table, String status) {
         try {
@@ -383,9 +470,13 @@ public class OrdersDAO {
 
         }
     }
+    
+    /**
+     * Método para obtener todos los pedidos de la base de datos
+     * @param combo  Atributo que guarda el combobox en el cual se mostrará todos los pedidos
+     */
 
     public void getComboOrders(JComboBox combo) {
-        java.sql.Connection conectar = null;
         String poi = "SELECT idPedido FROM pedidos";
         try {
 
@@ -401,8 +492,12 @@ public class OrdersDAO {
         }
     }
     
+    /**
+     * Método para obtener los pedidos por fecha de la base de datos
+     * @param combo  Atributo que guarda el combobox en el cual se mostrará todos los pedidos por fecha
+     */
+    
       public void getComboOrdersByDate(JComboBox combo) {
-        java.sql.Connection conectar = null;
         String poi = "SELECT fecha_hora_Entrega FROM pedidos";
         try {
 
@@ -417,6 +512,11 @@ public class OrdersDAO {
 
         }
     }
+      
+    /**
+     * Método para limpiar la tabla en la cual se muestra los datos de la base de datos
+     * @param table  Atributo que guarda el combobox en el cual se mostrará todos los pedidos
+     */
       
     public void clearOrders(JTable table){
     try {

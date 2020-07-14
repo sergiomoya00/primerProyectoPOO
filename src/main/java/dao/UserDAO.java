@@ -16,8 +16,6 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import static jdk.nashorn.internal.objects.NativeFunction.call;
-
 import vista.AdminUser;
 import vista.ProviderRegister;
 
@@ -26,18 +24,35 @@ import vista.ProviderRegister;
  * @author jabre
  */
 public class UserDAO {
-
-    ProviderRegister providerRegister;
-    AdminUser admin;
-    Conexion conexion = new Conexion();
-    Connection cin = conexion.getConnection();
-    PreparedStatement ps;
-    CallableStatement cs;
     
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
+    private ProviderRegister providerRegister;
+    private AdminUser admin;
+    private Conexion conexion = new Conexion();
+    private Connection cin = conexion.getConnection();
+    private PreparedStatement ps;
+    private CallableStatement cs;
+    
+    /**
+     *
+     * Constructor de clase vacío
+     */
+    
     public UserDAO() {
 
     }
+    
+     /**
+     * Método para insertar un usuario en la base de datos
+     * @param username  Atributo que guarda el nombre de usuario del usuario a insertar en la base de datos
+     * @param email Atributo que guarda el identificador del usuario en la base de datos
+     * @param password Atributo que la contraseña del usuario en la base de datos
+     * @param role Atributo que guarda el rol del usuario en la base de datos
+     */
 
     public void userRegister(String username, String email, String password,String role) {
 
@@ -54,6 +69,15 @@ public class UserDAO {
             JOptionPane.showMessageDialog(providerRegister, "No Registrado ");
         }
     }
+    
+     /**
+     * Método para verificar las credenciales de los usuarios
+     * @param email Atributo que guarda el identificador del usuario en la base de datos
+     * @param password Atributo que la contraseña del usuario en la base de datos
+     * @return 
+     */
+
+    
     public boolean logIn(String email,String password) {
             try {
             ResultSet rs = null;
@@ -69,12 +93,18 @@ public class UserDAO {
                 }
 
             }
-            
+            JOptionPane.showMessageDialog(providerRegister, "Usuario o contraseña incorrectos");
         } catch (SQLException ex) {
          JOptionPane.showMessageDialog(providerRegister, "Usuario o contraseña incorrectos");
         }
         return false;
     }
+    
+     /**
+     * Método para verificar las credenciales de los usuarios
+     * @param email Parametro de entrada para obtener el correo electronico apartir del nombre de usuario
+     * @return 
+     */
     
     public String getEmail(String email){
     String user="";
@@ -96,6 +126,11 @@ public class UserDAO {
         return user;
     }
     
+    /**
+     * Método para verificar las credenciales de los usuarios
+     * @param pass Parametro de entrada para obtener la contraseña desencriptada apartir del nombre de usuario
+     * @return 
+     */
     
     public String getPassword(String pass){
          String result="";
@@ -113,7 +148,11 @@ public class UserDAO {
         return result;
     }
     
-    
+    /**
+     * Método para obtener el rol de los usuarios
+     * @param username Parametro de entrada para obtener el rol apartir del nombre de usuario
+     * @return 
+     */
     
     public String getRole(String username) {
         String user="";
@@ -136,6 +175,11 @@ public class UserDAO {
 
     }
     
+    /**
+     * Método para eliminar los usuarios
+     * @param username Parametro de entrada para obtener la contraseña desencriptada apartir del nombre de usuario
+     */
+    
     public void deleteUser(String username){
     String delete = "delete  from usuarios where nombreUsuario='" + username + "'";
 
@@ -149,6 +193,15 @@ public class UserDAO {
         }
     }
     
+     /**
+     * Método para eliminar los usuarios
+     * @param username Parametro de entrada para obtener la contraseña desencriptada apartir del nombre de usuario
+     * @param email Parametro de entrada para actualizar el correo apartir del nombre de usuario
+     * @param password Parametro de entrada para actualizar la contraseña desencriptada apartir del nombre de usuario
+     * @param role Parametro de entrada para actualizar el rol apartir del nombre de usuario
+     */
+    
+    
     public void updateUser(String username,String email,String password,String role){
      String update = "UPDATE usuarios SET  nombreUsuario='"+username+"', correoElectronico='"+email+"', contraseña=dbo.ENCRIPTA_PASS('"+password+"'), rol='"+role+"'  WHERE nombreUsuario='" + username + "'";
         try {
@@ -161,6 +214,12 @@ public class UserDAO {
        JOptionPane.showMessageDialog(admin, e.toString());
         }
     }
+    
+     /**
+     * Método para eliminar los usuarios
+     * @param table Atributo que hace referencia a la tabla donde se mostrará todos los usuarios de la base de datos
+     */
+    
     public void getAllUsers(JTable table){
       try {
             DefaultTableModel modelo = new DefaultTableModel();
@@ -196,6 +255,11 @@ public class UserDAO {
         }
 
     }
+    
+    /**
+     * Método para eliminar los usuarios
+     * @param combo Atributo que hace referencia al combobox donde se mostrará todos los usuarios de la base de datos
+     */
     
     public void getComboUserProviders(JComboBox combo){
         String poi = "SELECT nombreUsuario FROM usuarios WHERE rol='Proveedor'";

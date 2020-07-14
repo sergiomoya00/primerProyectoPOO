@@ -27,14 +27,26 @@ import vista.ProviderRegister;
  * @author jabre
  */
 public class CategoryDAO {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
-    CategoryRegister providerRegister;
-    AdminUser admin;
-    Conexion conexion = new Conexion();
-    Connection cin = conexion.getConnection();
-    PreparedStatement ps;
-    Categories categ;
-    List<Categories> category = new ArrayList<>();
+    private CategoryRegister providerRegister;
+    private AdminUser admin;
+    private Conexion conexion = new Conexion();
+    private Connection cin = conexion.getConnection();
+    private PreparedStatement ps;
+    private Categories categ;
+    private List<Categories> category = new ArrayList<>();
+    
+    /**
+     * Método para insertar una categoria en la base de datos
+     * @param name Atributo que guarda el nombre a insertar en la base de datos
+     * @param description Atributo que guarda la descripcion de la categoria en la base de datos
+     * @param status Atributo que guarda el estado de la categoria en la base de datos
+     */
 
     public void categoryRegister(String name, String description, String status) {
         String insertar = "insert into categorias (nombre,descripcion,estado) values (?,?,?) ";
@@ -51,6 +63,14 @@ public class CategoryDAO {
             JOptionPane.showMessageDialog(providerRegister, "No Registrado ");
         }
     }
+    
+    /**
+     * Método para actualizar una categoria en la base de datos
+     * @param codigo Atributo que guarda el codigo a actualizar en la base de datos
+     * @param name Atributo que guarda el nombre a actualizar en la base de datos
+     * @param description Atributo que guarda la descripcion de la categoria en la base de datos
+     * @param status Atributo que guarda el estado de la categoria en la base de datos
+     */
 
     public void updateCategory(String codigo, String name, String description, String status) {
         String update = "UPDATE categorias SET  nombre='" + name + "', descripcion='" + description + "', estado='" + status + "' WHERE codigo=" + codigo;
@@ -64,6 +84,11 @@ public class CategoryDAO {
             JOptionPane.showMessageDialog(admin, e.toString());
         }
     }
+    
+    /**
+     * Método para eliminar una categoria en la base de datos
+     * @param codigo Atributo que guarda el codigo de a categoría a eliminar en la base de datos
+     */
 
     public void deleteCategory(String codigo) {
         String update = "Delete from categorias where codigo=" + codigo;
@@ -77,7 +102,12 @@ public class CategoryDAO {
             JOptionPane.showMessageDialog(admin, e.toString());
         }
     }
-
+    
+    /**
+     * Método insertar en una tabla todas las categorias de la base de datos
+     * @param table Atributo que guarda la tabla en la cual se insertarán los datos de la base
+     */
+    
     public void getAllCategories(JTable table) {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
@@ -110,6 +140,11 @@ public class CategoryDAO {
 
         }
     }
+    
+    /**
+     * Método para obtener las categorias en una lista agrupadas por nombre
+       @return 
+     */
 
     public List<Categories> getCategories() {
         String poi = "SELECT nombre FROM categorias GROUP BY nombre";
@@ -128,6 +163,12 @@ public class CategoryDAO {
         }
         return category;
     }
+    
+    /**
+     * Método para obtener las categorias mediante una busqueda
+     * @param newCategory Atributo de tipo Categories que sirve como referencia para realizar la busqueda
+       @return 
+     */
 
     public List<Categories> search(Categories newCategory) {
         
@@ -145,6 +186,11 @@ public class CategoryDAO {
         }
         return results;
     }
+    
+    /**
+     * Método para obtener las categorias mediante una busqueda
+     * @param combo Atributo de tipo JComboBox que da como entrada el combobox donde se cargarán las categorias 
+     */
 
     public void getComboCategory(JComboBox combo) {
         String poi = "SELECT nombre FROM categorias";

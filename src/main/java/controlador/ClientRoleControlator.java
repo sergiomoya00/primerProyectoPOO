@@ -25,19 +25,40 @@ import vista.UserRegister;
  */
 public class ClientRoleControlator implements ActionListener {
     
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
+    
     private ClientRole providerRole;
-    private ClientRole role = new ClientRole();
+    private ChooseRole role = new ChooseRole();
     private ClientSearch order = new ClientSearch();
     private ClientOrder category = new ClientOrder();
     private String nombre;
+    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
 
     public ClientRoleControlator() {
 
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo ClientRole
+     */
 
     public ClientRoleControlator(ClientRole user) {
         this.providerRole = user;
     }
+    
+    /**
+     * Método que inicializa la ventana ClientRole
+     * @param nombre Atributo que guarda el nombre de usuario utilizado en una ventana anterior
+     */
 
     public void openUserRegister(String nombre) {
         providerRole.setTitle("Registo Usuario");
@@ -53,6 +74,13 @@ public class ClientRoleControlator implements ActionListener {
         this.providerRole.buttonBack.addActionListener(this);
 
     }
+    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
 
     @Override
     public void actionPerformed(ActionEvent evento) {
@@ -66,12 +94,17 @@ public class ClientRoleControlator implements ActionListener {
                 providerRole.setVisible(false);
                 break;
             case buttonBack:
-                new ClientRoleControlator(role).openUserRegister(nombre);
+                new ChooseRoleControlator(role).openChooseRole();
                 providerRole.setVisible(false);
                 break;
 
         }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
 
     public enum buttons {
         buttonGetOrder, buttonBack, buttonOrder

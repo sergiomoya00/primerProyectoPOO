@@ -103,10 +103,7 @@ public class ProviderConsultClients extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        ProviderRole back = new ProviderRole();
-        back.setVisible(true);
-        this.setVisible(false);
-        this.dispose();
+      
     }//GEN-LAST:event_buttonBackActionPerformed
 
     /**

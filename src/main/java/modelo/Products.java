@@ -10,6 +10,11 @@ package modelo;
  * @author jabre
  */
 public class Products {
+    
+     /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private String productId;
     private String productName;
@@ -21,11 +26,30 @@ public class Products {
     private int deliverPrice;
     private String foto;
     private String condition;
+    
+    /**
+     *
+     * Constructor de clase vacío
+     */
 
     public Products() {
     }
+    
+    /**
+     *
+     * Constructor de clase
+     * @param productId Parametro que da como entrada el codigo del producto
+     * @param productName Parametro que da como entrada el nombre del producto
+     * @param description Parametro que da como entrada la descripcion
+     * @param type Parametro que da como entrada el tipo
+     * @param category Parametro que da como entrada la categoria
+     * @param quantity Parametro que da como entrada la cantidad
+     * @param unitaryPrice Parametro que da como entrada el precio Unitario
+     * @param deliveryPrice Parametro que da como entrada el precio de entrega
+     * @param condition Parametro que da como entrada la condicion
+     */
 
-    public Products(String productId, String productName, String description, String type, String category, int quantity, int unitaryPrice, int deliverPrice, String condition) {
+    public Products(String productId, String productName, String description, String type, String category, int quantity, int unitaryPrice, int deliveryPrice, String condition) {
         this.productId = productId;
         this.productName = productName;
         this.description = description;
@@ -33,7 +57,7 @@ public class Products {
         this.category = category;
         this.quantity = quantity;
         this.unitaryPrice = unitaryPrice;
-        this.deliverPrice = deliverPrice;
+        this.deliverPrice = deliveryPrice;
         this.condition = condition;
     }
 

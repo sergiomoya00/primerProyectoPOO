@@ -25,22 +25,41 @@ import vista.ProviderProducts;
  * @author jabre
  */
 public class ProductRegisterControlator implements ActionListener {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private ProductRegister userRegister;
     private byte[] foto;
-    ProductsDAO product = new ProductsDAO();
-    ProviderDAO provider = new ProviderDAO();
-    CategoryDAO category = new CategoryDAO();
-
+    private ProductsDAO product = new ProductsDAO();
+    private ProviderDAO provider = new ProviderDAO();
+    private CategoryDAO category = new CategoryDAO();
     private ProviderProducts role = new ProviderProducts();
-
+    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
+    
     public ProductRegisterControlator() {
 
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo ProductRegister
+     */
 
     public ProductRegisterControlator(ProductRegister user) {
         this.userRegister = user;
     }
+    
+    /**
+     * Método que inicializa la ventana ProductRegister
+     */
 
     public void openUserRegister() {
         userRegister.setTitle("Registo Categoria");
@@ -57,7 +76,13 @@ public class ProductRegisterControlator implements ActionListener {
         this.userRegister.buttonBack.addActionListener(this);
 
     }
-
+    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
@@ -91,6 +116,11 @@ public class ProductRegisterControlator implements ActionListener {
 
         }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
 
     public enum buttons {
         buttonInsert,

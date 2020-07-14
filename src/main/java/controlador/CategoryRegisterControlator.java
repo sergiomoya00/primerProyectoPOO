@@ -23,19 +23,39 @@ import vista.UserRegister;
  * @author jabre
  */
 public class CategoryRegisterControlator implements ActionListener {
-
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
+    
     private CategoryRegister userRegister;
-    CategoryDAO category = new CategoryDAO();
-
+    private CategoryDAO category = new CategoryDAO();
     private AdminCategory role = new AdminCategory();
+    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
 
     public CategoryRegisterControlator() {
 
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo CategoryRegister
+     */
 
     public CategoryRegisterControlator(CategoryRegister user) {
         this.userRegister = user;
     }
+    
+    /**
+     *
+     * Método que inicializa la ventana CategoryRegister
+     */
 
     public void openUserRegister() {
         userRegister.setTitle("Registo Categoria");
@@ -48,7 +68,14 @@ public class CategoryRegisterControlator implements ActionListener {
         this.userRegister.buttonBack.addActionListener(this);
 
     }
-
+    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
+    
     @Override
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
@@ -63,6 +90,11 @@ public class CategoryRegisterControlator implements ActionListener {
 
         }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
 
     public enum buttons {
         buttonInsert,

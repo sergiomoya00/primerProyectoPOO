@@ -23,6 +23,11 @@ import vista.UserRegister;
  * @author jabre
  */
 public class ProviderLogInControlator implements ActionListener {
+    
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
 
     private ProviderLogIn userRegister;
     private UserDAO user = new UserDAO();
@@ -30,14 +35,29 @@ public class ProviderLogInControlator implements ActionListener {
     private UserRegister userR = new UserRegister();
     private ChooseRole role = new ChooseRole();
     private ProviderRole p = new ProviderRole();
+    
+    /**
+     *
+     * Constructor vacío de la clase
+     */
 
     public ProviderLogInControlator() {
 
     }
+    
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo ProviderLogIn
+     */
 
     public ProviderLogInControlator(ProviderLogIn user) {
         this.userRegister = user;
     }
+    
+    /**
+     * Método que inicializa la ventana ProviderLogIn
+     */
 
     public void openUserRegister() {
         userRegister.setTitle("Ingreso Proveedor");
@@ -52,7 +72,13 @@ public class ProviderLogInControlator implements ActionListener {
         this.userRegister.buttonBack.addActionListener(this);
 
     }
-
+    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     *
+     * @param evento Atributo que hace referencia a la acción de un botón en
+     * caso de ser pulsado
+     */
     @Override
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
@@ -60,7 +86,7 @@ public class ProviderLogInControlator implements ActionListener {
                 if (user.logIn(userRegister.txt_email.getText(), userRegister.txtPassword.getText()) == true) {
                     if (user.getRole(userRegister.txt_email.getText()).equals("Proveedor")) {
                         ProviderList.getInstance().getProvidersUser(userRegister.txt_email.getText());
-                        System.out.println(ProviderList.getInstance().getUserList().get(1).getName());
+                        System.out.println(ProviderList.getInstance().getUserList().get(1).getId());
                         new ProviderRoleControlator(p).openUserRegister();
                         userRegister.setVisible(false);
                     } else {
@@ -80,6 +106,11 @@ public class ProviderLogInControlator implements ActionListener {
 
         }
     }
+    
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
 
     public enum buttons {
         menuButton,

@@ -21,73 +21,92 @@ import vista.UserRegister;
  *
  * @author jabre
  */
-public class AdminOrderStatusControlator implements ActionListener{
-  private AdminOrderStatus providerRole;
-    private AdminRole role = new AdminRole();
-    private ProviderRole p=new ProviderRole();
-    private StatusRegister a=new StatusRegister();
-    private OrdersDAO user=new OrdersDAO();
-    private int selection;
-    
-    
+public class AdminOrderStatusControlator implements ActionListener {
 
+    /**
+     *
+     * Atributos necesarios para la implementación de los métodos de la clase
+     */
+    private AdminOrderStatus providerRole;
+    private AdminRole role = new AdminRole();
+    private ProviderRole p = new ProviderRole();
+    private StatusRegister a = new StatusRegister();
+    private OrdersDAO user = new OrdersDAO();
+    private int selection;
+
+    /**
+     *
+     * Constructor vacío de la clase
+     */
     public AdminOrderStatusControlator() {
-        
+
     }
+
+    /**
+     * Constructor de la clase
+     *
+     * @param user atributo que hace referencia a la ventana de tipo
+     * AdminDataAnalysis
+     */
     public AdminOrderStatusControlator(AdminOrderStatus user) {
-        this.providerRole=user;
+        this.providerRole = user;
+    }
+
+    /**
+     *
+     * Método que inicializa la ventana AdminOrderStatus
+     */
+    public void openUserRegister() {
+        providerRole.setTitle("Registo Usuario");
+        providerRole.setLocationRelativeTo(null);
+        user.getAllOrderStatus(providerRole.tableOrder);
+        providerRole.setVisible(true);
+
+        this.providerRole.buttonUpdate.setActionCommand("btnUpdate");
+        this.providerRole.buttonUpdate.addActionListener(this);
+        this.providerRole.buttonDelete.setActionCommand("buttonDelete");
+        this.providerRole.buttonDelete.addActionListener(this);
+        this.providerRole.buttonInsert.setActionCommand("buttonInsert");
+        this.providerRole.buttonInsert.addActionListener(this);
+        this.providerRole.buttonBack.setActionCommand("buttonBack");
+        this.providerRole.buttonBack.addActionListener(this);
+
     }
     
-    
-    public void openUserRegister(){
-    providerRole.setTitle("Registo Usuario");
-    providerRole.setLocationRelativeTo(null);
-    user.getAllOrderStatus(providerRole.tableOrder);
-    providerRole.setVisible(true);
-    
-    this.providerRole.buttonUpdate.setActionCommand("btnUpdate");
-    this.providerRole.buttonUpdate.addActionListener(this);
-    this.providerRole.buttonDelete.setActionCommand("buttonDelete");
-    this.providerRole.buttonDelete.addActionListener(this);
-    this.providerRole.buttonInsert.setActionCommand("buttonInsert");
-    this.providerRole.buttonInsert.addActionListener(this);
-    this.providerRole.buttonBack.setActionCommand("buttonBack");
-    this.providerRole.buttonBack.addActionListener(this);
-    
-    
-    }
-    
-  
- 
-    
+    /**
+     * Método que ejecuta una determinada acción dependiendo del botón
+     * @param evento Atributo que hace referencia a la acción de un botón en caso de ser pulsado
+     */
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-       switch(buttons.valueOf(evento.getActionCommand())){
-           case buttonInsert:
-               new StatusRegisterControlator(a).openUserRegister();
-               providerRole.setVisible(false);
-               break;
-           case btnUpdate:
-                selection=providerRole.tableOrder.getSelectedRow();
-                user.orderStatus(String.valueOf(providerRole.tableOrder.getValueAt(selection, 0)), String.valueOf(providerRole.tableOrder.getValueAt(selection, 1)));;
-               break;
-           case buttonDelete:
-               selection=providerRole.tableOrder.getSelectedRow();
-               user.deleteOrderStatus(String.valueOf(providerRole.tableOrder.getValueAt(selection, 0)));
-               break;
-           case buttonBack:
-               new AdminRoleControlator(role).openUserRegister();
-               providerRole.setVisible(false);
-               break;
-           
-       
-       }
+        switch (buttons.valueOf(evento.getActionCommand())) {
+            case buttonInsert:
+                new StatusRegisterControlator(a).openUserRegister();
+                providerRole.setVisible(false);
+                break;
+            case btnUpdate:
+                selection = providerRole.tableOrder.getSelectedRow();
+                user.orderStatus(String.valueOf(providerRole.tableOrder.getValueAt(selection, 0)), String.valueOf(providerRole.tableOrder.getValueAt(selection, 1)));
+                ;
+                break;
+            case buttonDelete:
+                selection = providerRole.tableOrder.getSelectedRow();
+                user.deleteOrderStatus(String.valueOf(providerRole.tableOrder.getValueAt(selection, 0)));
+                break;
+            case buttonBack:
+                new AdminRoleControlator(role).openUserRegister();
+                providerRole.setVisible(false);
+                break;
+
+        }
     }
     
-    
-    
-    public enum buttons{
-    btnUpdate,buttonInsert,buttonBack,buttonDelete
-    }     
+    /**
+     *
+     * Método que etiqueta los botones para usarlos en la clase actionPerformed
+     */
+    public enum buttons {
+        btnUpdate, buttonInsert, buttonBack, buttonDelete
+    }
 }
