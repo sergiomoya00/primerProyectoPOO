@@ -33,8 +33,10 @@ import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 import vista.ProductRegister;
 import vista.ProviderProducts;
 
@@ -432,16 +434,17 @@ public class ProductsDAO {
             JOptionPane.showMessageDialog(admin, e.toString());
         }
     }
-    public int calcTotalPrice(String idProducto,int cantidad){
-    int precio=0;
-    String poi = "SELECT precioUnitario FROM productos where idProducto='"+idProducto+"'";
+
+    public int calcTotalPrice(String idProducto, int cantidad) {
+        int precio = 0;
+        String poi = "SELECT precioUnitario FROM productos where idProducto='" + idProducto + "'";
         try {
 
             ps = cin.prepareCall(poi);
             ResultSet result = ps.executeQuery();
 
             while (result.next()) {
-               precio=Integer.parseInt(result.getString("precioUnitario"))*cantidad;
+                precio = Integer.parseInt(result.getString("precioUnitario")) * cantidad;
             }
 
         } catch (Exception e) {
@@ -480,6 +483,46 @@ public class ProductsDAO {
         }
     }
 
+    public void getProductsByID(JTable table, String idProvider) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            table.setModel(modelo);
+            ResultSet rs = null;
+            String login = "SELECT B.idProducto, B.idProveedor, B.nombreProducto, B.descripcion, B.tipo, B.categoria, B.cantidadDisponible, B.precioUnitario, B.precioEntrega, B.foto, B.estado FROM productos B WHERE B.idProveedor='" + idProvider + "'";
+            ps = cin.prepareStatement(login);
+            rs = ps.executeQuery();
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            modelo.addColumn("idProducto");
+            modelo.addColumn("idProveedor");
+            modelo.addColumn("nombre");
+            modelo.addColumn("descripcion");
+            modelo.addColumn("tipo");
+            modelo.addColumn("categoria");
+            modelo.addColumn("cantidad dispinoble");
+            modelo.addColumn("precio Unitario");
+            modelo.addColumn("precio Entrega");
+            modelo.addColumn("foto");
+            modelo.addColumn("estado");
+
+            while (rs.next()) {
+                Object[] filas = new Object[cantidadColumnas];
+
+                for (int i = 1; i <= cantidadColumnas; i++) {
+
+                    filas[i - 1] = rs.getObject(i);
+
+                }
+
+                modelo.addRow(filas);
+
+            }
+
+        } catch (SQLException ex) {
+
+        }
+    }
+
     public void showGraph(JPanel panel) {
         try {
             ResultSet rs = null;
@@ -487,24 +530,19 @@ public class ProductsDAO {
             ps = cin.prepareCall(poi);
             ResultSet result = ps.executeQuery();
 
-            DefaultCategoryDataset dod = new DefaultCategoryDataset();
+            DefaultPieDataset dataset = new DefaultPieDataset();
             while (result.next()) {
-                dod.addValue(result.getInt(2), "Productos", result.getString(1));
+                dataset.setValue(result.getString(1), result.getInt(2));
             }
-            
-            JFreeChart jchart = ChartFactory.createBarChart("Productos", "Compras", "Producto", dod, PlotOrientation.VERTICAL, true, true, false);
-            CategoryPlot plot = jchart.getCategoryPlot();
-            plot.setRangeGridlinePaint(Color.black);
 
-            ChartFrame chartFrm = new ChartFrame("Productos", jchart, true);
-            chartFrm.setVisible(true);
-            chartFrm.setSize(500, 400);
+            JFreeChart jchart = ChartFactory.createPieChart("Productos", dataset, true, true, true);
+            PiePlot plot = (PiePlot) jchart.getPlot();
 
             ChartPanel chartPanel = new ChartPanel(jchart);
             panel.removeAll();
             panel.add(chartPanel);
             panel.updateUI();
-            
+
         } catch (SQLException ex) {
 
         }

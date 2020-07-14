@@ -5,7 +5,10 @@
  */
 package controlador;
 
+import com.google.maps.errors.ApiException;
+import dao.GoogleAPI;
 import dao.UserDAO;
+import java.io.IOException;
 import java.sql.SQLException;
 import vista.ChooseRole;
 import vista.UserRegister;

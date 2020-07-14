@@ -10,6 +10,7 @@ import dao.ProviderList;
 import dao.UserDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import modelo.Providers;
 import vista.ChooseRole;
 import vista.ProviderConsultClients;
 import vista.ProviderLogIn;
@@ -57,20 +58,24 @@ public class ProviderRoleControlator implements ActionListener {
     public void actionPerformed(ActionEvent evento) {
         switch (buttons.valueOf(evento.getActionCommand())) {
             case buttonProducts:
-                ProviderList.getInstance().getUserList().get(1).getName();
+                ProviderList.getInstance().getUserList().get(0).getName();
                 new ProviderProductsControlator(product).openUserRegister();
                 providerRole.setVisible(false);
                 break;
             case buttonOrders:
+                ProviderList.getInstance().getUserList().get(0).getName();
                 new ProviderOrdersControlator(order).openUserRegister();
                 providerRole.setVisible(false);
                 break;
             case buttonConsult:
-                ProviderList.getInstance().getUserList().get(1).getName();
+                ProviderList.getInstance().getUserList().get(0).getName();
                 new ProviderConsultClientsControlator(consult).openUserRegister();
                 providerRole.setVisible(false);
                 break;
             case buttonBack:
+                Providers newProvider = new Providers();
+                ProviderList.getInstance().searchUser(newProvider).clear();
+                ProviderList.getInstance().getUserList().clear();
                 new ChooseRoleControlator(role).openChooseRole();
                 providerRole.setVisible(false);
                 break;

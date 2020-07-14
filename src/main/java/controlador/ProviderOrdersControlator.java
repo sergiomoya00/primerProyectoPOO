@@ -7,12 +7,15 @@ package controlador;
 
 import dao.OrdersDAO;
 import dao.ProductsDAO;
+import dao.ProviderDAO;
+import dao.ProviderList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import vista.ProviderOrders;
 import vista.ProviderRole;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import modelo.Providers;
 
 /**
  *
@@ -24,6 +27,9 @@ public class ProviderOrdersControlator implements ActionListener {
     private ProviderRole p = new ProviderRole();
     private OrdersDAO orders = new OrdersDAO();
     private ProductsDAO products = new ProductsDAO();
+    private ProviderDAO provid = new ProviderDAO();
+    private String id = "";
+    private String specificID = "";
     private int selection;
 
     public ProviderOrdersControlator() {
@@ -36,6 +42,12 @@ public class ProviderOrdersControlator implements ActionListener {
     public void openUserRegister() {
         providerOrders.setTitle("Registo Usuario");
         providerOrders.setLocationRelativeTo(null);
+        id = ProviderList.getInstance().getUserList().get(0).getId();
+
+        Providers newProvider = new Providers();
+        newProvider.setId(id);
+        newProvider.setName("provider");
+        specificID = ProviderList.getInstance().searchUser(newProvider).get(0).getId();
         providerOrders.setVisible(true);
 
         this.providerOrders.buttonSearch.setActionCommand("buttonSearch");
@@ -54,22 +66,22 @@ public class ProviderOrdersControlator implements ActionListener {
         switch (buttons.valueOf(evento.getActionCommand())) {
             case buttonSearch:
                 if (providerOrders.comboOrder.getSelectedItem().toString().equals("En proceso")) {
-                    orders.getSpecificOrderStatus(providerOrders.tableOrder, "En proceso");
+                    orders.getSpecificOrderStatus(providerOrders.tableOrder, "En proceso", specificID);
                 }
                 if (providerOrders.comboOrder.getSelectedItem().toString().equals("Procesado")) {
-                    orders.getSpecificOrderStatus(providerOrders.tableOrder, "Procesado");
+                    orders.getSpecificOrderStatus(providerOrders.tableOrder, "Procesado", specificID);
                 }
                 if (providerOrders.comboOrder.getSelectedItem().toString().equals("Entregado")) {
-                    orders.getSpecificOrderStatus(providerOrders.tableOrder, "Entregado");
+                    orders.getSpecificOrderStatus(providerOrders.tableOrder, "Entregado", specificID);
                 }
                 if (providerOrders.comboOrder.getSelectedItem().toString().equals("Cancelado")) {
-                    orders.getSpecificOrderStatus(providerOrders.tableOrder, "Cancelado");
+                    orders.getSpecificOrderStatus(providerOrders.tableOrder, "Cancelado", specificID);
                 }
                 break;
             case buttonEntregado:
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                 LocalDateTime now = LocalDateTime.now();
-                String date =  dtf.format(now);
+                String date = dtf.format(now);
                 selection = providerOrders.tableOrder.getSelectedRow();
                 orders.orderStatus(String.valueOf(providerOrders.tableOrder.getValueAt(selection, 0)), "Entregado");
                 orders.orderDeliveryDate(String.valueOf(providerOrders.tableOrder.getValueAt(selection, 0)), date);

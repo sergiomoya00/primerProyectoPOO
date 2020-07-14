@@ -75,7 +75,7 @@ public class ProviderDAO {
         }
     }
 
-    public void providerInformationRegister(String username, String provincia, String canton, String distrito, String señas, int phone, String email, String website, String schedule, String profile) throws ApiException, InterruptedException, IOException {
+    public void providerInformationRegister(String username, String provincia, String canton, String distrito, String senas, int phone, String email, String website, String schedule, String profile) throws ApiException, InterruptedException, IOException {
 
         String insertar = "insert into informacionProveedor(nombreUsuario,cedula,provincia,canton,distrito,señas,telefono,correoElectronico,ubicacion,latitud,longitud,sitio,horario,perfil) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
         String ubication = distrito + "," + canton + "," + provincia + "," + "Costa Rica";
@@ -88,7 +88,7 @@ public class ProviderDAO {
             ps.setString(3, provincia);
             ps.setString(4, canton);
             ps.setString(5, distrito);
-            ps.setString(6, señas);
+            ps.setString(6, senas);
             ps.setInt(7, phone);
             ps.setString(8, email);
             ps.setString(9, ubication);
@@ -106,7 +106,7 @@ public class ProviderDAO {
         }
     }
 
-    public void clientInformationRegister(String username, int cedula, String provincia, String canton, String distrito, String señas, int phone, String email) throws ApiException, InterruptedException, IOException {
+    public void clientInformationRegister(String username, int cedula, String provincia, String canton, String distrito, String senas, int phone, String email) throws ApiException, InterruptedException, IOException {
 
         String insertar = "insert into informacion(nombreUsuario,cedula,provincia,canton,distrito,señas,telefono,correoElectronico,ubicacion,latitud,longitud,sitio,horario,perfil) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
         String ubication = distrito + "," + canton + "," + provincia + "," + "Costa Rica";
@@ -119,7 +119,7 @@ public class ProviderDAO {
             ps.setString(3, provincia);
             ps.setString(4, canton);
             ps.setString(5, distrito);
-            ps.setString(6, señas);
+            ps.setString(6, senas);
             ps.setInt(7, phone);
             ps.setString(8, email);
             ps.setString(9, ubication);
@@ -217,9 +217,9 @@ public class ProviderDAO {
         }
     }
 
-    public void updateProviderInformation(String username, String provincia, String canton, String distrito, String señas, int phone, String email, String ubication, String website, String schedule, String profile) {
+    public void updateProviderInformation(String username, String provincia, String canton, String distrito, String senas, int phone, String email, String ubication, String website, String schedule, String profile) {
 
-        String update = "UPDATE informacionProveedor SET  provincia='" + provincia + "',canton='" + canton + "',distrito='" + distrito + "',señas='" + señas + "',telefono='" + phone + "',correoElectronico='" + email + "',ubicacion='" + ubication + "',sitio='" + website + "',horario='" + schedule + "',perfil='" + profile + "' WHERE nombreUsuario='" + username + "'";
+        String update = "UPDATE informacionProveedor SET  provincia='" + provincia + "',canton='" + canton + "',distrito='" + distrito + "',señas='" + senas + "',telefono='" + phone + "',correoElectronico='" + email + "',ubicacion='" + ubication + "',sitio='" + website + "',horario='" + schedule + "',perfil='" + profile + "' WHERE nombreUsuario='" + username + "'";
         try {
 
             ps = cin.prepareStatement(update);
@@ -357,7 +357,7 @@ public class ProviderDAO {
     public void showGraph(JPanel panel) {
         try {
             ResultSet rs = null;
-            String poi = "select top 5 (B.nombre), avg(B.calificacion) as cantidad from pedidos A inner join proveedores B on B.idProveedor=A.idProveedor group by B.nombre order by cantidad desc";
+            String poi = "select top 5 (B.nombreUsuario), avg(B.calificacion) as cantidad from pedidos A inner join proveedores B on B.idProveedor=A.idProveedor group by B.nombreUsuario order by cantidad desc";
             ps = cin.prepareCall(poi);
             ResultSet result = ps.executeQuery();
 
@@ -366,13 +366,9 @@ public class ProviderDAO {
                 dod.addValue(result.getInt(2), "Productos", result.getString(1));
             }
 
-            JFreeChart jchart = ChartFactory.createBarChart("Proveedores", "CalificaciÃ³n", "Producto", dod, PlotOrientation.VERTICAL, true, true, false);
+            JFreeChart jchart = ChartFactory.createBarChart("Proveedores", "Calificacion", "Producto", dod, PlotOrientation.VERTICAL, true, true, false);
             CategoryPlot plot = jchart.getCategoryPlot();
             plot.setRangeGridlinePaint(Color.black);
-
-            ChartFrame chartFrm = new ChartFrame("Productos", jchart, true);
-            chartFrm.setVisible(true);
-            chartFrm.setSize(500, 400);
 
             ChartPanel chartPanel = new ChartPanel(jchart);
             panel.removeAll();

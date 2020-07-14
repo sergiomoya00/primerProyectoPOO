@@ -6,7 +6,7 @@
 package controlador;
 
 //import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.DocumentException;
+//import com.itextpdf.text.DocumentException;
 import dao.EmailNotification;
 
 import dao.CategoryDAO;
@@ -124,14 +124,14 @@ public class ClientSearchControlator implements ActionListener {
                 selection = providerRole.tableClient.getSelectedRow();
                 if (p.getProductQuatity(String.valueOf(providerRole.tableClient.getValueAt(selection, 0))) >= Integer.parseInt(providerRole.txtQuantity.getText())) {
                     order.insertOrder(nombre, String.valueOf(providerRole.tableClient.getValueAt(selection, 1)), String.valueOf(providerRole.tableClient.getValueAt(selection, 0)), Integer.parseInt(providerRole.txtQuantity.getText()),String.valueOf(providerRole.tableClient.getValueAt(selection, 5)));        
-                    try {
+                   /* try {
                         P.crearPDF(nombre, String.valueOf(providerRole.tableClient.getValueAt(selection, 2)), Integer.parseInt(providerRole.txtQuantity.getText()), p.calcTotalPrice(String.valueOf(providerRole.tableClient.getValueAt(selection, 0)), Integer.parseInt(providerRole.txtQuantity.getText())));
                         email.sendEmail(user.getEmail(nombre), nombre);
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(ClientSearchControlator.class.getName()).log(Level.SEVERE, null, ex);
                     }  catch (DocumentException ex) {
                 Logger.getLogger(ClientSearchControlator.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
 
                 } else {
                     JOptionPane.showMessageDialog(client, "La cantidad solicitada no puede ser completada");

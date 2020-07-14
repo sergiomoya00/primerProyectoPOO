@@ -29,7 +29,7 @@ public class OrdersDAO {
     PreparedStatement ps;
     StatusRegister statusR;
 
-    public void insertOrder(String nombreUsuario, String idProveedor, String idProducto, int cantidad,String categoria) {
+    public void insertOrder(String nombreUsuario, String idProveedor, String idProducto, int cantidad, String categoria) {
         String insertar = "insert into pedidos (nombreUsuario,idProveedor,idProducto,cantidad,estado,fecha_hora_Entrega,categoria) values (?,?,?,?,?,?,?) ";
         long time = System.currentTimeMillis();
         java.sql.Date d = new java.sql.Date(time);
@@ -80,7 +80,7 @@ public class OrdersDAO {
             JOptionPane.showMessageDialog(statusR, e.toString());
         }
     }
-    
+
     public void updateStatusCanceled(String idOrder) {
         String update = "UPDATE pedidos SET  estado='Cancelado' WHERE idPedido='" + idOrder + "'";
         try {
@@ -156,8 +156,8 @@ public class OrdersDAO {
 
         }
     }
-    
-    public void getAllClientOrders(JTable table,String client){
+
+    public void getAllClientOrders(JTable table, String client) {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
@@ -192,15 +192,15 @@ public class OrdersDAO {
         } catch (SQLException ex) {
 
         }
-    
+
     }
-    
-    public void getAllClientOrdersByCategory(JTable table,String client,String category){
+
+    public void getAllClientOrdersByCategory(JTable table, String client, String category) {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND categoria='"+category+"'";
+            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND categoria='" + category + "'";
             ps = cin.prepareStatement(selection);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -230,15 +230,15 @@ public class OrdersDAO {
         } catch (SQLException ex) {
 
         }
-    
+
     }
-    
-     public void getAllClientOrdersByProv(JTable table,String client,String provider){
+
+    public void getAllClientOrdersByProv(JTable table, String client, String provider) {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND idProveedor='"+provider+"'";
+            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND idProveedor='" + provider + "'";
             ps = cin.prepareStatement(selection);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -268,15 +268,15 @@ public class OrdersDAO {
         } catch (SQLException ex) {
 
         }
-    
+
     }
-     
-        public void getAllClientOrdersByDate(JTable table,String client,String date){
+
+    public void getAllClientOrdersByDate(JTable table, String client, String date) {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND fecha_hora_Entrega='"+date+"'";
+            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND fecha_hora_Entrega='" + date + "'";
             ps = cin.prepareStatement(selection);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -306,15 +306,15 @@ public class OrdersDAO {
         } catch (SQLException ex) {
 
         }
-    
+
     }
-     
-     public void getAllClientOrdersByStatus(JTable table,String client,String status){
+
+    public void getAllClientOrdersByStatus(JTable table, String client, String status) {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND estado='"+status+"'";
+            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND estado='" + status + "'";
             ps = cin.prepareStatement(selection);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -344,15 +344,15 @@ public class OrdersDAO {
         } catch (SQLException ex) {
 
         }
-    
+
     }
 
-    public void getSpecificOrderStatus(JTable table, String status) {
+    public void getSpecificOrderStatus(JTable table, String status, String idProveedor) {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria  FROM pedidos WHERE estado = '" + status + "'";
+            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega FROM pedidos WHERE estado = '" + status + "' and idProveedor='" + idProveedor + "'";
             ps = cin.prepareStatement(selection);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -363,7 +363,7 @@ public class OrdersDAO {
             modelo.addColumn("Cliente");
             modelo.addColumn("Cantidad");
             modelo.addColumn("Estado");
-             modelo.addColumn("Fecha");
+            modelo.addColumn("Fecha");
             modelo.addColumn("categoria");
 
             while (rs.next()) {
@@ -400,8 +400,8 @@ public class OrdersDAO {
 
         }
     }
-    
-      public void getComboOrdersByDate(JComboBox combo) {
+
+    public void getComboOrdersByDate(JComboBox combo) {
         java.sql.Connection conectar = null;
         String poi = "SELECT fecha_hora_Entrega FROM pedidos";
         try {
@@ -417,19 +417,17 @@ public class OrdersDAO {
 
         }
     }
-      
-    public void clearOrders(JTable table){
-    try {
-            DefaultTableModel modelo=(DefaultTableModel) table.getModel();
-            int filas=table.getRowCount();
-            for (int i = 0;filas>i; i++) {
+
+    public void clearOrders(JTable table) {
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+            int filas = table.getRowCount();
+            for (int i = 0; filas > i; i++) {
                 modelo.removeRow(0);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
         }
     }
-       
-    
-    
+
 }

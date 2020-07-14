@@ -6,10 +6,13 @@
 package controlador;
 
 import dao.CategoryDAO;
+import dao.ClientDAO;
 import dao.ProductsDAO;
+import dao.ProviderList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import modelo.Providers;
 import vista.AdminCategory;
 import vista.AdminRole;
 import vista.CategoryRegister;
@@ -28,8 +31,10 @@ public class ProviderProductsControlator implements ActionListener {
     private ProviderRole p = new ProviderRole();
     private ProductRegister a = new ProductRegister();
     private ProductsDAO user = new ProductsDAO();
+    private ClientDAO clients = new ClientDAO();
     private int selection;
     private MouseEvent mouse;
+    private String id = "";
 
     public ProviderProductsControlator() {
 
@@ -42,7 +47,14 @@ public class ProviderProductsControlator implements ActionListener {
     public void openUserRegister() {
         providerRole.setTitle("Registo Usuario");
         providerRole.setLocationRelativeTo(null);
-        user.getAllProducts(providerRole.tableProduct);
+        id = ProviderList.getInstance().getUserList().get(0).getId();
+        //user.getAllProducts(providerRole.tableProduct);
+
+        Providers newProvider = new Providers();
+        newProvider.setId(id);
+        newProvider.setName("provider");
+
+        user.getProductsByID(providerRole.tableProduct, ProviderList.getInstance().searchUser(newProvider).get(0).getId());
         providerRole.setVisible(true);
 
         this.providerRole.buttonUpdate.setActionCommand("buttonUpdate");
@@ -65,12 +77,11 @@ public class ProviderProductsControlator implements ActionListener {
                 break;
             case buttonUpdate:
                 selection = providerRole.tableProduct.getSelectedRow();
-                user.updateProduct(String.valueOf(providerRole.tableProduct.getValueAt(selection, 0)), String.valueOf(providerRole.tableProduct.getValueAt(selection, 1)),String.valueOf( providerRole.tableProduct.getValueAt(selection, 2)), String.valueOf(providerRole.tableProduct.getValueAt(selection, 3)),String.valueOf(providerRole.tableProduct.getValueAt(selection, 4)), String.valueOf(providerRole.tableProduct.getValueAt(selection, 5)), Integer.parseInt(String.valueOf(providerRole.tableProduct.getValueAt(selection, 6))), Integer.parseInt(String.valueOf(providerRole.tableProduct.getValueAt(selection, 7))), Integer.parseInt(String.valueOf(providerRole.tableProduct.getValueAt(selection, 8))), String.valueOf(providerRole.tableProduct.getValueAt(selection, 9)));
+                user.updateProduct(String.valueOf(providerRole.tableProduct.getValueAt(selection, 0)), String.valueOf(providerRole.tableProduct.getValueAt(selection, 1)), String.valueOf(providerRole.tableProduct.getValueAt(selection, 2)), String.valueOf(providerRole.tableProduct.getValueAt(selection, 3)), String.valueOf(providerRole.tableProduct.getValueAt(selection, 4)), String.valueOf(providerRole.tableProduct.getValueAt(selection, 5)), Integer.parseInt(String.valueOf(providerRole.tableProduct.getValueAt(selection, 6))), Integer.parseInt(String.valueOf(providerRole.tableProduct.getValueAt(selection, 7))), Integer.parseInt(String.valueOf(providerRole.tableProduct.getValueAt(selection, 8))), String.valueOf(providerRole.tableProduct.getValueAt(selection, 9)));
                 break;
             case buttonDelete:
                 selection = providerRole.tableProduct.getSelectedRow();
                 user.deleteProduct(String.valueOf(providerRole.tableProduct.getValueAt(selection, 0)));
-
                 break;
             case buttonBack:
                 new ProviderRoleControlator(p).openUserRegister();

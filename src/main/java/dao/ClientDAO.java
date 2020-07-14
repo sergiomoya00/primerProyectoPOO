@@ -44,7 +44,7 @@ public class ClientDAO {
     PreparedStatement ps;
     ProviderConsultClients consult;
 
-    public void insertClient(String nombreUsuario, int cedula, String provincia, String canton, String distrito, String señas, int telefono, String correoElectronico, String ubicacion, String sitio, String horario, String perfil) {
+    public void insertClient(String nombreUsuario, int cedula, String provincia, String canton, String distrito, String senas, int telefono, String correoElectronico, String ubicacion, String sitio, String horario, String perfil) {
         String insertar = "insert into informacionCliente (nombreUsuario,cedula,provincia,canton,distrito,señas,telefono,correoElectronico,ubicacion,sitio,horario,perfil) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
 
         try {
@@ -54,7 +54,7 @@ public class ClientDAO {
             ps.setString(3, provincia);
             ps.setString(4, canton);
             ps.setString(5, distrito);
-            ps.setString(6, señas);
+            ps.setString(6, senas);
             ps.setInt(7, telefono);
             ps.setString(8, correoElectronico);
             ps.setString(9, ubicacion);
@@ -102,11 +102,48 @@ public class ClientDAO {
 
         }
     }
-    
+
+    public void consultSpecificClient(JTable table, String idProvider, String idClient) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            table.setModel(modelo);
+            ResultSet rs = null;
+            String login = "SELECT * FROM pedidos WHERE nombreUsuario='" + idClient + "' and idProveedor='" + idProvider + "'";
+            ps = cin.prepareStatement(login);
+            rs = ps.executeQuery();
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            modelo.addColumn("ID del pedido");
+            modelo.addColumn("ID del producto");
+            modelo.addColumn("ID del proveedor");
+            modelo.addColumn("Cliente");
+            modelo.addColumn("Cantidad");
+            modelo.addColumn("Estado");
+            modelo.addColumn("Fecha");
+            modelo.addColumn("Categoria");
+
+            while (rs.next()) {
+                Object[] filas = new Object[cantidadColumnas];
+
+                for (int i = 1; i <= cantidadColumnas; i++) {
+
+                    filas[i - 1] = rs.getObject(i);
+
+                }
+
+                modelo.addRow(filas);
+
+            }
+
+        } catch (SQLException ex) {
+
+        }
+    }
+
     public void showGraph(JPanel panel) {
         try {
             ResultSet rs = null;
-            String poi = "select top 5 (B.nombreProducto), count(A.idProducto) as cantidad from pedidos A inner join productos B on B.idProducto=A.idProducto group by B.nombreProducto order by cantidad desc";
+            String poi = "select top 5 (B.nombreUsuario), count(B.nombreUsuario) as cantidad from pedidos A inner join informacionCliente B on B.nombreUsuario=A.nombreUsuario group by B.nombreUsuario order by cantidad desc";
             ps = cin.prepareCall(poi);
             ResultSet result = ps.executeQuery();
 
@@ -114,41 +151,36 @@ public class ClientDAO {
             while (result.next()) {
                 dataset.setValue(result.getString(1), result.getInt(2));
             }
-            
+
             JFreeChart jchart = ChartFactory.createPieChart("Clientes", dataset, true, true, true);
             PiePlot plot = (PiePlot) jchart.getPlot();
-            //plot.setForegroundAlpha(TOP_ALIGNMENT);
-            
-            ChartFrame chartFrm = new ChartFrame("Productos", jchart, true);
-            chartFrm.setVisible(true);
-            chartFrm.setSize(450,500);
 
             ChartPanel chartPanel = new ChartPanel(jchart);
             panel.removeAll();
             panel.add(chartPanel);
             panel.updateUI();
-            
+
         } catch (SQLException ex) {
 
         }
     }
-    
-       public String getClientCordinates(String id){
-        String cordinates="";
-        String poi = "SELECT latitud,longitud FROM informacionCliente where nombreUsuario='"+id+"'";
+
+    public String getClientCordinates(String id) {
+        String cordinates = "";
+        String poi = "SELECT latitud,longitud FROM informacionCliente where nombreUsuario='" + id + "'";
         try {
 
             ps = cin.prepareCall(poi);
             ResultSet result = ps.executeQuery();
 
             while (result.next()) {
-                cordinates="lat:"+result.getString("latitud")+", lng: "+result.getString("longitud");
+                cordinates = "lat:" + result.getString("latitud") + ", lng: " + result.getString("longitud");
             }
 
         } catch (Exception e) {
 
         }
         return cordinates;
-    
+
     }
 }

@@ -42,6 +42,7 @@ public class ProviderLogInControlator implements ActionListener {
     public void openUserRegister() {
         userRegister.setTitle("Ingreso Proveedor");
         userRegister.setLocationRelativeTo(null);
+        ProviderList.getInstance().getUserList().clear();
         userRegister.setVisible(true);
 
         this.userRegister.menuButton.setActionCommand("menuButton");
@@ -60,7 +61,6 @@ public class ProviderLogInControlator implements ActionListener {
                 if (user.logIn(userRegister.txt_email.getText(), userRegister.txtPassword.getText()) == true) {
                     if (user.getRole(userRegister.txt_email.getText()).equals("Proveedor")) {
                         ProviderList.getInstance().getProvidersUser(userRegister.txt_email.getText());
-                        System.out.println(ProviderList.getInstance().getUserList().get(1).getName());
                         new ProviderRoleControlator(p).openUserRegister();
                         userRegister.setVisible(false);
                     } else {
