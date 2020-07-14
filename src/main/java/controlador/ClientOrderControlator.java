@@ -5,7 +5,6 @@
  */
 package controlador;
 
-import com.itextpdf.text.DocumentException;
 import dao.EmailNotification;
 
 import dao.CategoryDAO;

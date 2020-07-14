@@ -245,7 +245,7 @@ public class OrdersDAO {
         } catch (SQLException ex) {
 
         }
-    
+
     }
     
     /**
@@ -260,7 +260,7 @@ public class OrdersDAO {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND categoria='"+category+"'";
+            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND categoria='" + category + "'";
             ps = cin.prepareStatement(selection);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -290,7 +290,7 @@ public class OrdersDAO {
         } catch (SQLException ex) {
 
         }
-    
+
     }
     
     /**
@@ -306,7 +306,7 @@ public class OrdersDAO {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND idProveedor='"+provider+"'";
+            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND idProveedor='" + provider + "'";
             ps = cin.prepareStatement(selection);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -336,7 +336,7 @@ public class OrdersDAO {
         } catch (SQLException ex) {
 
         }
-    
+
     }
         /**
      * Método para obtener todos los pedidos por fecha en la base de datos
@@ -350,7 +350,7 @@ public class OrdersDAO {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND fecha_hora_Entrega='"+date+"'";
+            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND fecha_hora_Entrega='" + date + "'";
             ps = cin.prepareStatement(selection);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -380,7 +380,7 @@ public class OrdersDAO {
         } catch (SQLException ex) {
 
         }
-    
+
     }
         
     /**
@@ -395,7 +395,7 @@ public class OrdersDAO {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND estado='"+status+"'";
+            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria FROM pedidos WHERE nombreUsuario = '" + client + "' AND estado='" + status + "'";
             ps = cin.prepareStatement(selection);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -425,7 +425,7 @@ public class OrdersDAO {
         } catch (SQLException ex) {
 
         }
-    
+
     }
      
      /**
@@ -434,12 +434,12 @@ public class OrdersDAO {
      * @param status Atributo que guarda el estado del pedido a obtener
      */
 
-    public void getSpecificOrderStatus(JTable table, String status) {
+    public void getSpecificOrderStatus(JTable table, String status, String idProveedor) {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             table.setModel(modelo);
             ResultSet rs = null;
-            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega,categoria  FROM pedidos WHERE estado = '" + status + "'";
+            String selection = "SELECT idPedido, idProducto,idProveedor, nombreUsuario, cantidad, estado,fecha_hora_Entrega FROM pedidos WHERE estado = '" + status + "' and idProveedor='" + idProveedor + "'";
             ps = cin.prepareStatement(selection);
             rs = ps.executeQuery();
             ResultSetMetaData rsMd = rs.getMetaData();
@@ -450,7 +450,7 @@ public class OrdersDAO {
             modelo.addColumn("Cliente");
             modelo.addColumn("Cantidad");
             modelo.addColumn("Estado");
-             modelo.addColumn("Fecha");
+            modelo.addColumn("Fecha");
             modelo.addColumn("categoria");
 
             while (rs.next()) {
@@ -529,7 +529,5 @@ public class OrdersDAO {
             JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
         }
     }
-       
-    
-    
+
 }

@@ -34,7 +34,7 @@ public class Conexion {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             con = DriverManager.getConnection(url,"sa","123");
             if (con != null) {
-                System.out.print("Conexion establecida");
+                //System.out.print("Conexion establecida");
             }
         } catch (ClassNotFoundException | SQLException e) {
             System.out.print("Conexion fail");

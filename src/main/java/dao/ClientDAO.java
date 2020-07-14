@@ -140,7 +140,7 @@ public class ClientDAO {
     public void showGraph(JPanel panel) {
         try {
             ResultSet rs = null;
-            String poi = "select top 5 (B.nombreProducto), count(A.idProducto) as cantidad from pedidos A inner join productos B on B.idProducto=A.idProducto group by B.nombreProducto order by cantidad desc";
+            String poi = "select top 5 (B.nombreUsuario), count(B.nombreUsuario) as cantidad from pedidos A inner join informacionCliente B on B.nombreUsuario=A.nombreUsuario group by B.nombreUsuario order by cantidad desc";
             ps = cin.prepareCall(poi);
             ResultSet result = ps.executeQuery();
 
@@ -148,20 +148,15 @@ public class ClientDAO {
             while (result.next()) {
                 dataset.setValue(result.getString(1), result.getInt(2));
             }
-            
+
             JFreeChart jchart = ChartFactory.createPieChart("Clientes", dataset, true, true, true);
             PiePlot plot = (PiePlot) jchart.getPlot();
-            //plot.setForegroundAlpha(TOP_ALIGNMENT);
-            
-            ChartFrame chartFrm = new ChartFrame("Productos", jchart, true);
-            chartFrm.setVisible(true);
-            chartFrm.setSize(450,500);
 
             ChartPanel chartPanel = new ChartPanel(jchart);
             panel.removeAll();
             panel.add(chartPanel);
             panel.updateUI();
-            
+
         } catch (SQLException ex) {
 
         }
@@ -182,13 +177,13 @@ public class ClientDAO {
             ResultSet result = ps.executeQuery();
 
             while (result.next()) {
-                cordinates="lat:"+result.getString("latitud")+", lng: "+result.getString("longitud");
+                cordinates = "lat:" + result.getString("latitud") + ", lng: " + result.getString("longitud");
             }
 
         } catch (Exception e) {
 
         }
         return cordinates;
-    
+
     }
 }

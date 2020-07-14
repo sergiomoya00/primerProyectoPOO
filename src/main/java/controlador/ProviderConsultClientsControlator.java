@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import modelo.Providers;
+import vista.ProviderClientList;
 import vista.ProviderConsultClients;
 import vista.ProviderRegister;
 import vista.ProviderRole;
@@ -29,6 +30,7 @@ public class ProviderConsultClientsControlator implements ActionListener {
 
     private ProviderConsultClients providerConsult;
     private ProviderRole p = new ProviderRole();
+    private ProviderClientList consult = new ProviderClientList();
     private ClientDAO clients = new ClientDAO();
     private ProviderDAO provider = new ProviderDAO();
     private String id = "";
@@ -58,8 +60,8 @@ public class ProviderConsultClientsControlator implements ActionListener {
     public void openUserRegister() {
         providerConsult.setTitle("Consultar clientes");
         providerConsult.setLocationRelativeTo(null);
-        id = ProviderList.getInstance().getUserList().get(1).getId();
-        
+        id = ProviderList.getInstance().getUserList().get(0).getId();
+
         Providers newProvider = new Providers();
         newProvider.setId(id);
         newProvider.setName("provider");
@@ -89,7 +91,10 @@ public class ProviderConsultClientsControlator implements ActionListener {
                 new ProviderRoleControlator(p).openUserRegister();
                 providerConsult.setVisible(false);
                 break;
-
+            case buttonList:
+                selection = providerConsult.tableClients.getSelectedRow();
+                new ProviderClientListControlator(consult).openUserRegister();
+                break;
         }
     }
     

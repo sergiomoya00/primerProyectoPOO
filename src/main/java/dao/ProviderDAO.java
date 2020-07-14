@@ -490,10 +490,6 @@ public class ProviderDAO {
             CategoryPlot plot = jchart.getCategoryPlot();
             plot.setRangeGridlinePaint(Color.black);
 
-            ChartFrame chartFrm = new ChartFrame("Productos", jchart, true);
-            chartFrm.setVisible(true);
-            chartFrm.setSize(500, 400);
-
             ChartPanel chartPanel = new ChartPanel(jchart);
             panel.removeAll();
             panel.add(chartPanel);
